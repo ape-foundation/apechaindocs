@@ -1,0 +1,32 @@
+{
+  "index": "About [todo] Chain",
+  "seperator_1": {
+    "type": "separator",
+    "title": "Getting Started"
+  },
+  "metamask": "Add [todo] Testnet to Metamask",
+  "bridge": "Bridge Assets to [todo]",
+  "faucet": "Receive Faucet Funds",
+  "advanced": {
+    "title":"Deploy on [todo] Testnet"
+  },
+  "seperator_2": {
+    "type": "separator",
+    "title": "User Tools"
+  },
+  "explorer": {
+    "title": "Block Explorer ↗",
+    "href": "todo: insert explorer link",
+    "newWindow": true
+  },
+  "Bridge": {
+    "title": "Bridge UI ↗",
+    "href": "todo: insert bridge UI link",
+    "newWindow": true
+  },
+  "hub": {
+    "title": "Hub Page ↗",
+    "href": "todo: insert hub page link",
+    "newWindow": true
+  }
+}
