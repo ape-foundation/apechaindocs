@@ -1,14 +1,14 @@
 {
-  "index": "About [todo] Chain",
+  "index": "About ApeChain",
   "seperator_1": {
     "type": "separator",
     "title": "Getting Started"
   },
-  "metamask": "Add [todo] Testnet to Metamask",
-  "bridge": "Bridge Assets to [todo]",
+  "metamask": "Add ApeChain to Metamask",
+  "bridge": "Bridge Assets to ApeChain",
   "faucet": "Receive Faucet Funds",
   "advanced": {
-    "title":"Deploy on [todo] Testnet"
+    "title":"Deploy on ApeChain"
   },
   "seperator_2": {
     "type": "separator",
@@ -16,17 +16,17 @@
   },
   "explorer": {
     "title": "Block Explorer ↗",
-    "href": "todo: insert explorer link",
+    "href": "https://jenkins.explorer.caldera.xyz/",
     "newWindow": true
   },
   "Bridge": {
     "title": "Bridge UI ↗",
-    "href": "todo: insert bridge UI link",
+    "href": "https://jenkins.bridge.caldera.xyz/",
     "newWindow": true
   },
   "hub": {
     "title": "Hub Page ↗",
-    "href": "todo: insert hub page link",
+    "href": "https://jenkins.hub.caldera.xyz/",
     "newWindow": true
   }
 }
