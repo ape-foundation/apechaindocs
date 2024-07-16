@@ -1,5 +1,6 @@
 {
   "index": "About ApeChain",
+  "native-yield": "Native Yield on ApeChain",
   "seperator_1": {
     "type": "separator",
     "title": "Getting Started"
@@ -16,17 +17,17 @@
   },
   "explorer": {
     "title": "Block Explorer ↗",
-    "href": "https://jenkins.explorer.caldera.xyz/",
+    "href": "https://curtis.explorer.caldera.xyz/",
     "newWindow": true
   },
   "Bridge": {
     "title": "Bridge UI ↗",
-    "href": "https://jenkins.bridge.caldera.xyz/",
+    "href": "https://curtis.bridge.caldera.xyz/",
     "newWindow": true
   },
   "hub": {
     "title": "Hub Page ↗",
-    "href": "https://jenkins.hub.caldera.xyz/",
+    "href": "https://curtis.hub.caldera.xyz/",
     "newWindow": true
   }
 }
