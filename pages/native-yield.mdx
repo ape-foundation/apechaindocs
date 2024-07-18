@@ -3,3 +3,31 @@
 ApeChain offers native yield for certain bridged assets. Native yield represents a groundbreaking feature for the blockchain community, offering automatic yield on an asset to depositors on the ApeChain L3.
 
 Initially, native yield on ApeChain will only be available for bridged $APE, but this feature will eventually extend to other assets such as $ETH and USD Stablecoins.
+
+## Yield Modes
+
+ApeChain supports three different yield modes: automatic, void, and delegate. The [ArbInfo contract](https://explorer.curtis.apechain.com/address/0x0000000000000000000000000000000000000065?tab=write_contract) can be used to update the yield mode for an address. By default, all addresses start in automatic mode where yield is automatically earned each block. Whenever a contract is deployed, the yield mode is switched to void where yield is disabled to maximize compatibility with existing contracts. The contract can modify its yield mode by calling the [ArbInfo contract](https://explorer.curtis.apechain.com/address/0x0000000000000000000000000000000000000065?tab=write_contract).
+
+## Delegate Yield Mode
+
+In delegate yield mode, the address has a fixed balance and yield is sent to a delegate address instead. Note that delegating yield to an address in delegate yield mode does not chain and delegating yield to an address that is not in automatic yield mode does not increase balance until the delegate address switches to automatic yield mode.
+
+## Balance Values
+
+The following fields are added to the StateAccount object to track yield: flags, fixed, shares, debt, and delegate.
+
+Balance is computed as follows:
+
+balance = account.shares * global.sharePrice + account.fixed - account.debt
+
+eth_getBalanceValues can be used to get all the balance values for an address:
+
+cast rpc --rpc-url https://rpc.curtis.apechain.com eth_getBalanceValues 0x0000000000000000000000000000000000000000 latest
+
+eth_getSharePrice can be used to get the global share price:
+
+cast rpc --rpc-url https://rpc.curtis.apechain.com eth_getSharePrice latest
+
+## Yield Rate
+
+The apy is currently set to 10%. The [ArbOwnerPublic contract](https://explorer.curtis.apechain.com/address/0x000000000000000000000000000000000000006b?tab=read_contract) may be used to get the share price and annual percentage yield.
