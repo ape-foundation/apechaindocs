@@ -9,12 +9,12 @@
     "type": "separator",
     "title": "Getting Started"
   },
-  "metamask": "Add ApeChain to Metamask",
-  "bridge": "Bridge Assets to ApeChain",
-  "faucet": "Receive Faucet Funds",
-  "native-yield": "Native Yield on ApeChain",
+  "metamask": "Add ApeChain",
+  "bridge": "Bridge to ApeChain",
+  "faucet": "Faucet Funds",
+  "native-yield": "Native Yield",
   "advanced": {
-    "title":"Deploy on ApeChain"
+    "title":"Deploy"
   },
   "seperator_3": {
     "type": "separator",
