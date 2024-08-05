@@ -1,22 +1,29 @@
 {
   "seperator_1": {
     "type": "separator",
-    "title": "Mission Statement"
+    "title": "Mission"
   },
-  "index": "About ApeChain",
+  "index": "About",
   "architecture": "Architecture",
   "seperator_2": {
     "type": "separator",
-    "title": "Getting Started"
+    "title": "Get Started"
   },
-  "metamask": "Add ApeChain to Metamask",
-  "bridge": "Bridge Assets to ApeChain",
-  "faucet": "Receive Faucet Funds",
-  "native-yield": "Native Yield on ApeChain",
+  "metamask": "Add",
+  "bridge": "Bridge",
+  "faucet": "Faucet Funds",
+  "native-yield": "Native Yield",
   "advanced": {
-    "title":"Deploy on ApeChain"
+    "title":"Deploy"
   },
   "seperator_3": {
+    "type": "separator",
+    "title": "Hackathons"
+  },
+  "advanced": {
+    "title": "Develop"
+  },
+  "seperator_4": {
     "type": "separator",
     "title": "User Tools"
   },
@@ -34,5 +41,10 @@
     "title": "Hub Page ↗",
     "href": "https://curtis.hub.caldera.xyz/",
     "newWindow": true
-  }
+  },
+  "seperator_5": {
+    "type": "separator",
+    "title": "Community"
+  
+}
 }
