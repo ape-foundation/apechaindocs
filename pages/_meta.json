@@ -3,14 +3,14 @@
     "type": "separator",
     "title": "Mission Statement"
   },
-  "index": "About ApeChain",
+  "index": "About",
   "architecture": "Architecture",
   "seperator_2": {
     "type": "separator",
     "title": "Getting Started"
   },
-  "metamask": "Add ApeChain",
-  "bridge": "Bridge to ApeChain",
+  "metamask": "Add",
+  "bridge": "Bridge",
   "faucet": "Faucet Funds",
   "native-yield": "Native Yield",
   "advanced": {
