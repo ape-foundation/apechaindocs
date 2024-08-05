@@ -7,7 +7,7 @@ const config: DocsThemeConfig = {
   logo: (
     <Image src={image_src} alt={""} width={160}/>
   ),
-  nextThemes: { defaultTheme: "light", forcedTheme: "light" },
+  nextThemes: { defaultTheme: "dark" },
   useNextSeoProps() {
     return {
       titleTemplate: "%s - ApeChain Docs",

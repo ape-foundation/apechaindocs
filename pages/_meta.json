@@ -1,17 +1,22 @@
 {
-  "index": "About ApeChain",
-  "native-yield": "Native Yield on ApeChain",
   "seperator_1": {
+    "type": "separator",
+    "title": "Mission Statement"
+  },
+  "index": "About ApeChain",
+  "architecture": "Architecture",
+  "seperator_2": {
     "type": "separator",
     "title": "Getting Started"
   },
   "metamask": "Add ApeChain to Metamask",
   "bridge": "Bridge Assets to ApeChain",
   "faucet": "Receive Faucet Funds",
+  "native-yield": "Native Yield on ApeChain",
   "advanced": {
     "title":"Deploy on ApeChain"
   },
-  "seperator_2": {
+  "seperator_3": {
     "type": "separator",
     "title": "User Tools"
   },

@@ -1,12 +1,14 @@
 # Native Yield on ApeChain
 
-ApeChain offers native yield for certain bridged assets. Native yield represents a groundbreaking feature for the blockchain community, offering automatic yield on an asset to depositors on the ApeChain L3.
+For most rollups today, assets held as collateral in the bridge sit idly without being put to work (with over $15B worth of ETH locked up across leading rollups at the moment). ApeChain allows users to earn yield on those locked assets!
 
 Initially, native yield on ApeChain will only be available for bridged $APE, but this feature will eventually extend to other assets such as $ETH and USD Stablecoins.
 
 ## Yield Modes
 
 ApeChain supports three different yield modes: automatic, void, and delegate. The [ArbInfo contract](https://explorer.curtis.apechain.com/address/0x0000000000000000000000000000000000000065?tab=write_contract) can be used to update the yield mode for an address. By default, all addresses start in automatic mode where yield is automatically earned each block. Whenever a contract is deployed, the yield mode is switched to void where yield is disabled to maximize compatibility with existing contracts. The contract can modify its yield mode by calling the [ArbInfo contract](https://explorer.curtis.apechain.com/address/0x0000000000000000000000000000000000000065?tab=write_contract).
+
+For a more detailed walkthrough, checkout this [video demo](https://youtu.be/ciPfRXmIteI?feature=shared&t=749)!
 
 ## Delegate Yield Mode
 
