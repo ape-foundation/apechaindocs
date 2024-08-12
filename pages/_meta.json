@@ -13,13 +13,20 @@
   "bridge": "Bridge",
   "faucet": "Faucet Funds",
   "native-yield": "Native Yield",
-  "advanced": {
-    "title":"Deploy"
-  },
  
-  "advanced": {
+  "seperator_3": {
+    "type": "separator",
     "title": "Develop"
   },
+  "advanced": {
+    "title": "Start Here"
+  },
+
+  "start-building": {
+    "title": "Start Building"
+  },
+
+
   "seperator_4": {
     "type": "separator",
     "title": "User Tools"
