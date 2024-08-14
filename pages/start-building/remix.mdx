@@ -34,6 +34,23 @@ contract HelloWorld {
 5. Navigate to the **Compile** sidebar option and click Compile. 
 
 
+![faucet](../../images/Remix_1.png)
+<br></br>
+
+After you compile your contract and you obtain test $Ape from our hub you can then select 
+
+*Enviroment* on the left had side (see below) and switch to the Curtis Network where you can deploy / interact with your contract, this time on our testnet oppposed to the VM.
+
+
+
+![faucet](../../images/remix_deploy.png)
+
+
+After you compile you have the ability to interact with the contract on the left side 
+
+You also have the ability to view the deployment of your contract on the Curtis Block Explorer (Found here https://curtis.explorer.caldera.xyz/)
+
+
 ## Getting Started with Remix ( Contract example #2 ) 
 ```solidity
 
@@ -117,16 +134,4 @@ The currentAdvertiser to see the address that sent the ETH.
 The currentAmount to see the amount of ETH associated with the current message.
 
 
-
-## Deploying on Remix + ApeChain
-Once you have written your Smart Contract in Remix, you can navigate to the sidebar option to Compile your contract. 
-
-1. Change the top **ENVIRONMENT** dropdown from "**Javascript**" to "**Injected Web3**" 
-2. This will take you MetaMask - Press connect in Metamask to allow Remix access. 
-3. Add your network to Metamask using these parameters from Curtis Testnet:
-    - Network Name: Curtis
-    - New RPC URL: https://curtis.rpc.caldera.xyz/http
-    - Chain ID: 33111
-    - Currency Symbol: APE
-    - Block Explorer URL: https://curtis.explorer.caldera.xyz/
 
