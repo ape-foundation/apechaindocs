@@ -13,6 +13,7 @@
   "bridge": "Bridge",
   "faucet": "Faucet Funds",
   "native-yield": "Native Yield",
+  "run-node": "Run a Node",
  
   "seperator_3": {
     "type": "separator",
