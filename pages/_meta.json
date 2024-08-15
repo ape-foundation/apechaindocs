@@ -33,7 +33,12 @@
 
   "seperator_4": {
     "type": "separator",
-    "title": "User Tools"
+    "title": "Tools"
+  },
+  "hub": {
+    "title": "Hub Page ↗",
+    "href": "https://curtis.hub.caldera.xyz/",
+    "newWindow": true
   },
   "explorer": {
     "title": "Block Explorer ↗",
@@ -45,9 +50,9 @@
     "href": "https://curtis.bridge.caldera.xyz/",
     "newWindow": true
   },
-  "hub": {
-    "title": "Hub Page ↗",
-    "href": "https://curtis.hub.caldera.xyz/",
+  "status": {
+    "title": "Status ↗",
+    "href": "https://curtis.betteruptime.com/",
     "newWindow": true
   },
   "seperator_5": {
