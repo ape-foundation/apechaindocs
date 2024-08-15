@@ -1,0 +1,28 @@
+## Running a replica node for Curtis
+
+Download the zipped repository below for an out-of-the-box example of how to spin up a node locally.
+
+Note: syncing can take up to a few hours.
+
+[nitro-replica-curtis.zip](https://prod-files-secure.s3.us-west-2.amazonaws.com/0f5a214e-93fb-4c1a-891b-2f2b3596ae8e/013d616a-6d08-4c08-8149-f634d549d816/nitro-replica-curtis.zip)
+
+## Using the Repo
+
+The repo is setup to easily run curtis testnet replica nodes. Simply run `docker-compose up` in the root of the repository to bring a replica node up locally.
+
+The docker image for curtis testnet is hosted in a public docker repo: `public.ecr.aws/i6b2w2n6/nitro-node:curtis3`
+
+The nodeConfig file within is prepopulated with curtis testnet parameters. The current setup uses a public rpc url for the Arbitrum Sepolia rpc and stores node data in docker volume.
+
+It is recommended to replace the Arbitrum Sepolia rpc url in `docker-compose.yml` with your own private url to avoid being rate limited. By default, this value is set to Arbitrum's public RPC url.
+
+
+## Docker Images
+
+`public.ecr.aws/i6b2w2n6/nitro-node:curtis3`
+
+## Existing RPC Endpoints
+
+Http endpoint: `https://rpc.curtis.apechain.com/http`
+
+Wss endpoint: `wss://rpc.curtis.apechain.com/ws`
