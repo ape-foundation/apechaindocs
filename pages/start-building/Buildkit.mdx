@@ -12,6 +12,54 @@ packages/
 
 ```
 
+``` solidity
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.13;
+
+contract BidBoard {
+	string public message;
+	address public currentAdvertiser;
+	uint public currentAmount;
+	address payable public owner;
+
+	event MessageUpdated(
+		string newMessage,
+		address indexed newAdvertiser,
+		uint newAmount
+	);
+
+	constructor() {
+		owner = payable(msg.sender);
+		message = "Welcome to Apechain";
+	}
+
+	modifier onlyOwner() {
+		require(msg.sender == owner, "Only the owner can call this function.");
+		_;
+	}
+
+	function updateMessage(string calldata newMessage) external payable {
+		require(
+			msg.value > currentAmount,
+			"Must send more Ether than the previous amount."
+		);
+
+		message = newMessage;
+		currentAdvertiser = msg.sender;
+		currentAmount = msg.value;
+
+		owner.transfer(msg.value);
+
+		emit MessageUpdated(newMessage, msg.sender, msg.value);
+	}
+
+	function updateOwner(address payable newOwner) external onlyOwner {
+		owner = newOwner;
+	}
+}
+
+```
+
 
 Also, adjustments have been made to the harhat.config.ts file 
  ```
@@ -23,7 +71,7 @@ Also, adjustments have been made to the harhat.config.ts file
     ```
 
 
-![faucet](../../images/se2_ape.png)
+![faucet](../../images/Starter_pack.png)
 
 
 
@@ -34,15 +82,18 @@ Here is a [Link to the current version ](https://github.com/robbiekruszynski/sca
 yarn install 
 
 ```
-```
-yarn chain 
-```
+
+***Note:*** while making adjustments you may need to dd your private key to the .env file
+
 ```
 yarn deploy 
 ```
 ```
 yarn start 
 ```
+As a user, you'll notice locally you can connect immediately to the Curtis network which will show your holdings with your connected wallet and the block explorer auto-directs you to the Curtis block explorer. You can update the message and set a value behind the message.
 
-    **Note:** 
-    This is meant to get you developing faster, you will need to tailor the code for your project.
+As a user, you are bidding to update the message (string) so, to update the message you need to ensure you are paying more than the previous update, otherwise, it will fail to update the state.
+
+**Note:**
+This is meant to get you developing faster, you will need to tailor the code for your project.
