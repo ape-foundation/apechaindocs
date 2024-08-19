@@ -1,7 +1,10 @@
 # Native Yield on ApeChain
 
-For most rollups today, assets held as collateral in the bridge sit idly without being put to work (with over $15B worth of ETH locked up across leading rollups at the moment). ApeChain allows users to earn yield on those locked assets!
+For most rollups today, assets held as collateral in the bridge sit idly without being put to work (with over $15B worth of ETH locked up across leading rollups at the moment). ApeChain instead allows users to earn yield on those locked assets!
 
+EOAs automatically receive $APE yield via rebasing -- users will automatically see their wallet balance tick up.
+
+Currently, the yield rate on $APE is **10% APY**.
 
 ## Yield Modes
 
@@ -9,9 +12,56 @@ ApeChain supports three different yield modes: automatic, void, and delegate. Th
 
 For a more detailed walkthrough, checkout this [video demo](https://youtu.be/ciPfRXmIteI?feature=shared&t=749)!
 
-## Delegate Yield Mode
+### Automatic Yield Mode (default for EOAs)
+
+In automatic yield mode, yield is automatically earned each block. This is the default mode for all EOAs (ie wallet addresses).
+
+In automatic mode, the address' $APE balance is incremented by the amount of yield earned each block, without the user needing to manually "claim" the yield.
+
+### Void Yield Mode (default for contracts)
+
+In void yield mode, yield is disabled for the totality of $APE held in the address. This is the default mode for all contracts, as native yield can introduce incompatibilities with common smart contracts if not properly accounted for.
+
+Changing from "void" to "automatic" or "delegate" mode will not grant the user any $APE that would have accrued in the past, were the contract not in void mode. For this reason, it is recommended that contract developers who wish to take advantage of native yield switch to another mode shortly after deployment-time.
+
+### Delegate Yield Mode
 
 In delegate yield mode, the address has a fixed balance and yield is sent to a delegate address instead. Note that delegating yield to an address in delegate yield mode does not chain and delegating yield to an address that is not in automatic yield mode does not increase balance until the delegate address switches to automatic yield mode.
+
+## Changing Yield Mode
+
+The ["ArbInfo" contract](https://explorer.curtis.apechain.com/address/0x0000000000000000000000000000000000000065?tab=write_contract), located at address `0x0000000000000000000000000000000000000065`, a system contract built into the ApeChain protocol, can be used to update the yield mode for an address. For native yield, three functions are available:
+
+```solidity
+interface ArbInfo {
+    function configureAutomaticYield() external;
+    function configureVoidYield() external;
+    function configureDelegateYield(address delegate) external;
+}
+```
+
+A contract can call these methods directly to update the yield mode for itself. Note that only the contract itself can call these methods, and not any other address.
+
+For example, a contract might add the ability for an owner to configure the yield mode for itself by adding the following code to its implementation:
+
+```solidity
+
+enum YieldMode {
+    AUTOMATIC,
+    VOID,
+    DELEGATE
+}
+
+function configureYieldMode(YieldMode yieldMode, address delegate) external onlyOwner {
+    if(yieldMode == YieldMode.AUTOMATIC) {
+        ArbInfo(0x0000000000000000000000000000000000000065).configureAutomaticYield();
+    } else if(yieldMode == YieldMode.VOID) {
+        ArbInfo(0x0000000000000000000000000000000000000065).configureVoidYield();
+    } else if(yieldMode == YieldMode.DELEGATE) {
+        ArbInfo(0x0000000000000000000000000000000000000065).configureDelegateYield(delegate);
+    }
+}
+```
 
 ## Balance Values
 
@@ -32,3 +82,30 @@ cast rpc --rpc-url https://rpc.curtis.apechain.com eth_getSharePrice latest
 ## Yield Rate
 
 The apy is currently set to 10%. The [ArbOwnerPublic contract](https://explorer.curtis.apechain.com/address/0x000000000000000000000000000000000000006b?tab=read_contract) may be used to get the share price and annual percentage yield.
+
+### Querying the annual percentage yield
+
+Any users can determine the annual percentage yield by viewing the `getApy` function on the [ArbOwnerPublic contract](https://explorer.curtis.apechain.com/address/0x000000000000000000000000000000000000006b?tab=read_contract) on the ApeChain Explorer.
+
+Note that this value is stored as an integer representing 10^(-9)ths of a percent, so a value of 10000000000 represents 10% APY.
+
+![APY Query](../images/apy_query.png)
+
+### Using the APY value in smart contracts
+
+Smart contracts can also query this value onchain.
+
+```solidity
+interface IArbOwnerPublic {
+    function getApy() external view returns (uint256);
+}
+
+contract APYExample {
+    IArbOwnerPublic constant arbOwnerPublic = IArbOwnerPublic(0x000000000000000000000000000000000000006b);
+
+    function getCurrentAPY() public view returns (uint256) {
+        // Remember, the value returned by getApy is in 10^(-9)ths of a percent.
+        uint256 apyValue = arbOwnerPublic.getApy();
+    }
+}
+```
