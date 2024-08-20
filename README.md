@@ -1,15 +1,13 @@
-## Using this template
-To create whitelabel docs for a given project, just run a global `cmd + f` on the word `todo`, and fill in all info. Should be quite self explanatory!
+# What is ApeChain 
 
-### Assets
-Note: In addition to all todos, make sure to replace  `images/hub.png` and `images/faucet.png` with screenshots from the network's hub page. 
+ApeChain is a dedicated infrastructure layer to power the ApeCoin ecosystem. By leveraging Caldera and Arbitrum's custom native token feature, ApeChain will utilize $APE as its native gas token. This integration significantly enhances $APE's utility, fostering a robust and dynamic economy driven by $APE, and positioning ApeChain as a premier platform.
 
-## Local Development
+### Local Development
 
 First, run `pnpm i` to install the dependencies.
 
 Then, run `pnpm dev` to start the development server and visit localhost:3000.
 
-## License
+#### License
 
 This project is licensed under the MIT License.
