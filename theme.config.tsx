@@ -13,7 +13,7 @@ const config: DocsThemeConfig = {
   nextThemes: { defaultTheme: "dark" },
   useNextSeoProps() {
     return {
-      titleTemplate: "%s - ApeChain Docs",
+      titleTemplate: "%s - ApeChain Docsss",
     };
   },
   navigation: false,
