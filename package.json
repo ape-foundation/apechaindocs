@@ -1,7 +1,7 @@
 {
-  "name": "Apechain Documentation",
+  "name": "apechain-docs",
   "version": "0.0.1",
-  "description": "Apechain Documentation",
+  "description": "Apechain docs",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
