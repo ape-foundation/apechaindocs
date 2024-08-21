@@ -1,7 +1,7 @@
 {
-  "name": "nextra-docs-template",
+  "name": "Apechain Documentation",
   "version": "0.0.1",
-  "description": "Nextra docs template",
+  "description": "Apechain Documentation",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
