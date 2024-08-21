@@ -14,7 +14,6 @@
   "faucet": "Faucet Funds",
   "native-yield": "Native Yield",
   "run-node": "Run a Node",
- 
   "seperator_3": {
     "type": "separator",
     "title": "Develop"
@@ -22,15 +21,12 @@
   "advanced": {
     "title": "Start Here"
   },
-
   "start-building": {
     "title": "Start Building"
   },
   "run-node": {
     "title": "Run a Node"
   },
-
-
   "seperator_4": {
     "type": "separator",
     "title": "Tools"
@@ -45,7 +41,7 @@
     "href": "https://curtis.explorer.caldera.xyz/",
     "newWindow": true
   },
-  "Bridge": {
+  "bridge": {
     "title": "Bridge UI ↗",
     "href": "https://curtis.bridge.caldera.xyz/",
     "newWindow": true
@@ -59,11 +55,10 @@
     "type": "separator",
     "title": "Community"
 }, 
-
-"Connect": {
+"connect": {
   "title": "Connect"
 },
-"Resources": {
+"resources": {
   "title": "Resources"
 }
 }
