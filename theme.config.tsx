@@ -3,6 +3,7 @@ import { DocsThemeConfig } from "nextra-theme-docs";
 import Image from "next/image";
 import image_src from './images/Group.png'
 import { ThemeSwitch } from './components/ThemeSelector'
+import { AskCookbook } from './components/AskCookbook'
 
 const config: DocsThemeConfig = {
   logo: (
@@ -18,6 +19,13 @@ const config: DocsThemeConfig = {
   navigation: false,
   themeSwitch: {
     component: <ThemeSwitch />
+  },
+  navbar: {
+    extraContent: (
+      <div >
+        <AskCookbook />
+      </div>
+    ),
   }
 };
 
