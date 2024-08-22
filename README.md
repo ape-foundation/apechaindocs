@@ -2,7 +2,6 @@
 
 ApeChain is a dedicated infrastructure layer to power the ApeCoin ecosystem. By leveraging Caldera and Arbitrum's custom native token feature, ApeChain will utilize $APE as its native gas token. This integration significantly enhances $APE's utility, fostering a robust and dynamic economy driven by $APE, and positioning ApeChain as a premier platform.
 
-(test)
 
 ### Local Development
 
