@@ -10,7 +10,7 @@
     "title": "Get Started"
   },
   "metamask": "Add to your wallet",
-  "Bridge": "Bridge",
+  "bridging": "Bridge",
   "faucet": "Faucet Funds",
   "native-yield": "Native Yield",
   "run-node": "Run a Node",
