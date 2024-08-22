@@ -54,11 +54,5 @@
   "seperator_5": {
     "type": "separator",
     "title": "Community"
-}, 
-"connect": {
-  "title": "Connect"
-},
-"resources": {
-  "title": "Resources"
 }
 }
