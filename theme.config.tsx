@@ -1,13 +1,14 @@
 import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
 import Image from "next/image";
-import image_src from './images/Group.png';
+import logo_image_src from './images/apechain-logo.svg';
+import og_image_src from './images/apechain-open-graph.png';
 import { ThemeSwitch } from './components/ThemeSelector';
 import { AskCookbook } from './components/AskCookbook';
 
 const config: DocsThemeConfig = {
   logo: (
-    <Image src={image_src} alt={""} width={60} />
+    <Image src={logo_image_src} alt={"ApeChain Logo"} width={125} />
   ),
   nextThemes: { defaultTheme: "dark" },
   useNextSeoProps() {
@@ -15,6 +16,16 @@ const config: DocsThemeConfig = {
       titleTemplate: "%s - ApeChain Docs",
       defaultTitle: "ApeChain Docs",
       description: "Official ApeChain Documentation",
+      openGraph: {
+        images: [
+          {
+            url: og_image_src.src,
+            width: 1200,
+            height: 630,
+            alt: 'ApeChain Open Graph Image',
+          },
+        ],
+      },
     };
   },
   navigation: false,
@@ -28,7 +39,13 @@ const config: DocsThemeConfig = {
       </div>
     ),
   },
+  footer: {
+    text: (
+      <>
+        © {new Date().getFullYear()} Ape Foundation
+      </>
+    ),
+  },
 };
 
 export default config;
-
