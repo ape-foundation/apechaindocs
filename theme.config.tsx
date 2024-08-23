@@ -2,7 +2,7 @@ import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
 import Image from "next/image";
 import logo_image_src from './images/apechain-logo.svg';
-import og_image_src from './images/apechain-open-graph.png';
+import og_image_src from './images/apechain-open-graph.jpg';
 import { ThemeSwitch } from './components/ThemeSelector';
 import { AskCookbook } from './components/AskCookbook';
 
