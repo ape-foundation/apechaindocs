@@ -52,8 +52,9 @@
 
 
   "hub": {
-    "title": "Hub Page",
-    "href": "https://curtis.hub.caldera.xyz/"
+    "title": "Hub Page ↗",
+    "href": "https://curtis.hub.caldera.xyz/",
+    "newWindow": true
    
   },
 
