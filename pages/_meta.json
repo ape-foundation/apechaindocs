@@ -4,18 +4,26 @@
     "title": "Overview"
   },
   "index": "About",
+
   "architecture": "Architecture",
+
   "seperator_2": {
+
     "type": "separator",
+
     "title": "Get Started"
   },
   "metamask": "Add to your wallet",
+
   "bridging": "Bridge",
-  "faucet": "Faucet Funds",
+
   "native-yield": "Native Yield",
+
   "run-node": "Run a Node",
+
   "seperator_3": {
     "type": "separator",
+
     "title": "Develop"
   },
   "advanced": {
@@ -27,30 +35,44 @@
   "run-node": {
     "title": "Run a Node"
   },
+  
   "seperator_4": {
     "type": "separator",
     "title": "Tools"
   },
+
+
+  "analytics": "Analytics",
+
+  "block-explorers": "Block Explorers",
+
+  "data-indexers": "Data Indexers",
+
+  "faucet": "Faucets",
+
+
   "hub": {
     "title": "Hub Page ↗",
     "href": "https://curtis.hub.caldera.xyz/",
     "newWindow": true
+   
   },
-  "explorer": {
-    "title": "Block Explorer ↗",
-    "href": "https://curtis.explorer.caldera.xyz/",
-    "newWindow": true
-  },
-  "bridge": {
-    "title": "Bridge UI ↗",
-    "href": "https://curtis.bridge.caldera.xyz/",
-    "newWindow": true
-  },
+
+  "node-providers": "Node Providers",
+
+
+  "oracles": "Oracles",
+
+
+  "safes": "Safes",
+
+
   "status": {
     "title": "Status ↗",
     "href": "https://curtis.betteruptime.com/",
     "newWindow": true
   },
+
   "seperator_5": {
     "type": "separator",
     "title": "Community"
