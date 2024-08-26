@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components'
+
 # Bridge Assets to ApeChain
 
 To bridge assets to & from the ApeChain Network: 
@@ -22,15 +24,17 @@ Afterwards, your funds should be on the way to the desired destination chain!
 | Currency Symbol|         ETH    |
 | Block Explorer URL | https://sepolia.arbiscan.io/
 
-**Please note:**
-You will need testnet initially for Arbitrum Sepolia 
+<Callout type="warning">You will need testnet initially for Arbitrum Sepolia </Callout>
 <br></br>
-Popular options are:
+Popular faucet options options to aquire Arbitrum Sepolia :
 <li>[Alchemy](https://www.alchemy.com/faucets/arbitrum-sepolia)</li>
 <li>[QuickNode](https://faucet.quicknode.com/arbitrum/sepolia)</li>
 
-**Note:** 
-Most faucets now require a user's wallet to hold at least 0.001 ETH on Ethereum Mainnet to use the EVM faucets to help prevent against bot attacks.
+*if you have attened an ETHGlobal hackathon in the past and have a DevPack you can also visit*
+<li>[ETHGlobal Testnet Faucet](https://ethglobal.com/faucet)</li>
+
+
+<Callout type="warning">Most faucets now require a user's wallet to hold at least 0.001 ETH on Ethereum Mainnet to use the EVM faucets to help prevent against bot attacks.</Callout>
 
 In this example we will bridge 10 APE from Arbitrum Sepolia to Testnet Curtis 
 
@@ -54,15 +58,15 @@ In this example we will bridge 10 APE from Curtis to Arbitrum Sepolia
 
 Now within the transaction tab you should see the transaction we just performed.
 <br></br>
-**Note:** The status will be unconfirmed until you have finalized the withdrawal, this may take a moment before you have the ability to conclude the transaction.
+<Callout type="info">The status will be unconfirmed until you have finalized the withdrawal, this may take a moment before you have the ability to conclude the transaction.</Callout>
 
  ![bridge](../images/bridge_withdraw.png)
 
-**Note:** Once you see the red dot to the right of the amount, click on the sushi and finalize the withdrawal.
+<Callout emoji="🍌">Once you see the red dot to the right of the amount, click on the sushi and finalize the withdrawal.</Callout>
 
 ![bridge](../images/confirmed.png)
 
 
- Once you have finalized the withdrawal you will see your balance has updated and you've now successfully bridged. 
+ Now that you have finalized the withdrawal you will see your balance has updated and you've successfully bridged. 
 
 
