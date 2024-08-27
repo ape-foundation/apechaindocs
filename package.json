@@ -19,10 +19,12 @@
   "homepage": "https://github.com/shuding/nextra-docs-template#readme",
   "dependencies": {
     "@cookbookdev/docsbot": "^4.21.19",
+    "clipboard": "^2.0.11",
     "next": "^13.0.6",
     "next-mdx-remote": "0.5.1",
-    "nextra": "latest",
-    "nextra-theme-docs": "latest",
+    "nextra": "^2.13.4",
+    "nextra-theme-docs": "^2.13.4",
+    "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
