@@ -1,4 +1,35 @@
-# Hardhat
+import { Callout } from 'nextra/components'
+
+## Creating Your First DApp Using Apechain and Hardhat
+
+
+1. **Introduction to Hardhat**
+    - Brief overview on what Hardhat is and how is it useful.
+<br></br>
+2. **Setting up dev environment:**
+    - Step-by-step guide on installing Node.js and Hardhat.
+    - Initializing a new Hardhat project.
+<br></br>
+3. **Building smart contract with Solidity**
+    - Brief overview
+    <br></br>
+4. **Building Smart Contracts on Apechain**
+    - How to set up the Hardhat network to connect with Apechain.
+    - Setting up environment variables.
+    <br></br>
+5.  **Deploying the Contract**
+    - Writing deployment scripts.
+    - Deploying to Apechain testnet: process and considerations.
+    <br></br>
+6. **Creating the Frontend Interface**
+    - Choosing a framework (e.g., React.js).
+    - Setting up the project and connecting it with the blockchain.
+    - Using libraries like Ethers.js or Web3.js to interact with Ethereum.
+    - Connecting the frontend to the smart contract on Apechain.
+    <br></br>
+7. **Conclusion**
+    - Recap of what was covered.
+
 ## What is Hardhat?
 
 Hardhat is a development environment for Ethereum that helps developers manage and automate the common tasks involved in building smart contracts and decentralized applications. It can directly interact with Caldera's Ethereum API, allowing for the deployment of smart contracts into the Caldera network.
@@ -7,13 +38,13 @@ Additionally, Hardhat is a comprehensive set of tools for creating Ethereum-base
 
 In this guide we will see how you can build a token wallet dApp using Hardhat and Apechain.
 
-### Prerequisites
+## Prerequisites
 
-- **Basic Knowledge:**
+**Basic Knowledge:**
     - [Solidity](https://docs.soliditylang.org/en/v0.8.26/) For writing smart contracts.
     - [React](https://react.dev/) For scripting and frontend development.
     <br></br>
-- **Development Environment:**
+**Development Environment:**
     - **Node.js** and **npm/yarn**: Installed from [Node.js](https://nodejs.org/).
     - **Hardhat**: Development environment for Ethereum.
         - Install with:
@@ -39,6 +70,18 @@ In this guide we will see how you can build a token wallet dApp using Hardhat an
 
 ## Step-by-Step Guide
 
+### Step 1: Set Up Hardhat Project
+
+1. **Initialize a new Hardhat project:**
+    
+    ```bash
+    mkdir token-wallet
+    cd token-wallet
+    npm init -y
+    npm install --save-dev hardhat
+    npx hardhat
+    ```
+
 Before we move ahead with the guide, here’s an example of how the folder structure would look like:
 
 ```markdown
@@ -59,31 +102,6 @@ token-wallet/
 ├── public/
 ├── package.json
 ```
-
-### Step-by-Step Guide
-
-```bash
-npm start
-```
-
-### Step 1: Set Up Hardhat Project
-
-1. **Initialize a new Hardhat project:**
-    
-    ```bash
-    mkdir token-wallet
-    cd token-wallet
-    npm init -y
-    npm install --save-dev hardhat
-    npx hardhat
-    ```
-    
-2. **Install necessary dependencies:**
-    
-    ```bash
-    npm install @openzeppelin/contracts ethers hardhat-ethers
-    ```
-    
 
 ### Step 2: Write the Token Contract
 
@@ -128,8 +146,7 @@ This script deploys the `Token` contract to the blockchain, minting 1,000,000 to
         process.exit(1);
       });
     
-    ```
-    
+    ```    
 
 ### Step 4: Configure Hardhat for Apechain
 
@@ -138,16 +155,15 @@ This script deploys the `Token` contract to the blockchain, minting 1,000,000 to
     Replace `YOUR_PRIVATE_KEY` with your actual private key for deploying the contract.
     
     ```jsx
-    javascriptCopy code
     require("@nomiclabs/hardhat-waffle");
     require("@nomiclabs/hardhat-ethers");
     
     module.exports = {
         solidity: "0.8.0",
         networks: {
-            apechain: {
-                url: "https://rpc.apechain.network",
-                accounts: ["YOUR_PRIVATE_KEY"]
+             apechain: {
+            url: "https://curtis.rpc.caldera.xyz/http",
+            accounts: ["YOUR_PRIVATE_KEY"]
             }
         }
     };
@@ -168,7 +184,7 @@ This script deploys the `Token` contract to the blockchain, minting 1,000,000 to
     npx hardhat run scripts/deploy.js --network apechain
     ```
     
-    Note the deployed contract address, which will be used in the frontend.
+<Callout type="info">Note the deployed contract address, which will be used in the frontend.</Callout>
     
 
 ### Step 6: Set Up Frontend with React
@@ -247,22 +263,22 @@ This script deploys the `Token` contract to the blockchain, minting 1,000,000 to
     
 4. **Update `index.js`:**
     
-    This file renders the main `App` component into the root div in `index.html`.
+    This file renders the main App component into the root div in `index.html`.
     
     ```jsx
-    import React from 'react';
+   import React from 'react';
     import ReactDOM from 'react-dom';
     import './index.css';
     import App from './App';
     import reportWebVitals from './reportWebVitals';
-    
+
     ReactDOM.render(
-      <React.StrictMode>
+    <React.StrictMode>
         <App />
-      </React.StrictMode>,
-      document.getElementById('root')
+    </React.StrictMode>,
+    document.getElementById('root')
     );
-    
+
     reportWebVitals();
     ```
     
