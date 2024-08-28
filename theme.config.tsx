@@ -48,7 +48,10 @@ const config: DocsThemeConfig = {
     ),
   },
   feedback: {
-    content: '',  // Remove feedback link
+    content: 'Contribute to the Docs',
+    useLink() {
+      return 'https://github.com/ape-foundation/apechaindocs';  // Correctly return the custom URL
+    },
   },
   editLink: {
     text: '',  // Remove edit link
