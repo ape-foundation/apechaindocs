@@ -47,6 +47,12 @@ const config: DocsThemeConfig = {
       </>
     ),
   },
+  feedback: {
+    content: '',  // Remove feedback link
+  },
+  editLink: {
+    text: '',  // Remove edit link
+  },
   head: (
     <Head>
       <link
