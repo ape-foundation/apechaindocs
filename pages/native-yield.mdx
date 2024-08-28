@@ -69,15 +69,15 @@ The following fields are added to the StateAccount object to track yield: flags,
 
 Balance is computed as follows:
 
-balance = account.shares * global.sharePrice + account.fixed - account.debt
+```balance = account.shares * global.sharePrice + account.fixed - account.debt```
 
 eth_getBalanceValues can be used to get all the balance values for an address:
 
-cast rpc --rpc-url https://rpc.curtis.apechain.com eth_getBalanceValues 0x0000000000000000000000000000000000000000 latest
+```cast rpc --rpc-url https://rpc.curtis.apechain.com eth_getBalanceValues 0x0000000000000000000000000000000000000000 latest```
 
 eth_getSharePrice can be used to get the global share price:
 
-cast rpc --rpc-url https://rpc.curtis.apechain.com eth_getSharePrice latest
+```cast rpc --rpc-url https://rpc.curtis.apechain.com eth_getSharePrice latest```
 
 ## Yield Rate
 
