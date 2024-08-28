@@ -32,6 +32,9 @@
   "start-building": {
     "title": "Start Building"
   },
+  "contracts": {
+    "title": "Contracts"
+  },
   "run-node": {
     "title": "Run a Node"
   },
