@@ -2,6 +2,8 @@ import { Callout } from 'nextra/components'
 
 ## Creating Your First DApp Using Apechain and Hardhat
 
+
+<Callout type="info">The goal of this project is to deploy a contract and create a basic front-end interface for interacting with it. From there, you have the freedom to expand and enhance the project with your own ideas and creativity!</Callout>
 ### What is Hardhat?
 
 Hardhat is a development environment for Ethereum that helps developers manage and automate the common tasks involved in building smart contracts and decentralized applications. It can directly interact with Caldera's Ethereum API, allowing for the deployment of smart contracts into the Caldera network.
@@ -46,59 +48,66 @@ In this guide we will see how you can build a token wallet dApp using Hardhat an
 
 1. **Initialize a new Hardhat project:**
     
-    ```bash
-    mkdir token-wallet
-    cd token-wallet
-    npm init -y
-    npm install --save-dev hardhat
-    npx hardhat
-    ```
+```bash
+mkdir helloApe
+cd helloApe
+npx hardhat
+```
+
+also run 
+```bash
+npm i dotenv
+```
+We will use an ```.env``` file to hold our private key and pass it into our ```hardhat.config.js``` file.
+
+Once installed, at the root create a file named ```.env```
+ <Callout type="info">You will be prompted with questions in your terminal. You can simply choose the default options, which will generate a basic code template for you. While you can experiment with this template, for the purpose of this guide, we'll focus on making a few specific changes to some files.</Callout>
 
 Before we move ahead with the guide, here’s an example of how the folder structure would look like:
 
 ```markdown
-token-wallet/
+helloApe/
 ├── contracts/
-│   └── Token.sol
-├── scripts/
-│   └── deploy.js
+│   └── Lock.sol
+├── ignition/module
+│   └── Lock.js
+├── node_modules
 ├── test/
+│   └── Lock.js
+├── .gitignore
 ├── hardhat.config.js
+├── package-lock.json
 ├── package.json
-└── frontend/
-├── src/
-│   ├── components/
-│   │   └── TokenWallet.js
-│   ├── App.js
-│   ├── index.js
-├── public/
-├── package.json
+├── .env
+├── README.md
 ```
 
 ### Step 2: Write the Token Contract
 
-1. **Create `Token.sol` in the `contracts` directory:**
-This Solidity file defines an ERC20 token named "MyToken" with the symbol "MTK" and an initial supply minted to the deployer's address.
+Inside your ```Lock.sol``` file, delete the existing boilerplate code and then copy and paste the code below. This is a simple Solidity file that defines a string ‘greeting’ and a function that returns the string.
     
-    ```solidity
+```solidity
     
-    // SPDX-License-Identifier: MIT
-    pragma solidity ^0.8.0;
-    
-    import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-    
-    contract Token is ERC20 {
-        constructor(uint256 initialSupply) ERC20("MyToken", "MTK") {
-            _mint(msg.sender, initialSupply);
-        }
+ // SPDX-License-Identifier: MIT
+pragma solidity ^0.8.17;
+
+contract HelloApe {
+    string public greeting = "Hello, Apes!";
+
+    function greet() public view returns (string memory) {
+        return greeting;
     }
-    ```
+}
+```
     
 
-### Step 3: Write Deployment Script
+### Step 3: Update your ignition file
 
-1. **Create `deploy.js` in the `scripts` directory:**
-This script deploys the `Token` contract to the blockchain, minting 1,000,000 tokens initially.
+Open your ```Lock.js``` file which you can find by navigating to ignition folder and then module folder.
+
+This code defines a Hardhat Ignition module called "HelloModule" that deploys the "HelloApe" contract and returns the deployed instance as `hello`.
+
+You can just copy this and paste into your file. Also note that you can rename files, just keep it consistant throughout the project.
     
     ```jsx
     async function main() {
@@ -124,22 +133,32 @@ This script deploys the `Token` contract to the blockchain, minting 1,000,000 to
 
 1. **Modify `hardhat.config.js` to include necessary plugins and configurations:**
     
-    Replace `YOUR_PRIVATE_KEY` with your actual private key for deploying the contract.
+    Notice we are adding ` require('dotenv').config();` and `accounts: [process.env.PRIVATE_KEY] ` to pass out private key in.
+
     
     ```jsx
-    require("@nomiclabs/hardhat-waffle");
-    require("@nomiclabs/hardhat-ethers");
-    
+    require("@nomicfoundation/hardhat-toolbox");
+    require('dotenv').config();
+
+    /** @type import('hardhat/config').HardhatUserConfig */
     module.exports = {
-        solidity: "0.8.0",
-        networks: {
-             apechain: {
-            url: "https://curtis.rpc.caldera.xyz/http",
-            accounts: ["YOUR_PRIVATE_KEY"]
-            }
-        }
+    solidity: "0.8.17",
+    networks: {
+        apechain: {
+         url: "https://curtis.rpc.caldera.xyz/http",
+        accounts: [process.env.PRIVATE_KEY], 
+        },
+    },
     };
     ```
+
+    inside of your ` .env ` file add the following 
+
+    ```jsx
+    PRIVATE_KEY=YOUR KEY HERE WITH NO QUOTES
+    ```
+
+    <Callout> Ensure your ```.gitignore``` file has ```.env``` added </Callout>
     
 
 ### Step 5: Compile and Deploy
@@ -153,122 +172,135 @@ This script deploys the `Token` contract to the blockchain, minting 1,000,000 to
 2. **Deploy the contract to Apechain:**
     
     ```bash
-    npx hardhat run scripts/deploy.js --network apechain
+    npx hardhat ignition deploy ./ignition/modules/Lock.js --network apechain    
     ```
     
-<Callout type="info">Note the deployed contract address, which will be used in the frontend.</Callout>
+    <Callout> Keep the deployed contract address, this will be needed for the  frontend.</Callout>
     
 
 ### Step 6: Set Up Frontend with React
 
-1. **Initialize a new React project:**
+
+1. **Initialize a new React project within the same folder:**
     
     ```bash
     npx create-react-app frontend
     cd frontend
     npm install ethers
     ```
-    
-2. **Create necessary files and directories:**
-    
-    `frontend/src/components/TokenWallet.js`
-    This component allows users to connect their MetaMask wallet and check their token balance.
-    
-    ```jsx
-    import React, { useState } from 'react';
-    import { ethers } from 'ethers';
-    import Token from '../artifacts/contracts/Token.sol/Token.json';
-    
-    const tokenAddress = "DEPLOYED_CONTRACT_ADDRESS";
-    
-    function TokenWallet() {
-        const [balance, setBalance] = useState(0);
-        const [userAddress, setUserAddress] = useState("");
-    
-        async function requestAccount() {
-            await window.ethereum.request({ method: 'eth_requestAccounts' });
-        }
-    
-        async function getBalance() {
-            if (typeof window.ethereum !== 'undefined') {
-                const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                setUserAddress(account);
-    
-                const provider = new ethers.providers.Web3Provider(window.ethereum);
-                const contract = new ethers.Contract(tokenAddress, Token.abi, provider);
-                const balance = await contract.balanceOf(account);
-                setBalance(balance.toString());
-            }
-        }
-    
-        return (
-            <div>
-                <h1>Token Wallet</h1>
-                <button onClick={getBalance}>Get Balance</button>
-                <p>Account: {userAddress}</p>
-                <p>Balance: {balance}</p>
-            </div>
-        );
+
+2. **Grab your ABI** 
+
+To connect to the smart contract, you'll need the contract's **ABI**. This can be found in the artifacts folder, which is automatically generated when you deploy your smart contract. To locate it, navigate to the artifacts folder, then to the contract folder. Find the JSON file (in our case, it's named ```HelloApe.json```), copy it, and paste it into the ```src``` folder of your frontend project.
+
+```markdown
+helloApe/
+├── artifacts/
+│   └──contracts/
+│    └── HelloApe.json
+├── cache/
+├── contracts/
+├── ignition/module
+├── frontend/
+│   └── src
+│       └── App.js
+│       └── HelloApe.json
+├── node_modules
+├── test/
+├── .gitignore
+├── hardhat.config.js
+├── package-lock.json
+├── package.json
+├── .env
+├── README.md
+```
+
+3. **Update ```App.js```**
+```javascript    
+import { useState } from "react";
+import { ethers } from "ethers";
+import Contract from "../src/HelloApe.json";
+
+const tokenAddress = "YOUR_CONTRACT_ADDRESS";
+
+function App() {
+  const [userAddress, setUserAddress] = useState("");
+  const [greeting, setGreeting] = useState("");
+
+  async function getGreeting() {
+    if (typeof window.ethereum !== "undefined") {
+      const [account] = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      setUserAddress(account);
+
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const contract = new ethers.Contract(
+        tokenAddress,
+        Contract.abi,
+        provider
+      );
+      const greetingFromContract = await contract.greeting();
+      setGreeting(greetingFromContract);
     }
-    
-    export default TokenWallet;
-    ```
-    
-3. **Update `App.js`:**
-    
-    This is the main entry point of your React app that renders the `TokenWallet` component.
-    
-    ```jsx
-    import React from 'react';
-    import TokenWallet from './components/TokenWallet';
-    
-    function App() {
-        return (
-            <div className="App">
-                <TokenWallet />
-            </div>
-        );
-    }
-    
-    export default App;
-    ```
-    
-4. **Update `index.js`:**
-    
-    This file renders the main App component into the root div in `index.html`.
-    
-    ```jsx
-   import React from 'react';
-    import ReactDOM from 'react-dom';
-    import './index.css';
-    import App from './App';
-    import reportWebVitals from './reportWebVitals';
+  }
 
-    ReactDOM.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
-    document.getElementById('root')
-    );
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h2>{userAddress}</h2>
+        <h2>{greeting}</h2>
+        <button onClick={() => getGreeting()}>Click</button>
+      </header>
+    </div>
+  );
+}
 
-    reportWebVitals();
-    ```
-    
+export default App;
+```
 
-### Step 7: Run the Frontend
+4. **Update your CSS**    
 
-1. **Start the React app:**
+Navigate to your ```App.css``` file, delete the boilerplate and add the following 
+```css
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.App-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h2 {
+  margin: 10px 0;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+``` 
     
-    ```bash
-    cd frontend
-    npm install
-    npm start
-    ```
+3. **Run the Frontend**
     
-    Your React application should now be running, and you can interact with the token wallet dApp through your browser.
+**Start the React app**: **Make sure you’re in your frontend directory** and then run the following command     
+
+```bash
+npm start
+```
     
+Your React application should now be running, and you can interact with the token wallet dApp through your browser!
 
 ## Conclusion
 
-In this guide, you have learned how to build a simple token wallet dApp using Hardhat and React, integrated with the Apechain network. By following the step-by-step instructions, you have set up a Hardhat project, written a basic ERC20 token contract, deployed it to Apechain, and created a React frontend to interact with the contract. 
+In this guide, you have learned how to build a simple dApp using Hardhat and React, integrated with the Apechain network. By following the step-by-step instructions, you have set up a Hardhat project, written a basic contract, deployed it to Apechain, and created a React frontend to interact with the contract. 
 
