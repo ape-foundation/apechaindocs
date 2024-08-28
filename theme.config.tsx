@@ -2,6 +2,7 @@ import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
 import Head from 'next/head';
 import Image from "next/image";
+import { useRouter } from 'next/router';  // Import the useRouter hook
 import logo_image_src from './images/apechain-logo.svg';
 import og_image_src from './images/apechain-open-graph.jpg';
 import { ThemeSwitch } from './components/ThemeSelector';
@@ -48,9 +49,15 @@ const config: DocsThemeConfig = {
     ),
   },
   feedback: {
-    content: 'Contribute to the Docs',
+    content: 'Contribute to Docs',
     useLink() {
-      return 'https://github.com/ape-foundation/apechaindocs';  // Correctly return the custom URL
+      const router = useRouter();  // Get the current router instance
+      const currentPath = router.pathname;  // Get the current path
+      const repoUrl = 'https://github.com/ape-foundation/apechaindocs/issues/new';
+      const title = encodeURIComponent(`Feedback for “${currentPath}”`);  // Encode the title for the issue
+      const labels = encodeURIComponent('feedback');
+      
+      return `${repoUrl}?title=${title}&labels=${labels}`;  // Return the dynamic URL
     },
   },
   editLink: {
@@ -70,3 +77,4 @@ const config: DocsThemeConfig = {
 };
 
 export default config;
+
