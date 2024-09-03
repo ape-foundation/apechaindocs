@@ -17,7 +17,9 @@
 
   "bridging": "Bridge",
 
-  "native-yield": "Native Yield",
+  "native-yield": "Native Yield Overview",
+
+  "native-yield-dive": "Native Yield In-Depth",
 
   "run-node": "Run a Node",
 
