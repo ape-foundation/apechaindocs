@@ -37,10 +37,7 @@
   "contracts": {
     "title": "Contracts"
   },
-  "contract-verification": {
-    "title": "Contract Verification"
-  },
-  
+
   "run-node": {
     "title": "Run a Node"
   },
@@ -55,6 +52,12 @@
 
   "block-explorers": "Block Explorers",
 
+  "brand-kit": {
+    "title": "Brand Guidelines ↗",
+    "href": "https://live.standards.site/apechain",
+    "newWindow": true
+  },
+
   "data-indexers": "Data Indexers",
 
   "faucet": "Faucets",
@@ -66,6 +69,8 @@
     "newWindow": true
    
   },
+
+
 
   "node-providers": "Node Providers",
 
