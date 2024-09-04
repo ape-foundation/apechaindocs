@@ -9,19 +9,20 @@ This tutorial will guide you through deploying and interacting with a smart cont
 ### **Prerequisites**
 
 - **Adding Apechain Testnet to MetaMask:**
-    - You can find and add chain details [here](https://curtis.hub.caldera.xyz/) to your Metamask.
+    - You can find and add chain details [here](https://curtis.hub.caldera.xyz/) to your MetaMask.
 - **Obtaining Test ETH (Sepolia) and Bridging to Apechain Testnet:**
     - Visit [https://curtis.hub.caldera.xyz/](https://curtis.hub.caldera.xyz/)
     - Click on “Faucet”
     - Enter your wallet address
-    - Click on ‘Request”
+    - Click on "Request”
 - **Required Installations:**
     - Node, NPM
     - Basic knowledge of React.js and Solidity
 
 ## Get Started with Foundry
 
-Installing Foundry is simple, for MacOS and Linux, all we have to do is to run the following command
+Installing Foundry is simple. For MacOS and Linux, run the following command:
+
 
 ### **Linux or MacOS:**
 
@@ -39,13 +40,13 @@ cargo install --git https://github.com/foundry-rs/foundry foundry-cli anvil --bi
 
 ## **Create a Project**
 
-Once we have Foundry installed, next thing we need to do is to initialize a new project.
+Once we have Foundry installed, the next step is to initialize a new project.
 
 ```jsx
 forge init foundry
 ```
 
-Navigate to the Source Folder and Create a Smart Contract File:
+Navigate to the source folder and Create a Smart Contract File:
 
 ```jsx
 cd src
@@ -59,8 +60,8 @@ touch MyToken.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-contract HelloWorld {
-    string public greeting = "Hello World!";
+contract HelloApe {
+    string public greeting = "Hello, Ape!";
 
     function greet() public view returns (string memory) {
         return greeting;
@@ -70,25 +71,26 @@ contract HelloWorld {
 
 ## **Compile Contract**
 
-After writing our smart contract the next thing is to compile it and to do that we’re just going to copy and paste the command below into our terminal, please make sure you are in the project’s root directory.
+After writing our smart contract the next thing is to compile it and to do that we are going to copy and paste the command below into our terminal, please make sure you are in the projects root directory.
 
 ```jsx
 forge build
 ```
 
-If that compiles with no error, that means our contract is correct and we’re ready to deploy to Apechain.
+If it compiles with no errors, the contract is correct, and we are ready to deploy it to Apechain.
+
 
 ## **Smart Contract Deployment on Apechain**
 
-When deploying smart contract to any chain, you need to pay deployment gas fee using the chain’s native token and it is no different for Apechain, before deploying to Apechain you need to make sure that you've acquired Apecoin testnet.
+When deploying smart contract to any chain, you need to pay deployment gas fee using the chains native token and it is no different for Apechain, before deploying to Apechain you need to make sure that you've acquired $APE testnet tokens.
 
-You can deploy on Apechain by using running forge create followed by the RPC URL, your wallet private key and src of your smart contract.
+You can deploy on Apechain by running forge create, followed by the RPC URL, your wallet's private key, and the source of your smart contract.
 
 ```jsx
 forge create --rpc-url "https://curtis.rpc.caldera.xyz/http" --private-key `your-private-key` src/FileName.sol:ContractName
 ```
 
-You should see a similar response like the one below
+You should see a response similar to the one below:
 
 ![Alt Text](../../images/foundry-terminal.png)
 
@@ -96,11 +98,11 @@ Congrats 🎉 🎊  you just deployed your smart contract to Apechain! Copy out 
 
 ## **Verify smart contract deployment**
 
-Visit [Apechain’s explorer](https://curtis.explorer.caldera.xyz/), copy and paste your contract address into the search bar and you should be able to see your smart contract and every other
+Visit [Apechain’s explorer](https://curtis.explorer.caldera.xyz/), copy and paste your contract address into the search bar and you should be able to see your smart contract and all related transactions.
 
 ## Interacting with the Smart Contract
 
-We’re done with creation and deployment of our smart contracts now it time to build a simple ReactJS 
+We are now done with the creation and deployment of our smart contract. Now it's time to build a simple ReactJS app.
 
 ```jsx
 npx create-react-app my-dapp
@@ -124,7 +126,8 @@ You can get your smart contract’s ABI once your contract builds successfully, 
 
 ## **Code the UI**
 
-Now that we have our ABI file and we have etherjs installed, next it to build our UI but how you choose to build your UI is entirely up to you and the purpose of your app but for this guide, we’re just going to have a UI with a simple button and text to display the message returned by our smart contract.
+Now that we have our ABI file and ethers.js installed, the next step is to build our UI.
+but how you choose to build your UI is entirely up to you and the purpose of your app but for this guide, we are just going to have a UI with a simple button and text to display the message returned by our smart contract.
 
 ```jsx
 import React, { useEffect, useState } from "react";
