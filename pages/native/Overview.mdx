@@ -1,10 +1,47 @@
 # Native Yield on ApeChain
 
+Native yield allows specific assets bridged into the ApeChain ecosystem to automatically generate yield by forwarding them to vaulted sources of yield on the Ethereum mainnet. The initial target assets and yield sources are outlined in the table below:
+
+| Source Token | Yield Source | Destination Token |
+| ------------ | ------------ | ----------------- |
+| USDC, USDT, DAI | [sDAI (DSR)](https://docs.spark.fi/defi-infrastructure/sdai-overview) | apeUSD |
+| ETH, WETH | [wstETH](https://docs.lido.fi/contracts/wsteth/) | apeETH |
+| ApeCoin | [ApeStake](https://docs.apestake.io/#/Staking?id=stake-in-the-apecoin-pool) | ApeCoin (gas token) |
+
+This innovative concept enables assets to generate yield automatically without manual intervention on Layer 2 and Layer 3 chains. By offering native yield, ApeChain aims to incentivize bridging and enhance the consumer experience by allowing users' wallet balances to rebase at frequent intervals.
+
+## Implementation Approach
+
+### ApeChain's Multi-Hop Bridging and Cross-Chain Execution
+
+ApeChain supports multi-hop bridging and cross-chain execution by preparing call data that instructs the Gateway to fulfill specific actions. These instructions are passed between Gateway endpoints on different chains using arbitrary messaging bridges like LayerZero and rollup frameworks’ canonical bridges.
+
+### Architecture | Yield Routes
+
+To enable the creation of tokens with native yield on ApeChain, we haved deployed a new contract called the Yield Route Wrapper. This contract abstracts the process of depositing assets into ERC4626-compliant vaults on Ethereum and creating bridgeable tokens into a single transaction.
+
+## Component Overview
+
+### Deposit Process
+
+1. User selects apeUSD as the destination token, triggering a Yield Route where sDAI on Ethereum is the yield source.
+
+2. User deposits their source token into Decent’s Gateway.
+
+3. Decent swaps the source token into DAI on Ethereum and transfers the DAI to the Yield Route Wrapper.
+4. The Wrapper deposits the DAI into the sDAI contract, creating sDAI, and transfers it to the OFT adapter.
+5. The Wrapper then mints an OFT version of sDAI on ApeChain, named apeUSD.
+
+### Withdraw Process
+
+1. User selects apeUSD as their source token.
+2. User transfers apeUSD to the Decent Gateway contract on ApeChain.
+3. The Decent Gateway burns apeUSD on ApeChain and mints apeUSD on Ethereum.
+4. The Gateway routes the request to the Yield Route Wrapper, which unrolls the apeUSD into sDAI, swaps it for DAI, and transfers the DAI to the user on Ethereum.
+
 For most rollups today, assets held as collateral in the bridge sit idly without being put to work (with over $15B worth of ETH locked up across leading rollups at the moment). ApeChain instead allows users to earn yield on those locked assets!
 
 EOAs automatically receive $APE yield via rebasing -- users will automatically see their wallet balance tick up.
-
-Currently, the yield rate on $APE is **10% APY**.
 
 ## Yield Modes
 
@@ -81,7 +118,7 @@ eth_getSharePrice can be used to get the global share price:
 
 ## Yield Rate
 
-The apy is currently set to 10%. The [ArbOwnerPublic contract](https://explorer.curtis.apechain.com/address/0x000000000000000000000000000000000000006b?tab=read_contract) may be used to get the share price and annual percentage yield.
+The [ArbOwnerPublic contract](https://explorer.curtis.apechain.com/address/0x000000000000000000000000000000000000006b?tab=read_contract) may be used to get the share price and annual percentage yield.
 
 ### Querying the annual percentage yield
 
@@ -89,7 +126,7 @@ Any users can determine the annual percentage yield by viewing the `getApy` func
 
 Note that this value is stored as an integer representing 10^(-9)ths of a percent, so a value of 10000000000 represents 10% APY.
 
-![APY Query](../images/apy_query.png)
+![APY Query](../../images/apy_query.png)
 
 ### Using the APY value in smart contracts
 

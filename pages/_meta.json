@@ -7,6 +7,10 @@
 
   "architecture": "Architecture",
 
+  "native": {
+    "title": "Native Yield"
+  },
+
   "seperator_2": {
 
     "type": "separator",
@@ -16,8 +20,6 @@
   "metamask": "Add to your wallet",
 
   "bridging": "Bridge",
-
-  "native-yield": "Native Yield",
 
   "run-node": "Run a Node",
 
@@ -35,6 +37,7 @@
   "contracts": {
     "title": "Contracts"
   },
+
   "run-node": {
     "title": "Run a Node"
   },
@@ -49,6 +52,12 @@
 
   "block-explorers": "Block Explorers",
 
+  "brand-kit": {
+    "title": "Brand Guidelines ↗",
+    "href": "https://live.standards.site/apechain",
+    "newWindow": true
+  },
+
   "data-indexers": "Data Indexers",
 
   "faucet": "Faucets",
@@ -60,6 +69,8 @@
     "newWindow": true
    
   },
+
+
 
   "node-providers": "Node Providers",
 
