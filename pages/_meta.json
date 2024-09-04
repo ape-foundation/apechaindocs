@@ -10,9 +10,7 @@
   "native": {
     "title": "Native Yield"
   },
-  "in-depth": {
-    "title": "test"
-  },
+
   "seperator_2": {
 
     "type": "separator",
@@ -39,6 +37,10 @@
   "contracts": {
     "title": "Contracts"
   },
+  "contract-verification": {
+    "title": "Contract Verification"
+  },
+  
   "run-node": {
     "title": "Run a Node"
   },

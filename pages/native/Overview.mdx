@@ -4,9 +4,9 @@ Native yield for specific bridged assets allows assets bridged into the ApeChain
 
 | Source Token | Yield Source | Destination Token |
 | ------------ | ------------ | ----------------- |
-| USDC, USDT, DAI | sDAI (DSR) | apeUSD |
-| ETH, WETH | wstETH | apeETH |
-| ApeCoin | ApeStake | ApeCoin (gas token) |
+| USDC, USDT, DAI | [sDAI (DSR)](https://docs.spark.fi/defi-infrastructure/sdai-overview) | apeUSD |
+| ETH, WETH | [wstETH](https://docs.lido.fi/contracts/wsteth/) | apeETH |
+| ApeCoin | [ApeStake](https://docs.apestake.io/#/Staking?id=stake-in-the-apecoin-pool) | ApeCoin (gas token) |
 
 This innovative concept enables assets to generate yield automatically without manual intervention on Layer 2 and Layer 3 chains. By offering native yield, ApeChain aims to incentivize bridging and enhance the consumer experience by allowing users' wallet balances to rebase at frequent intervals.
 
@@ -18,7 +18,7 @@ ApeChain supports multi-hop bridging and cross-chain execution by preparing call
 
 ### Architecture | Yield Routes
 
-To create tokens with native yield on ApeChain, we havedeployed a new contract called the Yield Route Wrapper. This contract abstracts the process of depositing assets into ERC4626-compliant vaults on Ethereum and creating bridgeable tokens into a single transaction.
+To enable the creation of tokens with native yield on ApeChain, we haved deployed a new contract called the Yield Route Wrapper. This contract abstracts the process of depositing assets into ERC4626-compliant vaults on Ethereum and creating bridgeable tokens into a single transaction.
 
 ## Component Overview
 
