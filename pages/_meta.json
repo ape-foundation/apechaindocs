@@ -7,6 +7,12 @@
 
   "architecture": "Architecture",
 
+  "native": {
+    "title": "Native Yield"
+  },
+  "in-depth": {
+    "title": "test"
+  },
   "seperator_2": {
 
     "type": "separator",
@@ -16,10 +22,6 @@
   "metamask": "Add to your wallet",
 
   "bridging": "Bridge",
-
-  "native-yield": "Native Yield Overview",
-
-  "native-yield-dive": "Native Yield In-Depth",
 
   "run-node": "Run a Node",
 

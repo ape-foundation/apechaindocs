@@ -1,48 +1,4 @@
-# Native Yield System : In-Depth
-
-Most rollup solutions at the moment typically require a 7 - x day wait for withdrawals. However, by using the OFT standard, we at ApeChain are able to bypass these delays. By applying the OFT standard both for native yield tokens and as the gas token on our chain, these innovations are web3 firsts that significantly enhance the user experience by reducing withdrawal times and associated fees.
-
-Native yield for specific bridged assets allows assets bridged into the ApeChain ecosystem to automatically generate yield by forwarding them to vaulted sources of yield on the Ethereum mainnet. The initial target assets and yield sources are outlined in the table below:
-
-| Source Token | Yield Source | Destination Token |
-| ------------ | ------------ | ----------------- |
-| USDC, USDT, DAI | sDAI (DSR) | apeUSD |
-| ETH, WETH | wstETH | apeETH |
-| ApeCoin | ApeStake | ApeCoin (gas token) |
-
-This innovative concept enables assets to generate yield automatically without manual intervention on Layer 2 and Layer 3 chains. By offering native yield, ApeChain aims to incentivize bridging and enhance the consumer experience by allowing users' wallet balances to rebase at frequent intervals.
-
-## Implementation Strategy
-
-### Decent's Multi-Hop Bridging and Cross-Chain Execution
-
-Decent supports multi-hop bridging and cross-chain execution by preparing call data that instructs the Decent Gateway to fulfill specific actions. These instructions are passed between Gateway endpoints on different chains using arbitrary messaging bridges like LayerZero and rollup frameworks’ canonical bridges.
-
-### Architecture | Yield Routes
-
-To create tokens with native yield on ApeChain, Decent will deploy a new contract called the Yield Route Wrapper. This contract abstracts the process of depositing assets into ERC4626-compliant vaults on Ethereum and creating bridgeable tokens into a single transaction.
-
-## Component Overview
-
-### Deposit Process
-
-1. User selects apeUSD as the destination token, triggering a Yield Route where sDAI on Ethereum is the yield source.
-
-2. User deposits their source token into Decent’s Gateway.
-
-3. Decent swaps the source token into DAI on Ethereum and transfers the DAI to the Yield Route Wrapper.
-4. The Wrapper deposits the DAI into the sDAI contract, creating sDAI, and transfers it to the OFT adapter.
-5. The Wrapper then mints an OFT version of sDAI on ApeChain, named apeUSD.
-
-### Withdraw Process
-
-1. User selects apeUSD as their source token.
-2. User transfers apeUSD to the Decent Gateway contract on ApeChain.
-3. The Decent Gateway burns apeUSD on ApeChain and mints apeUSD on Ethereum.
-4. The Gateway routes the request to the Yield Route Wrapper, which unrolls the apeUSD into sDAI, swaps it for DAI, and transfers the DAI to the user on Ethereum.
-
-
-
+# Yield Modes
 
 ### Rebasing Mechanism
 
