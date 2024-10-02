@@ -38,6 +38,10 @@
     "title": "Contracts"
   },
 
+  "hackathon": {
+    "title": "Hackathon"
+  },
+
   "run-node": {
     "title": "Run a Node"
   },
