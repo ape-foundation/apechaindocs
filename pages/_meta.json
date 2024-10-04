@@ -38,9 +38,9 @@
     "title": "Contracts"
   },
 
-  "hackathon": {
-    "title": "Hackathons"
-  },
+ "hackathon": {
+  "title": "Hackathon"
+ },
 
   "run-node": {
     "title": "Run a Node"
