@@ -37,14 +37,6 @@
   "contracts": {
     "title": "Contracts"
   },
-
-  "hackathon": {
-    "title": "Hackathons"
-  },
-
-  "run-node": {
-    "title": "Run a Node"
-  },
   
   "seperator_4": {
     "type": "separator",
