@@ -6,26 +6,50 @@ import { Card } from 'nextra/components'
 Stay in the loop with all things ApeChain! Follow us on our social media channels to get the latest updates, join discussions, and connect with the community.
 
 <br></br>
-<Card
+{/* <Card
   title="For all major announcements follow us on X."
   target="_blank" 
   href="https://x.com/apecoin"
   arrow
-/>
+/> */}
 
 <Card
-  title=" For vibes and daily conversations join us on Telegram."
-  target="_blank" 
-  href="https://t.me/apechainofficial"
+  title={
+    <>
+      <i className="fab fa-x-twitter" style={{ color: '#2251F1 ', marginRight: '10px' }} />
+       For all major announcements follow us on X.{' '}
+    </>
+  }
+  target="_blank"
+ href="https://x.com/apecoin"
   arrow
 />
 
 <Card
-  title="For technical conversations join our community on Discord."
-  target="_blank" 
+  title={
+    <>
+      <i className="fab fa-telegram-plane" style={{ color: '#2251F1 ', marginRight: '10px' }} />
+       For vibes and daily conversations join us on Telegram.{' '}
+    </>
+  }
+  target="_blank"
+ href="https://t.me/apechainofficial"
+  arrow
+/>
+
+
+<Card
+  title={
+    <>
+      <i className="fab fa-discord" style={{ color: '#2251F1 ', marginRight: '10px' }} />
+      For technical conversations join our community on Discord.{' '}
+    </>
+  }
+  target="_blank"
   href="https://discord.gg/apecoindao"
   arrow
 />
+
 
 {/* - [<i class="fab fa-twitter"></i>](https://x.com/apecoin) | For all major announcements follow us on X.
 - [<i class="fab fa-telegram-plane"></i>](https://t.me/apechainofficial) | For vibes and daily conversations join us on Telegram.
