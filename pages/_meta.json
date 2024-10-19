@@ -19,7 +19,11 @@
   },
   "metamask": "Add to your wallet",
 
-  "bridging": "Bridge",
+  "bridging": {
+    "title": "Bridge ↗",
+    "href": "https://apechain.com/portal#bridge",
+    "newWindow": true
+  },
 
   "run-node": "Run a Node",
 
@@ -46,7 +50,10 @@
 
   "analytics": "Analytics",
 
+
   "block-explorers": "Block Explorers",
+
+  
 
   "brand-kit": {
     "title": "Brand Guidelines ↗",
