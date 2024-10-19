@@ -18,7 +18,7 @@ ApeChain supports multi-hop bridging and cross-chain execution by preparing call
 
 ### Architecture | Yield Routes
 
-To enable the creation of tokens with native yield on ApeChain, we haved deployed a new contract called the Yield Route Wrapper. This contract abstracts the process of depositing assets into ERC4626-compliant vaults on Ethereum and creating bridgeable tokens into a single transaction.
+To enable the creation of tokens with native yield on ApeChain, we have deployed a new contract called the Yield Route Wrapper. This contract abstracts the process of depositing assets into ERC4626-compliant vaults on Ethereum and creating bridgeable tokens into a single transaction.
 
 ## Component Overview
 
@@ -47,7 +47,7 @@ EOAs automatically receive $APE yield via rebasing -- users will automatically s
 
 ApeChain supports three different yield modes: automatic, void, and delegate. The [ArbInfo contract](https://explorer.curtis.apechain.com/address/0x0000000000000000000000000000000000000065?tab=write_contract) can be used to update the yield mode for an address. By default, all addresses start in automatic mode where yield is automatically earned each block. Whenever a contract is deployed, the yield mode is switched to void where yield is disabled to maximize compatibility with existing contracts. The contract can modify its yield mode by calling the [ArbInfo contract](https://explorer.curtis.apechain.com/address/0x0000000000000000000000000000000000000065?tab=write_contract).
 
-For a more detailed walkthrough, checkout this [video demo](https://youtu.be/ciPfRXmIteI?feature=shared&t=749)!
+For a more detailed walkthrough, check out this [video demo](https://youtu.be/ciPfRXmIteI?feature=shared&t=749)!
 
 ### Automatic Yield Mode (default for EOAs)
 
@@ -102,6 +102,29 @@ function configureYieldMode(YieldMode yieldMode, address delegate) external only
 
 ## Balance Values
 
+### ApeChain Mainnet
+
+The following fields are added to the StateAccount object to track yield: flags, fixed, shares, debt, and delegate.
+
+Balance is computed as follows:
+
+```balance = account.shares * global.sharePrice + account.fixed - account.debt```
+
+eth_getBalanceValues can be used to get all the balance values for an address:
+
+```cast rpc --rpc-url https://rpc.apechain.com eth_getBalanceValues 0x0000000000000000000000000000000000000000 latest```
+
+eth_getSharePrice can be used to get the global share price:
+
+```cast rpc --rpc-url https://rpc.apechain.com eth_getSharePrice latest```
+
+### Yield Rate
+
+The [ArbOwnerPublic contract](https://apechain.calderaexplorer.xyz/address/0x000000000000000000000000000000000000006b?tab=read_contract) may be used to get the share price and annual percentage yield.
+<br></br>
+<hr></hr>
+
+### Curtis Testnet
 The following fields are added to the StateAccount object to track yield: flags, fixed, shares, debt, and delegate.
 
 Balance is computed as follows:
@@ -116,7 +139,7 @@ eth_getSharePrice can be used to get the global share price:
 
 ```cast rpc --rpc-url https://rpc.curtis.apechain.com eth_getSharePrice latest```
 
-## Yield Rate
+### Yield Rate
 
 The [ArbOwnerPublic contract](https://explorer.curtis.apechain.com/address/0x000000000000000000000000000000000000006b?tab=read_contract) may be used to get the share price and annual percentage yield.
 
