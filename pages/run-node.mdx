@@ -1,5 +1,28 @@
 import { Callout } from 'nextra/components'
 
+
+## Running a replica node for ApeChain
+
+Please see the attached repository (zipped) for an example of how to spin up a node locally. Replace the arbitrum one rpc url with your own private url to avoid being rate limited.
+
+<Callout>Syncing can take up to a few hours.</Callout>
+
+
+[nitro-replica-curtis.zip]( https://misc-bucket.caldera.xyz/nitro-replica-apechain-mainnet.zip)
+
+
+### Docker Images
+
+`public.ecr.aws/i6b2w2n6/nitro-node:apechain-2.0.0`
+
+
+
+### Existing RPC Endpoints
+
+Http endpoint: `https://apechain.calderachain.xyz/http`
+
+Wss endpoint: `wss://apechain.calderachain.xyz/ws`
+
 ## Running a replica node for Curtis
 
 Download the zipped repository below for an out-of-the-box example of how to spin up a node locally.
@@ -8,7 +31,7 @@ Download the zipped repository below for an out-of-the-box example of how to spi
 
 [nitro-replica-curtis.zip]( https://misc-bucket.caldera.xyz/nitro-replica-curtis-files.zip)
 
-## Using the Repo
+### Using the Repo
 
 The repo is set up to easily run curtis testnet replica nodes. Simply run `docker-compose up` from the root of the repository to bring a replica node up locally.
 
@@ -19,13 +42,13 @@ The `nodeConfig` file included in the repository is prepopulated with curtis tes
 It is recommended to replace the Arbitrum Sepolia RPC URL in `docker-compose.yml` with your own private url to avoid ratelimiting issues, it's advised to use your private PRC URL instead of the default public one. By default, this value is set to Arbitrum's public RPC url.
 
 
-## Docker Images
+### Docker Images
 
 `public.ecr.aws/i6b2w2n6/nitro-node:curtis3`
 
-## Existing RPC Endpoints
+### Existing RPC Endpoints
 
-http endpoint: `https://rpc.curtis.apechain.com/http`
+Http endpoint: `https://rpc.curtis.apechain.com/http`
 
 Wss endpoint: `wss://rpc.curtis.apechain.com/ws`
 
