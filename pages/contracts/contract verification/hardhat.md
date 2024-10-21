@@ -53,6 +53,14 @@ const config: HardhatUserConfig = {
       curtis: "YOUR_ETHERSCAN_API_KEY",
     },
     customChains: [
+    {
+        network: "Apechain",
+        chainId: 33111,
+        urls: {
+          apiURL: "https://curtis.explorer.caldera.xyz/api",
+          browserURL: "https://curtis.explorer.caldera.xyz/",
+        },
+      },
       {
         network: "curtis",
         chainId: 33111,
@@ -72,6 +80,8 @@ export default config;
 
 Once your project is configured for verification, you can proceed to verify your smart contract on the Curtis network. Replace `<contract-address>` with the actual address of your deployed contract.
 
+### For Testnet
+
 For verification on the Curtis network, run the following command:
 
 ```bash
@@ -79,6 +89,16 @@ npx hardhat verify --network curtis <contract-address>
 ```
 
 This command will communicate with the Curtis network (as specified in your Hardhat configuration) to submit your contract’s source code and metadata for verification. Once successfully verified, your contract’s source code will be publicly accessible on the blockchain, linked to its on-chain address.
+
+### For Mainnet
+
+For verification on the Curtis network, run the following command:
+
+```bash
+npx hardhat verify --network Apechain <contract-address>
+```
+
+This command will communicate with the Apechain network (as specified in your Hardhat configuration) to submit your contract’s source code and metadata for verification. Once successfully verified, your contract’s source code will be publicly accessible on the blockchain, linked to its on-chain address.
 
 ## Conclusion
 Verifying your smart contract not only strengthens your project's transparency and credibility but also greatly enhances the user experience by making interactions and verifications more straightforward. By following the steps in this guide, developers can ensure their contracts are verified and available for public scrutiny, contributing to a more secure and trustworthy ecosystem.
