@@ -19,23 +19,23 @@ Before you begin the verification process, make sure you have the following:
 Once your contract is deployed or ready, you can proceed with verification using Sourcify. Replace placeholders in the following commands with your actual contract details.
 For contract deployment and verification:
 
-### Testenet
-
-```bash
-forge create --rpc-url https://curtis.rpc.caldera.xyz/http --private-key YOUR-PRIVATE-KEY src/FileName.sol:ContractName --verify --verifier sourcif
-```
-
 ### Mainnet
 
 ```bash
-forge create --rpc-url https://curtis.rpc.caldera.xyz/http --private-key YOUR-PRIVATE-KEY src/FileName.sol:ContractName --verify --verifier sourcif
+forge create --rpc-url https://apechain.calderachain.xyz/http --private-key YOUR-PRIVATE-KEY src/FileName.sol:ContractName --verify --verifier sourcify
+```
+
+### Testenet
+
+```bash
+forge create --rpc-url https://curtis.rpc.caldera.xyz/http --private-key YOUR-PRIVATE-KEY src/FileName.sol:ContractName --verify --verifier sourcify
 ```
 
 This command will deploy your contract to the Apechain Testnet or Mainnet depending on the command you run and then immediately begin the verification process by submitting your contract's source code and metadata to Sourcify. Once verified, your contract's source will be publicly accessible and associated with its on-chain address.
 
 You should see a response similar to the following after successful verification:
 
-![Deployed](../../ )
+![Deployed](../../../images/verified.png )
 
 
 If your smart contract is already deployed and you just want to verify it, then all you need to do is to open your terminal and navigate to the the root directory of your deployed contract’s project run the following command below and replace YOUR-CONTRACT-ADDRESS with the actual contract address you want to verify.
@@ -49,7 +49,7 @@ forge verify-contract Your-Contract-Address src/FileName.sol:ContractName --chai
 ### Mainnet
 
 ```js {11, 22}
-forge verify-contract Your-Contract-Address src/FileName.sol:ContractName --chain-id 33111 --verifier sourcify 
+forge verify-contract Your-Contract-Address src/FileName.sol:ContractName --chain-id 33139 --verifier sourcify 
 ```
 
 This will submit your deployed contract for verification without redeploying.
