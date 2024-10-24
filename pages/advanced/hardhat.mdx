@@ -23,21 +23,21 @@ In this guide we will see how you can build a token wallet dApp using Hardhat an
     - **Hardhat**: Development environment for Ethereum.
         - Install with:
         
-        ```bash
+        ```bash copy
         npm install --save-dev hardhat
         ```
         
     - [Metamask](https://metamask.io/) A crypto wallet browser extension also available on mobile.
     - [Ethers.js](https://docs.ethers.org/v5/) Library to interact with Ethereum.
         
-        ```bash
+        ```bash copy
         npm install ethers
         ```
         
 - **OpenZeppelin Contracts**: Secure smart contract library.
     - Install with:
         
-    ```bash
+    ```bash copy
     npm install @openzeppelin/contracts
     ```
         
@@ -48,14 +48,14 @@ In this guide we will see how you can build a token wallet dApp using Hardhat an
 
 1. **Initialize a new Hardhat project:**
     
-```bash
+```bash copy
 mkdir helloApe
 cd helloApe
 npx hardhat
 ```
 
 also run 
-```bash
+```bash copy
 npm i dotenv
 ```
 We will use an ```.env``` file to hold our private key and pass it into our ```hardhat.config.js``` file.
@@ -86,7 +86,7 @@ helloApe/
 
 Inside your ```Lock.sol``` file, delete the existing boilerplate code and then copy and paste the code below. This is a simple Solidity file that defines a string ‘greeting’ and a function that returns the string.
     
-```solidity
+```solidity copy
     
  // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
@@ -109,7 +109,7 @@ This code defines a Hardhat Ignition module called "HelloModule" that deploys th
 
 You can just copy this and paste into your file. Also note that you can rename files, just keep it consistant throughout the project.
     
-    ```jsx
+    ```jsx copy
     async function main() {
         const [deployer] = await ethers.getSigners();
         console.log("Deploying contracts with the account:", deployer.address);
@@ -136,7 +136,7 @@ You can just copy this and paste into your file. Also note that you can rename f
     Notice we are adding ` require('dotenv').config();` and `accounts: [process.env.PRIVATE_KEY] ` to pass out private key in.
 
     
-    ```jsx
+    ```jsx copy
     require("@nomicfoundation/hardhat-toolbox");
     require('dotenv').config();
 
@@ -154,7 +154,7 @@ You can just copy this and paste into your file. Also note that you can rename f
 
     inside of your ` .env ` file add the following 
 
-    ```jsx
+    ```jsx copy
     PRIVATE_KEY=YOUR KEY HERE WITH NO QUOTES
     ```
 
@@ -165,13 +165,13 @@ You can just copy this and paste into your file. Also note that you can rename f
 
 1. **Compile the contract:**
     
-    ```bash
+    ```bash copy
     npx hardhat compile
     ```
     
 2. **Deploy the contract to Apechain:**
     
-    ```bash
+    ```bash copy
     npx hardhat ignition deploy ./ignition/modules/Lock.js --network apechain    
     ```
     
@@ -183,7 +183,7 @@ You can just copy this and paste into your file. Also note that you can rename f
 
 1. **Initialize a new React project within the same folder:**
     
-    ```bash
+    ```bash copy
     npx create-react-app frontend
     cd frontend
     npm install ethers
@@ -216,7 +216,7 @@ helloApe/
 ```
 
 3. **Update ```App.js```**
-```javascript    
+```javascript copy
 import { useState } from "react";
 import { ethers } from "ethers";
 import Contract from "../src/HelloApe.json";
@@ -262,7 +262,7 @@ export default App;
 4. **Update your CSS**    
 
 Navigate to your ```App.css``` file, delete the boilerplate and add the following 
-```css
+```css copy
 .App {
   display: flex;
   justify-content: center;
@@ -294,7 +294,7 @@ button {
     
 **Start the React app**: **Make sure you are in your frontend directory** and then run the following command     
 
-```bash
+```bash copy
 npm start
 ```
     

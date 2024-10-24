@@ -29,13 +29,13 @@ Installing Foundry is simple. For MacOS and Linux, run the following command:
 
 ### **Linux or MacOS:**
 
-```jsx
+```jsx copy
 curl -L https://foundry.paradigm.xyz | bash foundryup
 ```
 
 ### Windows:
 
-```jsx
+```jsx copy
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs/ | sh
 
 cargo install --git https://github.com/foundry-rs/foundry foundry-cli anvil --bins --locked
@@ -45,13 +45,13 @@ cargo install --git https://github.com/foundry-rs/foundry foundry-cli anvil --bi
 
 Once we have Foundry installed, the next step is to initialize a new project.
 
-```jsx
+```jsx copy
 forge init foundry
 ```
 
 Navigate to the source folder and Create a Smart Contract File:
 
-```jsx
+```jsx copy
 cd src
 
 touch MyToken.sol
@@ -59,7 +59,7 @@ touch MyToken.sol
 
 ## **Write Your Smart Contract**
 
-```jsx
+```jsx copy
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
@@ -76,7 +76,7 @@ contract HelloApe {
 
 After writing our smart contract the next thing is to compile it and to do that we are going to copy and paste the command below into our terminal, please make sure you are in the projects root directory.
 
-```jsx
+```jsx copy
 forge build
 ```
 
@@ -89,7 +89,7 @@ When deploying smart contract to any chain, you need to pay deployment gas fee u
 
 You can deploy on Apechain by running forge create, followed by the RPC URL, your wallet's private key, and the source of your smart contract.
 
-```jsx
+```jsx copy
 forge create --rpc-url "https://curtis.rpc.caldera.xyz/http" --private-key `your-private-key` src/FileName.sol:ContractName
 ```
 
@@ -107,7 +107,7 @@ Visit [Apechain’s explorer](https://curtis.explorer.caldera.xyz/), copy and pa
 
 We are now done with the creation and deployment of our smart contract. Now it's time to build a simple ReactJS app.
 
-```jsx
+```jsx copy
 npx create-react-app my-dapp
 ```
 
@@ -117,7 +117,7 @@ Ethers.js is a library that facilitates interaction between web applications and
 
 On your terminal, navigate to the folder of the React Project you just created and run the command below.
 
-```jsx
+```jsx copy
 npm install ethers
 ```
 
@@ -132,7 +132,7 @@ You can get your smart contract’s ABI once your contract builds successfully, 
 Now that we have our ABI file and ethers.js installed, the next step is to build our UI.
 but how you choose to build your UI is entirely up to you and the purpose of your app but for this guide, we are just going to have a UI with a simple button and text to display the message returned by our smart contract.
 
-```jsx
+```jsx copy
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import ABI from "./HelloWorld.json";
@@ -182,7 +182,7 @@ In the above code we imported useEffect, useState, etherjs and our ABI JSON file
 
 ## **Run the Project**
 
-```jsx
+```jsx copy
 npm start
 ```
 

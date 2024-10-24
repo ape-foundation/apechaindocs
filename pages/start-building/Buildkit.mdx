@@ -14,7 +14,7 @@ packages/
 
 ```
 
-``` solidity
+``` solidity copy
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
@@ -64,7 +64,7 @@ contract BidBoard {
 
 
 Also, adjustments have been made to the hardhat.config.ts file 
- ```
+ ``` JSX copy
     apeCurtis: {
       url: `https://curtis.rpc.caldera.xyz/http/${providerApiKey}`,
       accounts: [deployerPrivateKey],
@@ -80,17 +80,16 @@ Also, adjustments have been made to the hardhat.config.ts file
 Here is a [Link to the current version ](https://github.com/ape-foundation/scaffold-eth-2_ape)
  of the buildkit, we welcome all contributions towards  this effort to ensure developers can start building as quickly as possible.
 
- ```
+ ``` bash copy
 yarn install 
-
 ```
 
 <Callout type="info"> While making adjustments you may need to add your private key to the .env file </Callout>
 
-```
+```bash copy
 yarn deploy 
 ```
-```
+```bash copy
 yarn start 
 ```
 As a user, you'll notice locally you can connect immediately to the Curtis network which will display your holdings with your connected wallet and the block explorer auto-directs you to the Curtis block explorer. You can update the message and set a value behind the message.
