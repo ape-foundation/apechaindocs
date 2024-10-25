@@ -63,6 +63,7 @@ const config: DocsThemeConfig = {
   editLink: {
     text: '',  // Remove edit link
   },
+
   head: (
     <Head>
       <link
