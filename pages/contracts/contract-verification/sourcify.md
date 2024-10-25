@@ -21,13 +21,13 @@ For contract deployment and verification:
 
 ### Mainnet
 
-```bash
+```bash copy
 forge create --rpc-url https://apechain.calderachain.xyz/http --private-key YOUR-PRIVATE-KEY src/FileName.sol:ContractName --verify --verifier sourcify
 ```
 
-### Testenet
+### Testnet
 
-```bash
+```bash copy
 forge create --rpc-url https://curtis.rpc.caldera.xyz/http --private-key YOUR-PRIVATE-KEY src/FileName.sol:ContractName --verify --verifier sourcify
 ```
 
@@ -42,13 +42,13 @@ If your smart contract is already deployed and you just want to verify it, then 
 
 ### Testnet
 
-```js {11, 22}
+```js {11, 22} copy
 forge verify-contract Your-Contract-Address src/FileName.sol:ContractName --chain-id 33111 --verifier sourcify 
 ```
 
 ### Mainnet
 
-```js {11, 22}
+```js copy
 forge verify-contract Your-Contract-Address src/FileName.sol:ContractName --chain-id 33139 --verifier sourcify 
 ```
 

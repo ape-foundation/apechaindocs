@@ -17,7 +17,7 @@ Before you begin the verification process, make sure you have the following:
 ## Step 1: Installing Hardhat Verify Package
 To enable verification in your Hardhat environment, you need to install the `@nomicfoundation/hardhat-verify` plugin. Run the following command in your project's root directory:
 
-```bash
+```bash copy
 npm install --save-dev @nomicfoundation/hardhat-verify
 ```
 
@@ -28,7 +28,7 @@ After installing the verification plugin, the next step is to configure your Har
 
 Include the following configuration in your ```hardhat.config.ts```:
 
-```js {11, 22}
+```js copy
 import "@nomicfoundation/hardhat-toolbox-viem";
 import "@nomicfoundation/hardhat-verify";
 import type { HardhatUserConfig } from "hardhat/config";
@@ -101,7 +101,7 @@ This command will communicate with the Apechain network (as specified in your Ha
 For verification on the Curtis network, run the following command:
 
 ```bash
-npx hardhat verify --network curtis <contract-address>
+npx hardhat verify --network curtis <contract-address >
 ```
 
 This command will communicate with the Curtis network (as specified in your Hardhat configuration) to submit your contract’s source code and metadata for verification. Once successfully verified, your contract’s source code will be publicly accessible on the blockchain, linked to its on-chain address.
