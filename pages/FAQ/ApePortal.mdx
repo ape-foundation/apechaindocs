@@ -1,0 +1,148 @@
+
+import ExpandableCard from '../../components/ExpandableCard';
+import { Steps } from 'nextra-theme-docs'
+import { Callout } from 'nextra/components'
+
+
+# ApePortal FAQ
+
+#### This FAQ will help you utilize the portal and navigate both Bridge and Swap functionalities. 
+
+
+<ExpandableCard title="How do I bridge tokens to ApeChain?">
+<Steps>
+### Step 1: 
+Connect your wallet to Ape Portal.
+
+###  Step 2: 
+Choose the network and token you want to bridge. We recommend bridging APE from Ethereum Mainnet to ApeChain. You'll need ApeChain APE for gas on ApeChain Mainnet.
+
+### Step 3
+If you're bridging APE to ApeChain, ensure the originating network is set to Ethereum Mainnet, and select the APE token.
+
+<Callout type="info"> Note: Ape Portal also supports cross-chain swaps. This allows you to bridge Ethereum Mainnet ETH directly to ApeChain APE with an additional cross-chain swap fee. You can bridge almost any EVM-compatible token to ApeChain APE. </Callout>
+
+### Step 4
+If needed, approve the token for the bridge transaction.
+
+### Step 5
+Sign the transaction to start the bridge process.
+
+### Step 6
+Once the transaction is complete, check your wallet or use <a href="https://apescan.io/" target="_blank" rel="noopener noreferrer"  style={{ color: '#207ee0', textDecoration: 'underline' }}>ApeChain Explorer</a> to verify your balance on ApeChain.
+</Steps>
+</ExpandableCard>
+
+
+<ExpandableCard title="What’s the difference between bridging tokens and swapping tokens?">
+  <p><b>Bridging tokens</b> involves transferring tokens from one blockchain to another. For example, if you want to move your tokens from Ethereum to ApeChain, the bridge will lock your tokens on the source chain and mint equivalent tokens on the destination chain. This ensures that the total supply of tokens stays consistent across both networks. Once bridged, you can use the tokens on the destination network.</p>
+  <br></br>
+  <p><b>Swapping tokens</b> refers to exchanging one token for another on the same blockchain network. This allows users to trade tokens based on current market rates using the Swap functionality within Ape Portal.</p>
+   <br></br>
+  <p><b>Cross-chain swaps</b> allow you to swap tokens across different blockchain networks. Ape Portal’s Bridge enables users to exchange an EVM-compatible currency for another, even if the tokens are on different networks. This feature is ideal for users looking to perform swaps as part of their cross-chain activity.</p>
+  
+  <p><strong>In summary:</strong></p>
+     <br></br>
+  <ul>
+    <li><strong>Bridging</strong> moves tokens between different chains.</li>
+       <br></br>
+    <li><strong>Swapping</strong> exchanges tokens within the same chain.</li>
+       <br></br>
+    <li><strong>Cross-chain swaps</strong> allow you to swap EVM-compatible tokens across different networks.</li>
+  </ul>
+</ExpandableCard>
+
+<ExpandableCard title="How do I swap tokens on ApeChain?">
+<Steps>
+### Step 1
+Navigate to the Swap tab in the ApeChain Portal.
+
+### Step 2
+Select the network where you'd like to perform the swap.
+
+### Step 3
+Choose or search for the tokens you wish to swap. For example, you can swap APE for another token on ApeChain.
+
+### Step 4
+Adjust the slippage tolerance if needed (the default is set to 1%).
+
+Note: A slippage tolerance of 1% works well for most swaps. Be cautious with higher tolerances to avoid unfavorable trades.
+
+### Step 5
+Confirm the swap and sign the transaction in your wallet.
+
+### Step 6
+The swapped tokens will appear in your wallet balance once the transaction is complete.
+</Steps>
+</ExpandableCard>
+
+<ExpandableCard title="How do I withdraw tokens from ApeChain?">
+<Steps>
+### Step 1
+Go to the Bridge tab and select ApeChain as the "From" network. Make sure to set the token to APE if you're withdrawing APE.
+
+### Step 2
+Choose the destination network and the amount of APE (or other tokens) you want to withdraw.
+
+### Step 3
+Sign the transaction to initiate the withdrawal.
+
+### Step 4
+Once the required time has passed, confirm the transaction based on the destination network's processing time.
+
+<Callout type="info">  Note: Some canonical bridges, such as Arbitrum, have a 7-day withdrawal waiting period for security reasons. A canonical bridge is an official bridge managed by the network itself, ensuring token transfers maintain the same token standard and security. These bridges often have longer waiting periods to enhance security. Please pay attention to any withdrawal warnings in the Portal before signing. If you initiate a transaction with a 7-day withdrawal, it cannot be undone, and you must wait the full 7 days.</Callout>
+
+For a faster option, you can initiate a faster withdrawal (cross-chain swap), which will complete more quickly.
+
+</Steps>
+</ExpandableCard>
+
+
+<ExpandableCard title="How long do withdrawals take?">
+Withdrawals from ApeChain can vary based on the destination network and the bridge route you choose. Fast-bridge withdrawals typically take a few minutes, while canonical bridge withdrawals can take up to 7 days. You can check the status of your transactions in DecentScan by clicking the Transactions link in the Portal, or by visiting  DecentScan  and entering your wallet address.
+</ExpandableCard>
+
+<ExpandableCard title="How do I claim a canonical bridge withdrawal after the 7-day waiting period?">
+If your withdrawal is ready to be claimed, a notification icon will appear within the Portal when the correct wallet is connected. Go to the Bridge tab, open the notification, and follow the link to claim your withdrawal on  Decent Scan . Alternatively, you can monitor your transaction in Decent Scan and claim your withdrawal directly from their interface.
+</ExpandableCard>
+
+<ExpandableCard title="Why is my transaction gas fee high?">
+If your gas fee seems unusually high, it could be due to network congestion or insufficient funds to cover both the transaction value and gas costs. You may want to try reducing the transaction amount or reviewing your gas settings.
+
+<Callout type="info"> Note: We recommend only advanced users customize their gas settings. Incorrectly adjusting gas fees can lead to delays or failed transactions. For most users, it's best to leave the default gas settings or select one of the speed options provided by your web3 wallet.</Callout>
+</ExpandableCard>
+
+<ExpandableCard title="What are the Ape Portal platform transaction fees?">
+Bridge Fees: 0.12% plus $0.20, with no fees for ApeChain canonical bridge routes.
+Swap Fees: 0.25% plus $0.20.
+Onramp Fees: 1.00%.
+
+
+<Callout type="info"> Note: Platform transaction fees may vary by product and are subject to change based on network conditions, liquidity availability, or other external factors. While we strive to keep fees consistent, higher fees may occasionally apply in certain situations. Always review all transaction fees by clicking the dropdown before initiating any transactions.</Callout>
+
+<Callout type="info">Please also note that the Ape Portal Onramp fee is in addition to the Moonpay or Transak onramp fee, which is set by the onramp provider.</Callout>
+</ExpandableCard>
+
+<ExpandableCard title="How do I see the status of my transaction?">
+There are several ways to track your transaction status:
+
+After submitting a transaction, click the "View Transaction" button to track its status on <a href="https://www.decentscan.xyz/" target="_blank" rel="noopener noreferrer"  style={{ color: '#207ee0', textDecoration: 'underline' }}>Decent Scan</a> .
+For transactions on ApeChain, visit  <a href="https://apescan.io/" target="_blank" rel="noopener noreferrer"  style={{ color: '#207ee0', textDecoration: 'underline' }}>ApeScan.io</a>  and enter your transaction hash.
+For all other transactions, visit <a href="https://www.decentscan.xyz/" target="_blank" rel="noopener noreferrer"  style={{ color: '#207ee0', textDecoration: 'underline' }}>Decent Scan</a>  and paste your transaction hash.
+Note: If you don’t know your transaction hash, you can find your transactions on both ApeScan and DecentScan by pasting in your wallet address.
+
+
+
+</ExpandableCard>
+
+<ExpandableCard title="What is slippage tolerance?">
+</ExpandableCard>
+
+<ExpandableCard title="What if my transaction fails?">
+</ExpandableCard>
+
+<ExpandableCard title="My transaction says it is confirmed, but I don’t see the tokens. Where are they?">
+</ExpandableCard>
+
+<ExpandableCard title="What if my transaction fails?">
+</ExpandableCard>
