@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
 import Head from 'next/head';
 import Image from "next/image";
-import { useRouter } from 'next/router';  // Import the useRouter hook
+import { useRouter } from 'next/router';
 import logo_image_src from './images/apechain-logo.svg';
 import og_image_src from './images/apechain-open-graph.jpg';
 import { ThemeSwitch } from './components/ThemeSelector';
 import { AskCookbook } from './components/AskCookbook';
+
+const HideStepsInTOC = () => {
+  useEffect(() => {
+    // Hide "Step" links in the "On this page" TOC
+    document.querySelectorAll('.on-this-page a').forEach(link => {
+      if (link.textContent.includes("Step")) {
+        link.style.display = "none";
+      }
+    });
+  }, []);
+
+  return null;
+};
 
 const config: DocsThemeConfig = {
   logo: (
@@ -51,17 +64,17 @@ const config: DocsThemeConfig = {
   feedback: {
     content: 'Contribute to Docs',
     useLink() {
-      const router = useRouter();  // Get the current router instance
-      const currentPath = router.pathname;  // Get the current path
+      const router = useRouter();
+      const currentPath = router.pathname;
       const repoUrl = 'https://github.com/ape-foundation/apechaindocs/issues/new';
-      const title = encodeURIComponent(`Feedback for “${currentPath}”`);  // Encode the title for the issue
+      const title = encodeURIComponent(`Feedback for “${currentPath}”`);
       const labels = encodeURIComponent('feedback');
       
-      return `${repoUrl}?title=${title}&labels=${labels}`;  // Return the dynamic URL
+      return `${repoUrl}?title=${title}&labels=${labels}`;
     },
   },
   editLink: {
-    text: '',  // Remove edit link
+    text: '',
   },
   head: (
     <Head>
@@ -76,5 +89,12 @@ const config: DocsThemeConfig = {
   ),
 };
 
-export default config;
-
+// Render the HideStepsInTOC component within your app to ensure the script runs
+export default function MyApp() {
+  return (
+    <>
+      <HideStepsInTOC />
+      {/* Render the rest of your app using config */}
+    </>
+  );
+}
