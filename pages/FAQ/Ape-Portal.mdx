@@ -10,24 +10,25 @@ import { Callout } from 'nextra/components'
 
 <ExpandableCard title="How do I bridge tokens to ApeChain?">
 <Steps>
-### Step 1: 
-Connect your wallet to Ape Portal.
 
-###  Step 2: 
+{<h3>Step 1</h3>}
+  Connect your wallet to Ape Portal.
+
+{<h3>Step 2</h3>} 
 Choose the network and token you want to bridge. We recommend bridging APE from Ethereum Mainnet to ApeChain. You'll need ApeChain APE for gas on ApeChain Mainnet.
 
-### Step 3
+{<h3>Step 3</h3>}
 If you're bridging APE to ApeChain, ensure the originating network is set to Ethereum Mainnet, and select the APE token.
 
 <Callout type="info"> Note: Ape Portal also supports cross-chain swaps. This allows you to bridge Ethereum Mainnet ETH directly to ApeChain APE with an additional cross-chain swap fee. You can bridge almost any EVM-compatible token to ApeChain APE. </Callout>
 
-### Step 4
+{<h3>Step 4</h3>}
 If needed, approve the token for the bridge transaction.
 
-### Step 5
+{<h3>Step 5</h3>}
 Sign the transaction to start the bridge process.
 
-### Step 6
+{<h3>Step 6</h3>}
 Once the transaction is complete, check your wallet or use <a href="https://apescan.io/" target="_blank" rel="noopener noreferrer"  style={{ color: '#207ee0', textDecoration: 'underline' }}>ApeChain Explorer</a> to verify your balance on ApeChain.
 </Steps>
 </ExpandableCard>
@@ -53,40 +54,40 @@ Once the transaction is complete, check your wallet or use <a href="https://apes
 
 <ExpandableCard title="How do I swap tokens on ApeChain?">
 <Steps>
-### Step 1
+{<h3>Step 1</h3>}
 Navigate to the Swap tab in the ApeChain Portal.
 
-### Step 2
+{<h3>Step 2</h3>}
 Select the network where you'd like to perform the swap.
 
-### Step 3
+{<h3>Step 3</h3>}
 Choose or search for the tokens you wish to swap. For example, you can swap APE for another token on ApeChain.
 
-### Step 4
+{<h3>Step 4</h3>}
 Adjust the slippage tolerance if needed (the default is set to 1%).
 
 Note: A slippage tolerance of 1% works well for most swaps. Be cautious with higher tolerances to avoid unfavorable trades.
 
-### Step 5
+{<h3>Step 5</h3>}
 Confirm the swap and sign the transaction in your wallet.
 
-### Step 6
+{<h3>Step 6</h3>}
 The swapped tokens will appear in your wallet balance once the transaction is complete.
 </Steps>
 </ExpandableCard>
 
 <ExpandableCard title="How do I withdraw tokens from ApeChain?">
 <Steps>
-### Step 1
+{<h3>Step 1</h3>}
 Go to the Bridge tab and select ApeChain as the "From" network. Make sure to set the token to APE if you're withdrawing APE.
 
-### Step 2
+{<h3>Step 2</h3>}
 Choose the destination network and the amount of APE (or other tokens) you want to withdraw.
 
-### Step 3
+{<h3>Step 3</h3>}
 Sign the transaction to initiate the withdrawal.
 
-### Step 4
+{<h3>Step 4</h3>}
 Once the required time has passed, confirm the transaction based on the destination network's processing time.
 
 <Callout type="warning">  Note: Some canonical bridges, such as Arbitrum, have a 7-day withdrawal waiting period for security reasons. A canonical bridge is an official bridge managed by the network itself, ensuring token transfers maintain the same token standard and security. These bridges often have longer waiting periods to enhance security. Please pay attention to any withdrawal warnings in the Portal before signing. If you initiate a transaction with a 7-day withdrawal, it cannot be undone, and you must wait the full 7 days.</Callout>
@@ -114,11 +115,11 @@ If your gas fee seems unusually high, it could be due to network congestion or i
 <ExpandableCard title="What are the Ape Portal platform transaction fees?">
 
 
-| Fees   | |    
-| :------------ | :---------: | 
-| Bridge     |    0.12% plus $0.20, with no fees for ApeChain canonical bridge routes.    | 
-| Swap     |   0.25% plus $0.20.    |    
-| Onramp|       1.00%.      |     
+| Fees   |                                                                      |
+| :----- | :------------------------------------------------------------------: |
+| Bridge | 0.12% plus $0.20, with no fees for ApeChain canonical bridge routes. |
+| Swap   |                          0.25% plus $0.20.                           |
+| Onramp |                                1.00%.                                |
 
 <Callout type="info"> Note: Platform transaction fees may vary by product and are subject to change based on network conditions, liquidity availability, or other external factors. While we strive to keep fees consistent, higher fees may occasionally apply in certain situations. Always review all transaction fees by clicking the dropdown before initiating any transactions.</Callout>
 
