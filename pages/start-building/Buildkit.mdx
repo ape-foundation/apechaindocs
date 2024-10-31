@@ -1,4 +1,5 @@
 import { Callout } from 'nextra/components'
+import { FileTree } from 'nextra/components'
 
 ## Buidl, Quickly 
 
@@ -6,13 +7,16 @@ We're excited to announce that we're developing a comprehensive template for dev
 
 You will notice the contract example #2 within the Remix section is part of this repository.
 
-```markdown
-packages/
-  ├── hardhat/
-    └── contracts
-       └── BidBoard.sol
 
-```
+<FileTree>
+  <FileTree.Folder name="packages" defaultOpen>
+    <FileTree.Folder name="hardhat" defaultOpen>
+      <FileTree.Folder name="contracts" defaultOpen>
+        <FileTree.File name="BidBoard.sol" />
+      </FileTree.Folder>
+    </FileTree.Folder>
+  </FileTree.Folder>
+</FileTree>
 
 ``` solidity copy
 // SPDX-License-Identifier: UNLICENSED

@@ -1,4 +1,5 @@
 import { Callout } from 'nextra/components'
+import { FileTree } from 'nextra/components'
 
 ## Creating Your First DApp Using Apechain and Hardhat
 
@@ -65,22 +66,37 @@ Once installed, at the root create a file named ```.env```
 
 Before we move ahead with the guide, here’s an example of how the folder structure would look like:
 
-```markdown
-helloApe/
-├── contracts/
-│   └── Lock.sol
-├── ignition/module
-│   └── Lock.js
-├── node_modules
-├── test/
-│   └── Lock.js
-├── .gitignore
-├── hardhat.config.js
-├── package-lock.json
-├── package.json
-├── .env
-├── README.md
-```
+<FileTree>
+  <FileTree.Folder name="helloApe" defaultOpen>
+    
+    <FileTree.Folder name="contracts" defaultOpen>
+      <FileTree.File name="Lock.sol" />
+    </FileTree.Folder>
+    
+    <FileTree.Folder name="ignition" defaultOpen>
+      <FileTree.File name="Lock.js" />
+    </FileTree.Folder>
+
+    <FileTree.Folder name="node_modules" />
+    
+    <FileTree.Folder name="test" defaultOpen>
+      <FileTree.File name="Lock.js" />
+    </FileTree.Folder>
+
+    <FileTree.File name=".gitignore" />
+    <FileTree.File name="hardhat.config.js" />
+    <FileTree.File name="package-lock.json" />
+    <FileTree.File name="package.json" />
+    <FileTree.File name=".env" />
+    <FileTree.File name="README.md" />
+
+  </FileTree.Folder>
+</FileTree>
+
+
+
+
+
 
 ### Step 2: Write the Token Contract
 
