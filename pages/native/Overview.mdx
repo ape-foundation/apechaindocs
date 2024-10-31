@@ -69,7 +69,7 @@ In delegate yield mode, the address has a fixed balance and yield is sent to a d
 
 The ["ArbInfo" contract](https://explorer.curtis.apechain.com/address/0x0000000000000000000000000000000000000065?tab=write_contract), located at address `0x0000000000000000000000000000000000000065`, a system contract built into the ApeChain protocol, can be used to update the yield mode for an address. For native yield, three functions are available:
 
-```solidity
+```solidity copy
 interface ArbInfo {
     function configureAutomaticYield() external;
     function configureVoidYield() external;
@@ -81,7 +81,7 @@ A contract can call these methods directly to update the yield mode for itself. 
 
 For example, a contract might add the ability for an owner to configure the yield mode for itself by adding the following code to its implementation:
 
-```solidity
+```solidity copy
 
 enum YieldMode {
     AUTOMATIC,
@@ -155,7 +155,7 @@ Note that this value is stored as an integer representing 10^(-9)ths of a percen
 
 Smart contracts can also query this value onchain.
 
-```solidity
+```solidity copy
 interface IArbOwnerPublic {
     function getApy() external view returns (uint256);
 }
