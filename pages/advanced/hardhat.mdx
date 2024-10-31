@@ -209,27 +209,44 @@ You can just copy this and paste into your file. Also note that you can rename f
 
 To connect to the smart contract, you'll need the contract's **ABI**. This can be found in the artifacts folder, which is automatically generated when you deploy your smart contract. To locate it, navigate to the artifacts folder, then to the contract folder. Find the JSON file (in our case, it's named ```HelloApe.json```), copy it, and paste it into the ```src``` folder of your frontend project.
 
-```markdown
-helloApe/
-├── artifacts/
-│   └──contracts/
-│    └── HelloApe.json
-├── cache/
-├── contracts/
-├── ignition/module
-├── frontend/
-│   └── src
-│       └── App.js
-│       └── HelloApe.json
-├── node_modules
-├── test/
-├── .gitignore
-├── hardhat.config.js
-├── package-lock.json
-├── package.json
-├── .env
-├── README.md
-```
+<FileTree>
+  <FileTree.Folder name="helloApe" defaultOpen>
+    
+    <FileTree.Folder name="artifacts" defaultOpen>
+      <FileTree.Folder name="contracts" defaultOpen>
+        <FileTree.File name="HelloApe.json" defaultOpen/>
+      </FileTree.Folder>
+    </FileTree.Folder>
+    
+    <FileTree.Folder name="cache" />
+    
+    <FileTree.Folder name="contracts" />
+
+    <FileTree.Folder name="ignition">
+      <FileTree.File name="module" />
+    </FileTree.Folder>
+
+    <FileTree.Folder name="frontend" defaultOpen>
+      <FileTree.Folder name="src" defaultOpen>
+        <FileTree.File name="App.js" />
+        <FileTree.File name="HelloApe.json" />
+      </FileTree.Folder>
+    </FileTree.Folder>
+
+    <FileTree.Folder name="node_modules" />
+
+    <FileTree.Folder name="test" />
+
+    <FileTree.File name=".gitignore" />
+    <FileTree.File name="hardhat.config.js" />
+    <FileTree.File name="package-lock.json" />
+    <FileTree.File name="package.json" />
+    <FileTree.File name=".env" />
+    <FileTree.File name="README.md" />
+
+  </FileTree.Folder>
+</FileTree>
+
 
 3. **Update ```App.js```**
 ```javascript copy
