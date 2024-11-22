@@ -1,9 +1,13 @@
-import { Callout } from 'nextra/components'
+import { Callout } from "nextra/components";
+import { FileTree } from "nextra/components";
 
 ## Creating Your First DApp Using Apechain and Hardhat
 
-
-<Callout type="info">The goal of this project is to deploy a contract and create a basic front-end interface for interacting with it. From there, you have the freedom to expand and enhance the project with your own ideas and creativity!</Callout>
+<Callout type="info">
+  The goal of this project is to deploy a contract and create a basic front-end
+  interface for interacting with it. From there, you have the freedom to expand
+  and enhance the project with your own ideas and creativity!
+</Callout>
 ### What is Hardhat?
 
 Hardhat is a development environment for Ethereum that helps developers manage and automate the common tasks involved in building smart contracts and decentralized applications. It can directly interact with Caldera's Ethereum API, allowing for the deployment of smart contracts into the Caldera network.
@@ -14,80 +18,96 @@ In this guide we will see how you can build a token wallet dApp using Hardhat an
 
 ## Prerequisites
 
-**Basic Knowledge:**
-    - [Solidity](https://docs.soliditylang.org/en/v0.8.26/) For writing smart contracts.
-    - [React](https://react.dev/) For scripting and frontend development.
-    <br></br>
-**Development Environment:**
-    - **Node.js** and **npm/yarn**: Installed from [Node.js](https://nodejs.org/).
-    - **Hardhat**: Development environment for Ethereum.
-        - Install with:
-        
+**Basic Knowledge:** - [Solidity](https://docs.soliditylang.org/en/v0.8.26/) For writing smart contracts. - [React](https://react.dev/) For scripting and frontend development.
+
+<br></br>
+**Development Environment:** - **Node.js** and **npm/yarn**: Installed from
+[Node.js](https://nodejs.org/). - **Hardhat**: Development environment for
+Ethereum. - Install with:
+
         ```bash copy
         npm install --save-dev hardhat
         ```
-        
+
     - [Metamask](https://metamask.io/) A crypto wallet browser extension also available on mobile.
     - [Ethers.js](https://docs.ethers.org/v5/) Library to interact with Ethereum.
-        
+
         ```bash copy
         npm install ethers
         ```
-        
+
 - **OpenZeppelin Contracts**: Secure smart contract library.
-    - Install with:
-        
-    ```bash copy
-    npm install @openzeppelin/contracts
-    ```
-        
+  - Install with:
+  ```bash copy
+  npm install @openzeppelin/contracts
+  ```
 
 ## Step-by-Step Guide
 
 ### Step 1: Set Up Hardhat Project
 
 1. **Initialize a new Hardhat project:**
-    
+
 ```bash copy
 mkdir helloApe
 cd helloApe
 npx hardhat
 ```
 
-also run 
+also run
+
 ```bash copy
 npm i dotenv
 ```
-We will use an ```.env``` file to hold our private key and pass it into our ```hardhat.config.js``` file.
 
-Once installed, at the root create a file named ```.env```
- <Callout type="info">You will be prompted with questions in your terminal. You can simply choose the default options, which will generate a basic code template for you. While you can experiment with this template, for the purpose of this guide, we'll focus on making a few specific changes to some files.</Callout>
+We will use an `.env` file to hold our private key and pass it into our `hardhat.config.js` file.
+
+Once installed, at the root create a file named `.env`
+
+{" "}
+
+<Callout type="info">
+  You will be prompted with questions in your terminal. You can simply choose
+  the default options, which will generate a basic code template for you. While
+  you can experiment with this template, for the purpose of this guide, we'll
+  focus on making a few specific changes to some files.
+</Callout>
 
 Before we move ahead with the guide, here’s an example of how the folder structure would look like:
 
-```markdown
-helloApe/
-├── contracts/
-│   └── Lock.sol
-├── ignition/module
-│   └── Lock.js
-├── node_modules
-├── test/
-│   └── Lock.js
-├── .gitignore
-├── hardhat.config.js
-├── package-lock.json
-├── package.json
-├── .env
-├── README.md
-```
-
-### Step 2: Write the Token Contract
-
-Inside your ```Lock.sol``` file, delete the existing boilerplate code and then copy and paste the code below. This is a simple Solidity file that defines a string ‘greeting’ and a function that returns the string.
+<FileTree>
+  <FileTree.Folder name="helloApe" defaultOpen>
     
+    <FileTree.Folder name="contracts" defaultOpen>
+      <FileTree.File name="Lock.sol" />
+    </FileTree.Folder>
+    
+    <FileTree.Folder name="ignition" defaultOpen>
+      <FileTree.File name="Lock.js" />
+    </FileTree.Folder>
+
+    <FileTree.Folder name="node_modules" />
+
+    <FileTree.Folder name="test" defaultOpen>
+      <FileTree.File name="Lock.js" />
+    </FileTree.Folder>
+
+    <FileTree.File name=".gitignore" />
+    <FileTree.File name="hardhat.config.js" />
+    <FileTree.File name="package-lock.json" />
+    <FileTree.File name="package.json" />
+    <FileTree.File name=".env" />
+    <FileTree.File name="README.md" />
+
+  </FileTree.Folder>
+</FileTree>
+
+### Step 2: Write the HelloApe Contract
+
+Inside your `Lock.sol` file, delete the existing boilerplate code and then copy and paste the code below. This is a simple Solidity file that defines a string ‘greeting’ and a function that returns the string.
+
 ```solidity copy
-    
+
  // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
@@ -99,123 +119,130 @@ contract HelloApe {
     }
 }
 ```
-    
 
 ### Step 3: Update your ignition file
 
-Open your ```Lock.js``` file which you can find by navigating to ignition folder and then module folder.
+Open your `Lock.js` file which you can find by navigating to ignition folder and then module folder.
 
 This code defines a Hardhat Ignition module called "HelloModule" that deploys the "HelloApe" contract and returns the deployed instance as `hello`.
 
 You can just copy this and paste into your file. Also note that you can rename files, just keep it consistant throughout the project.
-    
-    ```jsx copy
-    async function main() {
-        const [deployer] = await ethers.getSigners();
-        console.log("Deploying contracts with the account:", deployer.address);
-    
-        const Token = await ethers.getContractFactory("Token");
-        const token = await Token.deploy(1000000);
-    
-        console.log("Token deployed to:", token.address);
-    }
-    
-    main()
-      .then(() => process.exit(0))
-      .catch(error => {
-        console.error(error);
-        process.exit(1);
-      });
-    
-    ```    
+
+```jsx copy
+// This setup uses Hardhat Ignition to manage smart contract deployments.
+// Learn more about it at https://hardhat.org/ignition
+
+const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
+
+module.exports = buildModule("HelloApe", (m) => {
+  const lock = m.contract("HelloApe");
+
+  return { lock };
+});
+```
 
 ### Step 4: Configure Hardhat for Apechain
 
 1. **Modify `hardhat.config.js` to include necessary plugins and configurations:**
-    
-    Notice we are adding ` require('dotenv').config();` and `accounts: [process.env.PRIVATE_KEY] ` to pass out private key in.
 
-    
-    ```jsx copy
-    require("@nomicfoundation/hardhat-toolbox");
-    require('dotenv').config();
+   Notice we are adding ` require('dotenv').config();` and `accounts: [process.env.PRIVATE_KEY] ` to pass out private key in.
 
-    /** @type import('hardhat/config').HardhatUserConfig */
-    module.exports = {
-    solidity: "0.8.17",
-    networks: {
-        apechain: {
+   ```jsx copy
+   require("@nomicfoundation/hardhat-toolbox");
+   require("dotenv").config();
+
+   /** @type import('hardhat/config').HardhatUserConfig */
+   module.exports = {
+     solidity: "0.8.17",
+     networks: {
+       apechain: {
          url: "https://curtis.rpc.caldera.xyz/http",
-        accounts: [process.env.PRIVATE_KEY], 
-        },
-    },
-    };
-    ```
+         accounts: [process.env.PRIVATE_KEY],
+       },
+     },
+   };
+   ```
 
-    inside of your ` .env ` file add the following 
+   inside of your `.env` file add the following
 
-    ```jsx copy
-    PRIVATE_KEY=YOUR KEY HERE WITH NO QUOTES
-    ```
+   ```jsx copy
+   PRIVATE_KEY=YOUR KEY HERE WITH NO QUOTES
+   ```
 
-    <Callout> Ensure your ```.gitignore``` file has ```.env``` added </Callout>
-    
+   <Callout> Ensure your ```.gitignore``` file has ```.env``` added </Callout>
 
 ### Step 5: Compile and Deploy
 
 1. **Compile the contract:**
-    
-    ```bash copy
-    npx hardhat compile
-    ```
-    
+
+   ```bash copy
+   npx hardhat compile
+   ```
+
 2. **Deploy the contract to Apechain:**
-    
-    ```bash copy
-    npx hardhat ignition deploy ./ignition/modules/Lock.js --network apechain    
-    ```
-    
-    <Callout> Keep the deployed contract address, this will be needed for the  frontend.</Callout>
-    
+
+   ```bash copy
+   npx hardhat ignition deploy ./ignition/modules/Lock.js --network apechain
+   ```
+
+   <Callout>
+     Keep the deployed contract address, this will be needed for the frontend.
+   </Callout>
 
 ### Step 6: Set Up Frontend with React
 
-
 1. **Initialize a new React project within the same folder:**
+
+   ```bash copy
+   npx create-react-app frontend
+   cd frontend
+   npm install ethers
+   ```
+
+2. **Grab your ABI**
+
+To connect to the smart contract, you'll need the contract's **ABI**. This can be found in the artifacts folder, which is automatically generated when you deploy your smart contract. To locate it, navigate to the artifacts folder, then to the contract folder. Find the JSON file (in our case, it's named `HelloApe.json`), copy it, and paste it into the `src` folder of your frontend project.
+
+<FileTree>
+  <FileTree.Folder name="helloApe" defaultOpen>
     
-    ```bash copy
-    npx create-react-app frontend
-    cd frontend
-    npm install ethers
-    ```
+    <FileTree.Folder name="artifacts" defaultOpen>
+      <FileTree.Folder name="contracts" defaultOpen>
+        <FileTree.File name="HelloApe.json" defaultOpen/>
+      </FileTree.Folder>
+    </FileTree.Folder>
+    
+    <FileTree.Folder name="cache" />
+    
+    <FileTree.Folder name="contracts" />
 
-2. **Grab your ABI** 
+    <FileTree.Folder name="ignition">
+      <FileTree.File name="module" />
+    </FileTree.Folder>
 
-To connect to the smart contract, you'll need the contract's **ABI**. This can be found in the artifacts folder, which is automatically generated when you deploy your smart contract. To locate it, navigate to the artifacts folder, then to the contract folder. Find the JSON file (in our case, it's named ```HelloApe.json```), copy it, and paste it into the ```src``` folder of your frontend project.
+    <FileTree.Folder name="frontend" defaultOpen>
+      <FileTree.Folder name="src" defaultOpen>
+        <FileTree.File name="App.js" />
+        <FileTree.File name="HelloApe.json" />
+      </FileTree.Folder>
+    </FileTree.Folder>
 
-```markdown
-helloApe/
-├── artifacts/
-│   └──contracts/
-│    └── HelloApe.json
-├── cache/
-├── contracts/
-├── ignition/module
-├── frontend/
-│   └── src
-│       └── App.js
-│       └── HelloApe.json
-├── node_modules
-├── test/
-├── .gitignore
-├── hardhat.config.js
-├── package-lock.json
-├── package.json
-├── .env
-├── README.md
-```
+    <FileTree.Folder name="node_modules" />
 
-3. **Update ```App.js```**
+    <FileTree.Folder name="test" />
+
+    <FileTree.File name=".gitignore" />
+    <FileTree.File name="hardhat.config.js" />
+    <FileTree.File name="package-lock.json" />
+    <FileTree.File name="package.json" />
+    <FileTree.File name=".env" />
+    <FileTree.File name="README.md" />
+
+  </FileTree.Folder>
+</FileTree>
+
+3. **Update `App.js`**
+
 ```javascript copy
 import { useState } from "react";
 import { ethers } from "ethers";
@@ -259,9 +286,10 @@ function App() {
 export default App;
 ```
 
-4. **Update your CSS**    
+4. **Update your CSS**
 
-Navigate to your ```App.css``` file, delete the boilerplate and add the following 
+Navigate to your `App.css` file, delete the boilerplate and add the following
+
 ```css copy
 .App {
   display: flex;
@@ -288,19 +316,18 @@ button {
   cursor: pointer;
   margin-top: 20px;
 }
-``` 
-    
+```
+
 3. **Run the Frontend**
-    
-**Start the React app**: **Make sure you are in your frontend directory** and then run the following command     
+
+**Start the React app**: **Make sure you are in your frontend directory** and then run the following command
 
 ```bash copy
 npm start
 ```
-    
+
 Your React application should now be running, and you can interact with the token wallet dApp through your browser!
 
 ## Conclusion
 
-In this guide, you have learned how to build a simple dApp using Hardhat and React, integrated with the Apechain network. By following the step-by-step instructions, you have set up a Hardhat project, written a basic contract, deployed it to Apechain, and created a React frontend to interact with the contract. 
-
+In this guide, you have learned how to build a simple dApp using Hardhat and React, integrated with the Apechain network. By following the step-by-step instructions, you have set up a Hardhat project, written a basic contract, deployed it to Apechain, and created a React frontend to interact with the contract.

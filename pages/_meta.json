@@ -4,32 +4,23 @@
     "title": "Overview"
   },
   "index": "About",
-
   "architecture": "Architecture",
-
   "native": {
     "title": "Native Yield"
   },
-
   "seperator_2": {
-
     "type": "separator",
-
     "title": "Get Started"
   },
   "metamask": "Add to your wallet",
-
   "bridging": {
-    "title": "Bridge ↗",
+    "title": "Ape Portal ↗",
     "href": "https://apechain.com/portal#bridge",
     "newWindow": true
   },
-
   "run-node": "Run a Node",
-
   "seperator_3": {
     "type": "separator",
-
     "title": "Develop"
   },
   "advanced": {
@@ -41,56 +32,33 @@
   "contracts": {
     "title": "Contracts"
   },
-  
   "seperator_4": {
     "type": "separator",
     "title": "Tools"
   },
-
-
   "analytics": "Analytics",
-
-
   "block-explorers": "Block Explorers",
-
-
   "brand-kit": {
     "title": "Brand Guidelines ↗",
     "href": "https://live.standards.site/apechain",
     "newWindow": true
   },
-
   "data-indexers": "Data Indexers",
-
   "faucet": "Faucets",
-
-
-  "hub": {
-    "title": "Hub Page ↗",
-    "href": "https://apechain.hub.caldera.xyz/",
-    "newWindow": true
-   
+  "Hub": {
+    "title": "Hub"
+    
   },
-
-
-
   "node-providers": "Node Providers",
-
-
   "oracles": "Oracles",
-
-
   "safes": "Safes",
-
-
   "status": {
     "title": "Status ↗",
     "href": "https://apechain.betteruptime.com/",
     "newWindow": true
   },
-
   "seperator_5": {
     "type": "separator",
     "title": "Community"
-}
+  }
 }
