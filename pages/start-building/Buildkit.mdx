@@ -5,8 +5,7 @@ import { FileTree } from 'nextra/components'
 
 We're excited to announce that we're developing a comprehensive template for developers to leverage the popular starter kit [Scaffold-ETH](https://scaffoldeth.io/). 
 
-You will notice the contract example #2 within the Remix section is part of this repository.
-
+This BuildKit helps eliminate the need for enviromental setup and configuration and ebales developers to get started building on Apechain in matter of minutes.
 
 <FileTree>
   <FileTree.Folder name="packages" defaultOpen>
@@ -66,36 +65,80 @@ contract BidBoard {
 
 ```
 
-
-Also, adjustments have been made to the hardhat.config.ts file 
+You might need to make adjustment to the hardhat.config.ts file 
  ``` JSX copy
-    apeCurtis: {
-      url: `https://curtis.rpc.caldera.xyz/http/${providerApiKey}`,
-      accounts: [deployerPrivateKey],
-    },
+apeCurtis: {
+    url: `https://curtis.rpc.caldera.xyz/http/${providerApiKey}`,
+    accounts: [deployerPrivateKey],
+},
 
-    ```
+```
 
 
 ![index](../../images/index_os_ape.png)
 
 
-
 Here is a [Link to the current version ](https://github.com/ape-foundation/scaffold-eth-2_ape)
  of the buildkit, we welcome all contributions towards  this effort to ensure developers can start building as quickly as possible.
 
- ``` bash copy
+To get started, you need to clone the repository and then follow the steps below:
+
+``` bash copy
 yarn install 
 ```
 
 <Callout type="info"> While making adjustments you may need to add your private key to the .env file </Callout>
 
+``` bash copy
+cd packages/nextjs
+```
+
+Run the following command on your terminal
+
+``` bash copy
+curl -sSL -o .npmrc https://raw.githubusercontent.com/yuga-labs/ape-portal-public/2bd5d6c85cbb8dfc276c054ddeb0f55a1df459aa/.npmrc
+```
+
+Add github token to youe shell:
+
+``` bash copy 
+ export  GITHUB_TOKEN=<github-token>
+```
+
+Install ApePortal pacakge:
+
+``` bash copy 
+pnpm i @yuga-labs/ape-portal-public
+```
+Navigate back to root folder
+
+``` bash copy 
+cd ../..
+```
+Run a local network in the first terminal:
+
+``` bash copy
+yarn chain
+```
+This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in hardhat.config.ts.
+
+On a second terminal, deploy the test contract:
 ```bash copy
 yarn deploy 
 ```
 ```bash copy
 yarn start 
 ```
+
+Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+
+**What's next**:
+
+- Edit your smart contract `YourContract.sol` in `packages/hardhat/contracts`
+- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
+- Edit your deployment scripts in `packages/hardhat/deploy`
+- Edit your smart contract test in: `packages/hardhat/test`. To run test use `yarn hardhat:test`
+
 As a user, you'll notice locally you can connect immediately to the Curtis network which will display your holdings with your connected wallet and the block explorer auto-directs you to the Curtis block explorer. You can update the message and set a value behind the message.
 
 As a user, you are bidding to update the message (string) so, to update the message you need to ensure you are paying more than the previous update, otherwise, it will fail to update the state.
