@@ -52,11 +52,16 @@
   "node-providers": "Node Providers",
   "oracles": "Oracles",
   "safes": "Safes",
+
+
   "status": {
     "title": "Status ↗",
     "href": "https://apechain.betteruptime.com/",
     "newWindow": true
+
   },
+  "subgraphs": "Subgraphs",
+
   "seperator_5": {
     "type": "separator",
     "title": "Community"
