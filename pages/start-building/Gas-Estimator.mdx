@@ -1,26 +1,21 @@
+
+## Gas Fee Estimator 
+
 Anyone involved in the blockchain ecosystem has likely used a gas fee estimator at some point. In this guide, we will explore how to build a gas fee estimator using Apechain and Tenderly.
 
-## What is Apechain?
-
-[ApeChain](https://docs.apechain.com/) is a dedicated infrastructure layer to power the ApeCoin ecosystem. ApeChain utilizes $APE as its native gas token. It focuses on high performance, scalability, and security, making it a suitable environment for developers to create robust DApps. This integration significantly enhances $APE's utility, fostering a robust and dynamic economy driven by $APE, and positioning ApeChain as a premier platform.
-
-## What is Tenderly?
-
-[Tenderly](https://tenderly.co/) is a Web3 development platform that provides tools for building, testing, and monitoring smart contracts on blockchain networks. It offers features like real-time debugging, transaction simulation, performance analytics, and advanced monitoring, enabling developers to improve their workflow and ensure smart contracts function correctly.
-
-### **Understanding how the gas fee estimator will be built**
+### **Understanding the implementation of the gas fee estimator**
 
 To build the gas fee estimator, we will make use of some key features of Apechain and Tenderly as listed below:
 
 ### **Apechain**
 
-1. **RPC API for network communication**: We will use Apechain’s **RPC URL** to interact with the blockchain. This will help us with real-time interaction with the Apechain network, enabling us to retrieve accurate gas estimates and submit transactions.
-2. **EVM Compatibility**: Apechain is EVM-compatible, meaning it supports the same transaction and contract interaction standards as Ethereum. This helps us leverage existing Ethereum developer ecosystems for seamless integration.
+-  **RPC API for network communication**: We will use Apechain’s **RPC URL** to interact with the blockchain. This will help us with real-time interaction with the Apechain network, enabling us to retrieve accurate gas estimates and submit transactions.
+
 
 ### **Tenderly**
 
-1. [**Simulation API**](https://docs.tenderly.co/reference/api#/): Tenderly simulates transactions within Apechain’s environment, offering accurate gas usage and execution insights.
-2. [**Transaction Simulation**](https://docs.tenderly.co/virtual-testnets/interact/simulate-transactions): Tenderly simulates the transaction in a controlled environment using the network's specific rules (in this case, Apechain). It mimics how the transaction would behave on-chain, including:
+-  [**Simulation API**](https://docs.tenderly.co/reference/api#/): Tenderly simulates transactions within Apechain’s environment, offering accurate gas usage and execution insights.
+- [**Transaction Simulation**](https://docs.tenderly.co/virtual-testnets/interact/simulate-transactions): Tenderly simulates the transaction in a controlled environment using the network's specific rules (in this case, Apechain). It mimics how the transaction would behave on-chain, including:
     - Gas limits
     - Contract calls
     - Execution logic
@@ -42,20 +37,20 @@ flowchart TD
 
 ```
 
-## Getting started building
+## Start building
 
-1. Sign up on [Apechain](https://apechain.com/).
-2. Sign up on [Tenderly](https://tenderly.co/).
-3. Get the Tenderly account slug and project slug as mentioned in the guide [here.](https://docs.tenderly.co/account/projects/account-project-slug)
-4. You’ll need the following libraries to interact with Apechain, Tenderly, and handle gas estimation:
+
+1. Sign up on [Tenderly](https://tenderly.co/).
+2. Get the Tenderly account slug and project slug as mentioned in the guide [here.](https://docs.tenderly.co/account/projects/account-project-slug)
+3. You’ll need the following libraries to interact with Apechain, Tenderly, and handle gas estimation:
     
-    ```bash
+    ```bash copy
     npm install ethers axios dotenv
     ```
     
 5. Add the Tenderly API key and Apechain URL in a `.env` file as shown below:
     
-    ```makefile
+    ```makefile copy
     APECHAIN_RPC_URL=your_apechain_rpc_url_here
     TENDERLY_API_KEY=your_tenderly_api_key_here
     ```
