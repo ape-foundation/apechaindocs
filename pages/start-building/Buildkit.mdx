@@ -81,23 +81,43 @@ apeCurtis: {
 Here is a [Link to the current version ](https://github.com/ape-foundation/scaffold-eth-2_ape)
  of the buildkit, we welcome all contributions towards  this effort to ensure developers can start building as quickly as possible.
 
+## Step-by-Step Setup
+### 1. Clone the Repository
+
+Start by cloning the BuildKit repository:
+
+``` bash copy 
+git clone https://github.com/ape-foundation/scaffold-eth-2_ape
+```
+##
+
+### 2. Install Dependencies
 To get started, you need to clone the repository and then follow the steps below:
 
 ``` bash copy
 yarn install 
 ```
 
+##
+
+### 3. Navigate to NextJS folder
 <Callout type="info"> While making adjustments you may need to add your private key to the .env file </Callout>
 
 ``` bash copy
 cd packages/nextjs
 ```
+##
 
+### 4. Run command
 Run the following command on your terminal
 
 ``` bash copy
 curl -sSL -o .npmrc https://raw.githubusercontent.com/yuga-labs/ape-portal-public/2bd5d6c85cbb8dfc276c054ddeb0f55a1df459aa/.npmrc
 ```
+
+##
+
+### 5. Add Github token
 
 Add github token to youe shell:
 
@@ -105,16 +125,28 @@ Add github token to youe shell:
  export  GITHUB_TOKEN=<github-token>
 ```
 
+##
+
+
+
+### 6. Install ApePortal
 Install ApePortal pacakge:
 
 ``` bash copy 
 pnpm i @yuga-labs/ape-portal-public
 ```
-Navigate back to root folder
+
+##
+
+###  Navigate back to root folder
 
 ``` bash copy 
 cd ../..
 ```
+
+##
+
+### Run local Chain, Deploy and Start
 Run a local network in the first terminal:
 
 ``` bash copy
