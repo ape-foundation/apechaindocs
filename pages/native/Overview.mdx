@@ -4,7 +4,7 @@ Native yield allows specific assets bridged into the ApeChain ecosystem to autom
 
 | Source Token | Yield Source | Destination Token |
 | ------------ | ------------ | ----------------- |
-| USDC, USDT, DAI | [sDAI (DSR)](https://docs.spark.fi/defi-infrastructure/sdai-overview) | apeUSD |
+| USDC, USDT, DAI | [sDAI (DSR)](https://docs.spark.fi/user-guides/earning-savings/savings-dai) | apeUSD |
 | ETH, WETH | [wstETH](https://docs.lido.fi/contracts/wsteth/) | apeETH |
 | ApeCoin | [ApeStake](https://docs.apestake.io/#/Staking?id=stake-in-the-apecoin-pool) | ApeCoin (gas token) |
 
@@ -45,7 +45,7 @@ EOAs automatically receive $APE yield via rebasing -- users will automatically s
 
 ## Yield Modes
 
-ApeChain supports three different yield modes: automatic, void, and delegate. The [ArbInfo contract](https://explorer.curtis.apechain.com/address/0x0000000000000000000000000000000000000065?tab=write_contract) can be used to update the yield mode for an address. By default, all addresses start in automatic mode where yield is automatically earned each block. Whenever a contract is deployed, the yield mode is switched to void where yield is disabled to maximize compatibility with existing contracts. The contract can modify its yield mode by calling the [ArbInfo contract](https://explorer.curtis.apechain.com/address/0x0000000000000000000000000000000000000065?tab=write_contract).
+ApeChain supports three different yield modes: automatic, void, and delegate. The [ArbInfo contract](https://apescan.io/address/0x0000000000000000000000000000000000000065#code) can be used to update the yield mode for an address. By default, all addresses start in automatic mode where yield is automatically earned each block. Whenever a contract is deployed, the yield mode is switched to void where yield is disabled to maximize compatibility with existing contracts. The contract can modify its yield mode by calling the [ArbInfo contract](https://apescan.io/address/0x0000000000000000000000000000000000000065#code).
 
 For a more detailed walkthrough, check out this [video demo](https://youtu.be/ciPfRXmIteI?feature=shared&t=749)!
 
@@ -67,7 +67,7 @@ In delegate yield mode, the address has a fixed balance and yield is sent to a d
 
 ## Changing Yield Mode
 
-The ["ArbInfo" contract](https://explorer.curtis.apechain.com/address/0x0000000000000000000000000000000000000065?tab=write_contract), located at address `0x0000000000000000000000000000000000000065`, a system contract built into the ApeChain protocol, can be used to update the yield mode for an address. For native yield, three functions are available:
+The ["ArbInfo" contract](https://apescan.io/address/0x0000000000000000000000000000000000000065#code), located at address `0x0000000000000000000000000000000000000065`, a system contract built into the ApeChain protocol, can be used to update the yield mode for an address. For native yield, three functions are available:
 
 ```solidity copy
 interface ArbInfo {
@@ -120,7 +120,7 @@ eth_getSharePrice can be used to get the global share price:
 
 ### Yield Rate
 
-The [ArbOwnerPublic contract](https://apechain.calderaexplorer.xyz/address/0x000000000000000000000000000000000000006b?tab=read_contract) may be used to get the share price and annual percentage yield.
+The [ArbOwnerPublic contract](https://apescan.io/address/0x000000000000000000000000000000000000006b#readContract) may be used to get the share price and annual percentage yield.
 <br></br>
 <hr></hr>
 
@@ -145,7 +145,7 @@ The [ArbOwnerPublic contract](https://explorer.curtis.apechain.com/address/0x000
 
 ### Querying the annual percentage yield
 
-Any users can determine the annual percentage yield by viewing the `getApy` function on the [ArbOwnerPublic contract](https://explorer.curtis.apechain.com/address/0x000000000000000000000000000000000000006b?tab=read_contract) on the ApeChain Explorer.
+Any users can determine the annual percentage yield by viewing the `getApy` function on the [ArbOwnerPublic contract](https://apescan.io/address/0x000000000000000000000000000000000000006b#readContract) on the ApeChain Explorer.
 
 Note that this value is stored as an integer representing 10^(-9)ths of a percent, so a value of 10000000000 represents 10% APY.
 
