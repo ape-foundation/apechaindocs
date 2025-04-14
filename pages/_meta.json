@@ -4,9 +4,9 @@
     "title": "Overview"
   },
   "index": "About",
-  "architecture": "Architecture",
-  "native": {
-    "title": "Native Yield"
+  "architecture": "Architecture",  
+  "apecoin-staking": {
+    "title": "ApeCoin Staking"
   },
   "seperator_2": {
     "type": "separator",
