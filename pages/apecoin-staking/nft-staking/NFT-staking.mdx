@@ -36,22 +36,23 @@
 - Locked state (default state): Transferable only by the Beacon contract, adhering to canonical ownership.
 - Unlocked state (bridged asset): it means the underlying asset will be locked in the Beacon contract on mainnet and the Shadow behaves like a standard ERC721, i.e. can be transferred freely.
 - The owner of the unlocked shadow (now simply bridged NFTs, since once they're unlocked they're no longer shadows) can pull it out of the mainnet Beacon.
-- When claiming rewards on the updated ApeChain staking portal, there will be a 60 second delay to ensure the underlying asset's ownership has not changed. This is in contrast to the current mainnet staking portal where $APE claim is instant.
+- When claiming rewards on the updated ApeChain staking portal, there will be ~60 seconds delay to ensure the underlying asset's ownership has not changed. This is in contrast to the current mainnet staking portal where $APE claim is instant.
 
 ## Effect on third-party protocols:
 
-- When claiming rewards with the non-bridged (locked) shadows, there will be a 60 second delay to ensure the underlying asset's ownership has not changed. The actual transfer of tokens will occur in a separate transaction (the LayerZero callback), so protocols should not implement things like “claim and withdraw” that issue a claim request and then transfer the NFT in the same transaction – the claim will not complete.
-- Protocols can decide which ownership method to rely on. For instant/optimistic checks, they can just use ownerOf.
+- When claiming rewards with the non-bridged (locked) shadows, there will be ~60 seconds delay to ensure the underlying asset's ownership has not changed. The actual transfer of tokens will occur in a separate transaction (the LayerZero callback), so protocols should not implement things like “claim and withdraw” that issue a claim request and then transfer the NFT in the same transaction – the claim will not complete.
+- Protocols can decide which ownership method to rely on. For instant/optimistic checks, they can just use ```ownerOf```.
 - This will be sufficient in most cases, but if it's a high value claim that may lead to intentional misuse of the asynchronous ownership updates, then the verified ownership functions should be used, as documented [here](https://docs.apechain.com/start-building/NFT-Shadows#2-verified-ownership-with-callbacks). Failures and edge cases when verifying ownership are outlined [here](https://docs.apechain.com/start-building/NFT-Shadows#error-handling-and-edge-cases).
-- Approval for ERC20 $APE will not be needed as $APE is the native token for ApeChain.
+- ERC-20 approval for $APE tokens will not be required as $APE is the native token for ApeChain.
 
 ## Contracts:
 
 | Contract | Network | Address |
 | -------- | ------- | ------- |
-| ApeChain Staking | ApeChain | [0x4Ba2396086d52cA68a37D9C0FA364286e9c7835a](https://apescan.io/address/0x4Ba2396086d52cA68a37D9C0FA364286e9c7835a) |
+| Ape Staking (old) | Ethereum | [0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9](https://etherscan.io/address/0x5954aB967Bc958940b7EB73ee84797Dc8a2AFbb9) |
+| ApeChain Staking (new) | ApeChain | [0x4Ba2396086d52cA68a37D9C0FA364286e9c7835a](https://apescan.io/address/0x4Ba2396086d52cA68a37D9C0FA364286e9c7835a) |
 | ApeChain Testnet Staking | Curtis | [0x07593093738c62e34b921ceb8eb871cc840400f4](https://curtis.apescan.io/address/0x07593093738c62e34b921ceb8eb871cc840400f4) |
-| Wrapped APE | ApeChain | [0x48b62137EdfA95a428D35C09E44256a739F6B557](https://apescan.io/token/0x48b62137EdfA95a428D35C09E44256a739F6B557) |
+| Wrapped APE (WAPE) | ApeChain | [0x48b62137EdfA95a428D35C09E44256a739F6B557](https://apescan.io/token/0x48b62137EdfA95a428D35C09E44256a739F6B557) |
 | BAYC Shadow | ApeChain | [0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d](https://apescan.io/token/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d) |
 | MAYC Shadow | ApeChain | [0x60e4d786628fea6478f785a6d7e704777c86a7c6](https://apescan.io/address/0x60e4d786628fea6478f785a6d7e704777c86a7c6) |
 | BAKC Shadow | ApeChain | [0xba30e5f9bb24caa003e9f2f0497ad287fdf95623](https://apescan.io/address/0xba30e5f9bb24caa003e9f2f0497ad287fdf95623) |
