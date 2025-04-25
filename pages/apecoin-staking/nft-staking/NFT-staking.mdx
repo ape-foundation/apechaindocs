@@ -3,7 +3,7 @@
 - APE NFT staking is live on ApeChain starting April 15, 2025 at [apechainstake.io](https://apechainstake.io/). 
 - Users must unstake their $APE tokens from apestake.io and restake it on the new staking portal [apechainstake.io](https://apechainstake.io/) to continue earning rewards. 
 - This process involves unstaking from [apestake.io](https://apestake.io/), bridging $APE tokens from mainnet to ApeChain, and restaking the bridged $APE on the new staking website for BAYC, MAYC, and BAKC pools.
-- When claiming rewards with the non-bridged (locked) shadows, there will be a 60 second delay to ensure the underlying asset's ownership has not changed.
+- When claiming rewards with the non-bridged (locked) shadows, there may be upto ~60 seconds delay to ensure the underlying asset's ownership has not changed plus an additional fee (~15c), both associated with LayerZero processing.
 - When claiming rewards with the bridged (unlocked) assets, there is no time delay and the process functions in the same way as on the existing [apestake.io](https://apestake.io/) portal.  
 
 ## Updates to staking:
@@ -11,7 +11,7 @@
 - BAKC can be staked independently.
 - $APE only staking has been removed. Instead, ApeChain offers [native yield](https://docs.apechain.com/apecoin-staking/native-yield/Overview) on $APE.
 - The new staking website will not be geoblocked, including in the US.
-- ⚠️ ***Your BAYC/MAYC/BAKC shadow will be your staking key on ApeChain*** ⚠️. Use delegation responsibly as the delegated wallet has the rights to withdraw deposited $APE from the staking contract.
+- ⚠️ ***Your BAYC/MAYC/BAKC shadow will be your staking key on ApeChain*** ⚠️. Use delegation responsibly as the delegated wallet has rights to withdraw deposited $APE from the staking contract.
 - Users can delegate their shadows on ApeChain to another wallet for staking their $APE. The shadow will be moved to the delegate wallet (detailed explanation below).
 - There will be no changes to emissions from the new staking contract. 
 - Native yield does not stack with staking yield. Users can hold $APE without staking to earn native yield (approx. 10-12%), or stake $APE to earn around 25-30% yield.
@@ -36,11 +36,11 @@
 - Locked state (default state): Transferable only by the Beacon contract, adhering to canonical ownership.
 - Unlocked state (bridged asset): it means the underlying asset will be locked in the Beacon contract on mainnet and the Shadow behaves like a standard ERC721, i.e. can be transferred freely.
 - The owner of the unlocked shadow (now simply bridged NFTs, since once they're unlocked they're no longer shadows) can pull it out of the mainnet Beacon.
-- When claiming rewards on the updated ApeChain staking portal, there will be ~60 seconds delay to ensure the underlying asset's ownership has not changed. This is in contrast to the current mainnet staking portal where $APE claim is instant.
+- When claiming rewards on the updated ApeChain staking portal, there may be upto ~60 seconds delay (plus LayerZero processing fee) to ensure the underlying asset's ownership has not changed. This is in contrast to the current mainnet staking portal where $APE claim is instant, and no extra fee except gas.
 
 ## Effect on third-party protocols:
 
-- When claiming rewards with the non-bridged (locked) shadows, there will be ~60 seconds delay to ensure the underlying asset's ownership has not changed. The actual transfer of tokens will occur in a separate transaction (the LayerZero callback), so protocols should not implement things like “claim and withdraw” that issue a claim request and then transfer the NFT in the same transaction – the claim will not complete.
+- When claiming rewards with the non-bridged (locked) shadows, there may be upto ~60 seconds delay (plus LayerZero processing fee) to ensure the underlying asset's ownership has not changed. The actual transfer of tokens will occur in a separate transaction (the LayerZero callback), so protocols should not implement things like “claim and withdraw” that issue a claim request and then transfer the NFT in the same transaction – the claim will not complete.
 - Protocols can decide which ownership method to rely on. For instant/optimistic checks, they can just use ```ownerOf```.
 - This will be sufficient in most cases, but if it's a high value claim that may lead to intentional misuse of the asynchronous ownership updates, then the verified ownership functions should be used, as documented [here](https://docs.apechain.com/start-building/NFT-Shadows#2-verified-ownership-with-callbacks). Failures and edge cases when verifying ownership are outlined [here](https://docs.apechain.com/start-building/NFT-Shadows#error-handling-and-edge-cases).
 - ERC-20 approval for $APE tokens will not be required as $APE is the native token for ApeChain.
