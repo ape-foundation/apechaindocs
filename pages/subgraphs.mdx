@@ -1,13 +1,12 @@
 import { Callout } from 'nextra/components'
 
-
 ## The Graph Network
 
-Getting historical data on a smart contract can be frustrating when building a dapp. [The Graph](https://thegraph.com/) provides an easy way to query smart contract data through APIs known as subgraphs. The Graph’s infrastructure relies on a decentralized network of Indexers, enabling your dapp to become truly decentralized.
+Getting historical data on a smart contract can be frustrating when building a dapp. [The Graph](https://thegraph.com/) provides an easy way to query smart contract data through APIs known as subgraphs. The Graph's infrastructure relies on a decentralized network of Indexers, enabling your dapp to become truly decentralized.
  
 With The Graph, you can benefit from:
  - **Decentralized Indexing, Built to Scale**: Tap into a global network of Indexers to efficiently index blockchain data with no single point of failure–just resilient infrastructure. 
- - **Powerful GraphQL Interface**: Query blockchain data using GraphQL. It’s fast and flexible, accelerating data retrieval to enhance your dapps. 
+ - **Powerful GraphQL Interface**: Query blockchain data using GraphQL. It's fast and flexible, accelerating data retrieval to enhance your dapps. 
  - **Customizable Data Logic**: Define your own logic for transforming and storing blockchain data. Reuse subgraphs published by other developers on The Graph Network.
 
 Supported Networks
@@ -47,21 +46,67 @@ network: 'apechain-curtis'
 
 
 
-
-
-
 ## Goldsky
 ​
-[Goldsky](https://docs.goldsky.com/chains/apechain) is a high-performance data indexing solution tailored for ApeChain, enabling seamless extraction, transformation, and loading of on-chain data to ApeChain's applications and analytics. It offers two core methods for accessing ApeChain data: subgraphs designed for high-performance queries, and 
-mirror, providing real-time data replication pipelines.
+Goldsky is ApeChain's trusted partner for high-performance data indexing and streaming, making it easy for developers to power dApps, analytics, and AI agents with fast, reliable access to ApeChain's on-chain data.
 
+Goldsky offers **two powerful products**:
 
+### Subgraphs
 
-| Network        | Subgraphs   | Mirror |
-| -------------------------- | ------- | ------ |
-| Mainnet | Yes |Yes |
-| Curtis  |	Yes | Yes | 
+[Subgraphs](https://docs.goldsky.com/subgraphs/deploying-subgraphs) allow you to index ApeChain data into a highly optimized format for **instant, flexible querying**.
 
+Use subgraphs when you want to **read and display on-chain data** inside apps, websites, dashboards, bots, and more.
 
+- **Ultra-fast reads**: Query large volumes of on-chain data with millisecond response times.
+- **Flexible GraphQL APIs**: Filter, paginate, and fetch exactly the data you need.
+- **Custom indexing logic**: Handle complex event processing, join entities, build derived fields.
+- **Auto-scaling**: Goldsky automatically scales infrastructure for you, no more worrying about node ops.
+- **Instant Deployment**: Create subgraphs instantly by uploading your ABI and contract address, no GraphQL coding required (but you can fully customize if you want).
 
-Check out their [step by step guide](https://docs.goldsky.com/subgraphs/deploying-subgraphs) to learn how to deploy a [subgraph](https://docs.goldsky.com/chains/apechain#subgraphs) and or [mirror](https://docs.goldsky.com/chains/apechain#mirror) for ApeChain. It covers deploying via CLI using a local subgraph configuration file and creating instant subgraphs by providing a contract address and its ABI.
+🛠️ **Example Use Cases**:
+
+- NFT marketplaces (fetching listings, offers, metadata)
+- DeFi dashboards (tracking TVL, trades, positions)
+- Social apps (aggregating profiles, posts, on-chain actions)
+- In-game marketplaces (real-time item trades and player stats)
+
+### Mirror
+
+[Mirror](https://docs.goldsky.com/mirror/create-a-pipeline) is a real-time data streaming pipeline that **replicates ApeChain data into your own database**, letting you power complex backends, machine learning, or data analytics.
+
+- **Real-time streaming**: Ingest new blocks, events, transactions as they happen.
+- **Your schema, your rules**: Mirror supports flexible transformations and customizations.
+- **Database integration**: Push to Postgres, Clickhouse, or your warehouse of choice.
+- **Perfect for AI/ML**: Build embeddings, train models, and run inference on live blockchain data.
+
+🛠️ **Example Use Cases**:
+
+- Powering AI agents with up-to-the-second on-chain awareness
+- Building custom analytics dashboards
+- Enabling real-time alerts and risk monitoring systems
+- Aggregating on-chain activity into internal data lakes
+
+## Why Goldsky for ApeChain Builders?
+
+- Lightning-fast query speeds
+- Real-time data pipelines
+- No need to manage indexers or infra
+- Instant onboarding with minimal config
+- Trusted by major Web3 projects across DeFi, gaming, AI, and social
+
+| Network | Subgraphs | Mirror |
+| --- | --- | --- |
+| Mainnet | ✅ | ✅ |
+| Curtis | ✅ | ✅ |
+
+### How to Get Started
+
+Goldsky makes it fast and easy to launch a subgraph or pipeline:
+
+- **Deploy via CLI**: Create fully custom subgraphs or Mirror configs from your local setup.
+- **Instant deployment**: Just upload your contract ABI + address, and Goldsky generates a working subgraph for you in minutes, no GraphQL coding needed.
+
+👉 [**Follow the full step-by-step guide here**](https://docs.goldsky.com/chains/apechain?utm_source=apechain&utm_medium=docs) to deploy on ApeChain.
+
+If you need help designing your schema or choosing between Subgraphs and Mirror, [**reach out to the Goldsky team**](https://docs.goldsky.com/getting-support) — they're happy to guide you.
