@@ -29,14 +29,18 @@
   "start-building": {
     "title": "Start Building"
   },
+  "Hub": {
+    "title": "Hub"
+  },
   "contracts": {
     "title": "Contracts"
   },
   "seperator_4": {
     "type": "separator",
     "title": "Tools"
-  },
+  },  
   "analytics": "Analytics",
+  "apis": "APIs",
   "block-explorers": "Block Explorers",
   "brand-kit": {
     "title": "Brand Guidelines ↗",
@@ -45,15 +49,10 @@
   },
   "data-indexers": "Data Indexers",
   "faucet": "Faucets",
-  "Hub": {
-    "title": "Hub"
-    
-  },
   "node-providers": "Node Providers",
   "onboarding": "Onboarding",
   "oracles": "Oracles",
   "safes": "Safes",
-
 
   "status": {
     "title": "Status ↗",
