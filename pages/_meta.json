@@ -38,7 +38,8 @@
   "seperator_4": {
     "type": "separator",
     "title": "Tools"
-  },  
+  },
+  "ai-agents": "AI Agents",
   "analytics": "Analytics",
   "apis": "APIs",
   "block-explorers": "Block Explorers",
