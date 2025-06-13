@@ -65,6 +65,12 @@
 
   "seperator_5": {
     "type": "separator",
+    "title": "NFTs 101"
+  },
+  "ape-builder-sequence": "APE Builder by Sequence",
+
+  "seperator_6": {
+    "type": "separator",
     "title": "Community"
   }
 }
