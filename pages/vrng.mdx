@@ -1,24 +1,20 @@
----
-title: Verified Random Number Generator (vRNG)
-description: Fast, secure, and scalable onchain random number generation.
----
+import { Callout } from 'nextra/components'
 
-Welcome to Proof of Play&apos;s Verified Random Number Generator (vRNG) documentation. 
+# Verified Random Number Generator (vRNG)
 
-Because speed matters, we're heavily focused on serving random numbers as fast as possible to reduce latency in applications. 
+## Proof of Play vRNG
 
-# Supported Networks
+- Fast, secure, and scalable onchain random number generation.
+- Because speed matters, we're heavily focused on serving random numbers as fast as possible to reduce latency in applications. 
+
+### Supported Networks
 
 | **Network**                 | **Address**                                                                                                                                     | **Api Url**                            |
 | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| **Mainnets**                |                                                                                                                                                 |                                        |
 | Apechain Mainnet            | [0x9eC728Fce50c77e0BeF7d34F1ab28a46409b7aF1](https://apescan.io/address/0x9eC728Fce50c77e0BeF7d34F1ab28a46409b7aF1#readProxyContract)           | https://vrf.proofofplay.com/v1         |
-| **Testnets**                |                                                                                                                                                 |                                        |
 | Ape Curtis Testnet          | [0xd14D984603b0b7Ade91bE52f3Fc4A917Dfa77bcD](https://curtis.apescan.io/address/0xd14D984603b0b7Ade91bE52f3Fc4A917Dfa77bcD#readProxyContract)    | https://staging.vrf.proofofplay.com/v1 |
 
-# Usage
-
-## Requesting a Random Number
+### Usage: Requesting a Random Number
 
 The following interface provides a method for requesting random numbers.
 
@@ -43,16 +39,12 @@ interface IVRFSystem {
 
 ```
 
-## Random Number Callbacks
+### Random Number Callbacks
 
 Every random number requested is delivered as soon as the first available number from drand is available to be delievered. This can take as long as 3 seconds.
 
-<aside>
-⚡
+<Callout type="warning"> Your call will be delivered the first number **after** your first requestForRandomNumber has been requested. This ensures the number **can not** be known before the user has requested the random number. </Callout>
 
-Your call will be delivered the first number **after** your first requestForRandomNumber has been requested. This ensures the number **can not** be known before the user has requested the random number.
-
-</aside>
 
 ```solidity
 // SPDX-License-Identifier: MIT LICENSE
@@ -157,7 +149,7 @@ We can see here the random number in hex is `ebdcbfe855d10c56db22455fa5a18963c1f
 
 ## Manual Retries with EIP712 signatures
 
-> 🧪 **This feature is in Preview**. Please contact us on slack if you wish to use this.
+<Callout> **This feature is in Preview**. Please contact us on slack if you wish to use this. </Callout>
 
 In a very rare instance, you may see random numbers fail to be delivered. In most cases this will be an issue on the contract side.
 
@@ -165,7 +157,7 @@ In these situations, you can choose to deliver this number yourself. First you s
 
 **Request:**
 
-[Try the API!](/services/vrng/api)
+[Try the API!](https://docs.proofofplay.com/services/vrng/api)
 
 ```javascript
 GET https://vrf.proofofplay.com/v1/vrf/{chainId}/{txHash}
@@ -188,6 +180,6 @@ With the response you can now call the VRFSystem contract
 vrf.deliverSignedRandomNumber(requestId, roundNumber, randomNumber, signature);
 ```
 
-> ⚠️ **Warning**: You will be racing the normal relay flow. If you get a tx revert with InvalidRequestId, this means that a relay has already delivered this random number. Random numbers can only be delivered once.
+<Callout type="warning"> You will be racing the normal relay flow. If you get a tx revert with InvalidRequestId, this means that a relay has already delivered this random number. Random numbers can only be delivered once. </Callout>
 
-<img src="/images/vrng/how-vrng-works.png" alt="How Proof of Play VRF Works" />
+![how-vrng-works](../images/how-vrng-works.jpeg)
