@@ -43,7 +43,9 @@ interface IVRFSystem {
 
 Every random number requested is delivered as soon as the first available number from drand is available to be delievered. This can take as long as 3 seconds.
 
-<Callout type="warning"> Your call will be delivered the first number **after** your first requestForRandomNumber has been requested. This ensures the number **can not** be known before the user has requested the random number. </Callout>
+<Callout type="warning">
+Your call will be delivered the first number **after** your first requestForRandomNumber has been requested. This ensures the number **can not** be known before the user has requested the random number.
+</Callout>
 
 
 ```solidity
@@ -106,7 +108,7 @@ uint256 randomNumber2 = randomNumber >> 128;  // Take upper 128 bits
 uint256 randomNumber3 = randomNumber & ((1 << 128) - 1); // Take lower 128 bits
 ```
 
-## Blockchain Events
+### Blockchain Events
 
 The contract will emit the following events.
 
@@ -147,7 +149,7 @@ GET [https://api.drand.sh/52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94
 
 We can see here the random number in hex is `ebdcbfe855d10c56db22455fa5a18963c1f62d85f859c35c310273449b49d284`
 
-## Manual Retries with EIP712 signatures
+### Manual Retries with EIP712 signatures
 
 <Callout> **This feature is in Preview**. Please contact us on slack if you wish to use this. </Callout>
 
