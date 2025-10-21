@@ -4,35 +4,37 @@ import { Callout } from 'nextra/components'
 Apechain RPC (Remote Procedure Call) is a JSON-RPC interface that allows developers and applications to interact with Apechain nodes programmatically. It enables operations such as querying blockchain data (e.g., balances, blocks, and transactions) and submitting write operations (e.g., deploying smart contracts or sending transactions). Being EVM-compatible, Apechain RPC supports Ethereum-like methods, making it easy to use tools like ethers.js or web3.js for interaction.
 
 
-## Running a replica node for ApeChain
+## Running a replica node for ApeChain Mainnet
 
-Please see the attached repository (zipped) for an example of how to spin up a node locally. Replace the arbitrum one rpc url with your own private url to avoid being rate limited.
+Please check out the [latest (v3.5.6) repository](https://github.com/ConstellationCrypto/replica-guide-apechain-mainnet) for an example of how to spin up a node locally. Simply run `docker-compose up` to bring a replica node up locally. 
 
+The `nodeConfig` file is prepopulated with apechain parameters. The current setup uses a public rpc url for the Arbitrum One rpc and stores node data in docker volume. 
 
+Replace the arbitrum one rpc url with your own to avoid being rate limited.
 
-[nitro-replica-curtis.zip]( https://misc-bucket.caldera.xyz/nitro-replica-apechain-mainnet.zip)
 
 <Callout>Syncing can take up to a few hours.</Callout>
 
-
 ### Docker Images
 
-`public.ecr.aws/i6b2w2n6/nitro-node:apechain-2.0.0`
-
-
+`public.ecr.aws/i6b2w2n6/nitro-node:apechain-v3.5.6`
 
 ### Existing RPC Endpoints
 
-Http endpoint: `https://apechain.calderachain.xyz/http`
+HTTP endpoint: `https://rpc.apechain.com/http`
 
-Wss endpoint: `wss://apechain.calderachain.xyz/ws`
+WS endpoint: `wss://rpc.apechain.com/ws`
+
+## Snapshot guide
+
+To bring your replica node up to sync, use the following available snapshot:
+[Snapshot taken Sep 22, 2025](https://caldera-chain-data-snapshots.s3.us-west-2.amazonaws.com/exported-snapshots/nitro-apechain/nitro-apechain-2025-Sep-22.tar)
 
 ## Running a replica node for Curtis
 
 Download the zipped repository below for an out-of-the-box example of how to spin up a node locally.
 
-
-[nitro-replica-curtis.zip]( https://misc-bucket.caldera.xyz/nitro-replica-curtis-files.zip)
+[nitro-replica-curtis.zip](https://misc-bucket.caldera.xyz/nitro-replica-curtis-files.zip)
 
 <Callout>Syncing can take up to a few hours.</Callout>
 
@@ -46,14 +48,12 @@ The `nodeConfig` file included in the repository is prepopulated with curtis tes
 
 It is recommended to replace the Arbitrum Sepolia RPC URL in `docker-compose.yml` with your own private url to avoid ratelimiting issues, it's advised to use your private PRC URL instead of the default public one. By default, this value is set to Arbitrum's public RPC url.
 
-
 ### Docker Images
 
 `public.ecr.aws/i6b2w2n6/nitro-node:curtis3`
 
 ### Existing RPC Endpoints
 
-Http endpoint: `https://rpc.curtis.apechain.com/http`
+HTTP endpoint: `https://curtis.rpc.caldera.xyz/http`
 
-Wss endpoint: `wss://rpc.curtis.apechain.com/ws`
-
+WS endpoint: `wss://curtis.rpc.caldera.xyz/ws`
