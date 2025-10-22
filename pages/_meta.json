@@ -35,6 +35,7 @@
   "contracts": {
     "title": "Contracts"
   },
+  "ape-ofts": "APE OFTs",
   "seperator_4": {
     "type": "separator",
     "title": "Tools"
