@@ -4,10 +4,7 @@
     "title": "Overview"
   },
   "index": "About",
-  "architecture": "Architecture",  
-  "apecoin-staking": {
-    "title": "ApeCoin Staking"
-  },
+  "architecture": "Architecture",
   "seperator_2": {
     "type": "separator",
     "title": "Get Started"
