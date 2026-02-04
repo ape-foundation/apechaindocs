@@ -55,6 +55,7 @@
   "storage": "Storage",
   "safes": "Safes",
   "vrng": "Verified Random Number Generator (vRNG)",
+  "cross-chain": "Cross-Chain",
 
   "status": {
     "title": "Status ↗",

@@ -1,0 +1,62 @@
+Espresso’s fast finality provides a new era of applications that can be built.
+
+# What is Espresso?
+**Espresso is a decentralized network that provides fast, deterministic finality for blockchain transactions**. It confirms transactions quickly and guarantees that once a transaction is finalized by Espresso, it cannot be reverted.
+
+# The Concept of Finality
+Finality is the point at which a transaction can no longer be reverted.
+
+On a rollup (L2), **finality typically occurs when the transaction is included in a batch and posted** to the parent chain (usually an L1). How often this happens depends on the rollup, but in practice it often takes 10–15 minutes or more.
+
+Until that point, applications must assume that the **transaction could be reverted**.
+
+With Espresso, applications don’t have to wait for the batch to be posted to the parent chain. Transactions confirmed by the **Espresso Network reach finality within seconds**, backed by Espresso’s Byzantine Fault Tolerant (BFT) consensus. Once finalized by Espresso, a transaction is safe to act on immediately.
+
+# What Kind of L2 Applications Does Espresso Enable?
+Fast finality doesn’t just make existing apps better, it enables entirely new designs.
+
+## 1. Cross-Chain Bridges
+Consider an application that moves assets from one chain (the source chain) to another (the destination chain), for example from ApeChain to Rari Chain.
+
+To safely release funds on the destination chain, **the application must be certain that the source-chain transaction will not be reverted**. Today, that certainty usually only arrives once the transaction is finalized on the parent chain—often 15 minutes or more.
+
+With Espresso, the **destination chain can act within seconds**. Once a transaction is confirmed by the Espresso Network, it is final and cannot be reverted, allowing funds to be released immediately.
+
+This model can be applied to existing cross-chain protocols such as Relay or Across. Solvers (the entities that front liquidity on the destination chain) can safely release funds as soon as they observe Espresso finality, dramatically improving latency without weakening security.
+
+
+## 2. Cross-Chain NFT Platforms
+Espresso also enables new kinds of NFT minting experiences–including those in which bridging is not needed at all.
+
+Imagine an NFT deployed on ApeChain, but **users want to pay from another chain**, such as Rari Chain. Traditionally, this requires users to bridge funds manually, creating friction and liquidity risk.
+
+To mint the NFT on the destination chain, the application must be sure that the payment transaction on the source chain is final and irreversible. Espresso provides that guarantee within seconds, allowing the NFT mint to happen safely and immediately without the need for an additional bridging step.
+
+The Espresso team has already built **Presto, a cross-chain NFT minting framework** that follows this pattern. While Presto was initially designed for NFTs, the underlying architecture can be generalized to trigger arbitrary cross-chain actions.
+
+## 3. Cross-Chain Oracles
+Oracles are another area where fast finality is critical.
+
+Suppose you want to use a BTC **price feed on ApeChain, but the oracle only exists on Celo**. Today, bridging oracle data across chains is slow and risky, often requiring long delays or trusted intermediaries.
+
+With Espresso, as soon as the price update transaction is finalized on Celo, applications on ApeChain can safely react. Espresso guarantees that the oracle update cannot be reverted, enabling fast, secure cross-chain data propagation. This enables:
+
+* Cross-chain price feeds
+* Cross-chain liquidation logic
+
+All without waiting for slow finality on a parent chain.
+
+## 4. Cross-Chain Gaming
+Fast and secure finality is especially valuable for cross-chain games, where in-game actions often need to happen across multiple blockchains.
+
+For example, consider a game where a player performs an action on Chain A that triggers an event on Chain B—like transferring a rare item, updating player stats, or unlocking content. Without fast finality, the game must wait minutes to ensure the first action cannot be reverted, which creates lag and poor user experience.
+
+With Espresso, the game can react immediately to cross-chain actions. Player moves, in-game trades, and asset transfers can be finalized in seconds, ensuring seamless gameplay even when multiple chains are involved. This opens up possibilities for real-time cross-chain PvP battles or instant cross-chain marketplace transactions
+
+Espresso guarantees that all these actions are secure and irreversible, removing the need for long confirmation delays and improving the overall experience for players.
+
+# Getting Started
+Apechain is already integrated with Espresso, so getting started is very easy!
+If you want to **read from Espresso finality in an existing application**, learn [how to read from the Espresso Network](https://docs.espressosys.com/network/concepts/read-from-network).
+If you want to create a cross-chain application from scratch, take a look at the [tutorials that we have available](https://docs.espressosys.com/network/guides/dapp).
+
