@@ -42,11 +42,7 @@
   "analytics": "Analytics",
   "apis": "APIs",
   "block-explorers": "Block Explorers",
-  "brand-kit": {
-    "title": "Brand Guidelines ↗",
-    "href": "https://live.standards.site/apechain",
-    "newWindow": true
-  },
+  "cross-chain": "Cross-Chain",
   "data-indexers": "Data Indexers",
   "faucet": "Faucets",
   "node-providers": "Node Providers",
@@ -55,13 +51,11 @@
   "storage": "Storage",
   "safes": "Safes",
   "vrng": "Verified Random Number Generator (vRNG)",
-  "cross-chain": "Cross-Chain",
 
   "status": {
     "title": "Status ↗",
     "href": "https://apechain.betteruptime.com/",
     "newWindow": true
-
   },
   "subgraphs": "Subgraphs",
 
@@ -74,5 +68,10 @@
   "seperator_6": {
     "type": "separator",
     "title": "Community"
+  },
+  "brand-kit": {
+    "title": "Brand Guidelines ↗",
+    "href": "https://live.standards.site/apechain",
+    "newWindow": true
   }
 }
