@@ -1,51 +1,5 @@
 import { Callout } from 'nextra/components'
 
-## The Graph Network
-
-Getting historical data on a smart contract can be frustrating when building a dapp. [The Graph](https://thegraph.com/) provides an easy way to query smart contract data through APIs known as subgraphs. The Graph's infrastructure relies on a decentralized network of Indexers, enabling your dapp to become truly decentralized.
- 
-With The Graph, you can benefit from:
- - **Decentralized Indexing, Built to Scale**: Tap into a global network of Indexers to efficiently index blockchain data with no single point of failure–just resilient infrastructure. 
- - **Powerful GraphQL Interface**: Query blockchain data using GraphQL. It's fast and flexible, accelerating data retrieval to enhance your dapps. 
- - **Customizable Data Logic**: Define your own logic for transforming and storing blockchain data. Reuse subgraphs published by other developers on The Graph Network.
-
-Supported Networks
-- ApeChain Mainnet
-- ApeChain Curtis Testnet 
- 
-### Quick Start
- 
-These subgraphs only take a few minutes to set up. Follow this [quick-start](https://thegraph.com/docs/en/quick-start/) guide to create, deploy, and query a subgraph within 5 minutes.
- 
-Pricing: **All developers receive 100K free monthly queries on the decentralized network**. After these free queries, you only pay based on usage at $2 for every 100K queries.
-
-
-
-## Ormi 
-
-
-[Ormi](https://www.ormilabs.xyz/) powers ApeChain subgraphs which are fully compatible with The Graph's hosted and decentralized networks, adhering to the same specifications. They seamlessly index data from both the ApeChain mainnet and testnets, allowing developers to easily build applications for ApeChain. Read more on how to create your [account](apechain.0xgraph.xyz) deploy your own [subgraph](https://docs.ormi.xyz/apechain-subgraphs) on ApeChain. 
-
-
-
-For developers who are already familiar with Graph Protocol tooling, below are the network definitions to deploy subgraphs on ApeChain. These settings can be configured in the subgraph.yaml file.
-
-{/* ``` solidity copy 
-network: 'apechain'
-```
-
-```solidity copy
-network: 'apechain-curtis'
-``` */}
-
-
-| Network  |        |
-|----------|-----------------------------|
-| Mainnet  | `network: 'apechain'`       |
-| Curtis   | `network: 'apechain-curtis'`|
-
-
-
 ## Goldsky
 ​
 Goldsky is ApeChain's trusted partner for high-performance data indexing and streaming, making it easy for developers to power dApps, analytics, and AI agents with fast, reliable access to ApeChain's on-chain data.
@@ -114,3 +68,34 @@ Goldsky makes it fast and easy to launch a subgraph or pipeline:
 👉 [**Follow the full step-by-step guide here**](https://docs.goldsky.com/chains/apechain?utm_source=apechain&utm_medium=docs) to deploy on ApeChain.
 
 If you need help designing your schema or choosing between Subgraphs and Mirror, [**reach out to the Goldsky team**](https://docs.goldsky.com/getting-support) — they're happy to guide you.
+
+### Demo: Intro to Turbo Pipelines
+
+<iframe src="https://drive.google.com/file/d/1b2aCQlHvxeJm4md6SqPikRi0gw6DaSp2/preview" width="720" height="480" allow="autoplay" style={{paddingTop: '20px'}}></iframe>
+
+Turbo pipelines are Goldsky’s next generation data pipeline engine, offering significant performance improvements and new capabilities, including inter-batch parallelism and startups under 5 seconds.
+
+👉 [**Learn more about Turbo Pipelines**](https://docs.goldsky.com/turbo-pipelines/introduction) in the Goldsky docs.
+
+## Ormi 
+
+
+[Ormi](https://www.ormilabs.xyz/) powers ApeChain subgraphs which are fully compatible with The Graph's hosted and decentralized networks, adhering to the same specifications. They seamlessly index data from both the ApeChain mainnet and testnets, allowing developers to easily build applications for ApeChain. Read more on how to create your [account](apechain.0xgraph.xyz) deploy your own [subgraph](https://docs.ormi.xyz/apechain-subgraphs) on ApeChain. 
+
+
+
+For developers who are already familiar with Graph Protocol tooling, below are the network definitions to deploy subgraphs on ApeChain. These settings can be configured in the subgraph.yaml file.
+
+{/* ``` solidity copy 
+network: 'apechain'
+```
+
+```solidity copy
+network: 'apechain-curtis'
+``` */}
+
+
+| Network  |        |
+|----------|-----------------------------|
+| Mainnet  | `network: 'apechain'`       |
+| Curtis   | `network: 'apechain-curtis'`|
