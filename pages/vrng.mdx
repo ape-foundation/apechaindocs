@@ -6,6 +6,79 @@ ApeChain's vRNG is powered by **Supra dVRF**, a distributed and cryptographicall
 
 Contract addresses for ApeChain Mainnet and Testnet are listed on the [Supra dVRF Available Networks ↗](https://docs.supra.com/dvrf/learn-supra-dvrf/networks) page.
 
-## Getting Started
 
-Full integration guides, gas configuration, and code examples are available in the [Supra dVRF documentation ↗](https://docs.supra.com/dvrf/build-third-party-evm-networks/getting-started).
+## Dev Guides
+- [Getting Started ↗](https://docs.supra.com/dvrf/build-third-party-evm-networks/getting-started).
+- [Create your Subscription ↗](https://docs.supra.com/dvrf/build-third-party-evm-networks/create-your-subscription)
+- [Gas Configurations ↗](https://docs.supra.com/dvrf/build-third-party-evm-networks/gas-configurations)
+- [Deposit & Withdraw Funds ↗](https://docs.supra.com/dvrf/build-third-party-evm-networks/deposit-and-withdraw-funds)
+- [Request Random Numbers ↗](https://docs.supra.com/dvrf/build-third-party-evm-networks/request-random-numbers)
+
+
+## Advanced Example (with Custom Seed)
+
+This example demonstrates requesting multiple random numbers with a custom client seed for additional entropy, and mapping results back to individual users.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+interface ISupraRouter {
+    function generateRequest(
+        string memory _functionSig,
+        uint8 _rngCount,
+        uint256 _numConfirmations,
+        uint256 _clientSeed,          // Optional: provide your own seed for extra entropy
+        address _clientWalletAddress
+    ) external returns(uint256);
+}
+
+contract Interaction {
+    address supraAddr;
+
+    constructor(address supraSC) {
+        // Pass the ApeChain Mainnet Router address:
+        // 0xf4966137dE4638Baa280ea35265B3AFEc5332df3
+        supraAddr = supraSC;
+    }
+
+    mapping(uint256 => string) result;
+    mapping(string => uint256[]) rngForUser;
+
+    function exampleRequest(uint8 rngCount, string memory username) external {
+        // Number of block confirmations before randomness is generated.
+        // You can customize this value to meet your needs. Minimum: 1, Maximum: 20.
+        uint256 numConfirmations = 1;
+
+        uint256 nonce = ISupraRouter(supraAddr).generateRequest(
+            "exampleCallback(uint256,uint256[])", // Must match callback signature exactly
+            rngCount,
+            numConfirmations,
+            123,        // Custom client seed — replace with your own value (e.g. timestamp, UUID)
+            msg.sender  // Must be your whitelisted wallet address
+        );
+
+        // Map the nonce to the username so the callback knows who to assign results to
+        result[nonce] = username;
+    }
+
+    // Supra Router calls this automatically once randomness is ready
+    function exampleCallback(uint256 nonce, uint256[] calldata rngList) external {
+        // Security: only the Supra Router is allowed to call this function
+        require(msg.sender == supraAddr, "only supra router can call this function");
+
+        uint256[] memory x = new uint256[](rngList.length);
+        rngForUser[result[nonce]] = x;
+
+        for(uint8 i = 0; i < rngList.length; i++) {
+            // Example: normalise each result to a value between 0–99
+            rngForUser[result[nonce]][i] = rngList[i] % 100;
+        }
+    }
+
+    // View the random results assigned to a username
+    function viewUserName(string memory username) external view returns (uint256[] memory) {
+        return rngForUser[username];
+    }
+}
+```
