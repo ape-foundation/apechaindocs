@@ -16,6 +16,7 @@
     "newWindow": true
   },
   "run-node": "Run a Node",
+  "ape-builder-sequence": "Deploy NFTs with no code",
   "seperator_3": {
     "type": "separator",
     "title": "Develop"
@@ -58,12 +59,6 @@
     "newWindow": true
   },
   "subgraphs": "Subgraphs",
-
-  "seperator_5": {
-    "type": "separator",
-    "title": "NFTs 101"
-  },
-  "ape-builder-sequence": "APE Builder by Sequence",
 
   "seperator_6": {
     "type": "separator",
