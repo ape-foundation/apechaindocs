@@ -2,20 +2,31 @@ import { Callout } from 'nextra/components'
 
 # Verified Random Number Generator (vRNG)
 
-ApeChain's vRNG is powered by **Supra dVRF**, a distributed and cryptographically verifiable randomness service. It enables smart contracts to request tamper-proof random numbers on-chain — suitable for NFT minting, gaming, lotteries, and any use case where provable fairness matters.
+## ApeChain vRNG
+
+ApeChain vRNG is a native on-chain random number generator designed for developers who need fair, unbiased, and cryptographically secure randomness. It enables smart contracts to request tamper-proof random numbers on-chain, suitable for NFT minting, gaming, lotteries, simulations, and any use case where provable fairness matters. 
+
+Your contract requests a random value and pays a small **$APE** fee; the value is delivered to a callback and can be **independently verified on-chain**. No external oracle network, no off-chain subscription — randomness is produced and served natively.
+
+- [Repo with code snippet ↗](https://github.com/ape-foundation/vRNG)
+- [Status monitor ↗](https://ape-vrng.vercel.app/status)
+
+## Supra dVRF
+
+**Supra dVRF** is a distributed and cryptographically verifiable randomness service and an alternative to ApeChain vRNG. It enables smart contracts to request tamper-proof random numbers on-chain — suitable for NFT minting, gaming, lotteries, and any use case where provable fairness matters.
 
 Contract addresses for ApeChain Mainnet and Testnet are listed on the [Supra dVRF Available Networks ↗](https://docs.supra.com/dvrf/learn-supra-dvrf/networks) page.
 
 
-## Dev Guides
-- [Getting Started ↗](https://docs.supra.com/dvrf/build-third-party-evm-networks/getting-started).
+### Dev Guides
+- [Getting Started ↗](https://docs.supra.com/dvrf/build-third-party-evm-networks/getting-started)
 - [Create your Subscription ↗](https://docs.supra.com/dvrf/build-third-party-evm-networks/create-your-subscription)
 - [Gas Configurations ↗](https://docs.supra.com/dvrf/build-third-party-evm-networks/gas-configurations)
 - [Deposit & Withdraw Funds ↗](https://docs.supra.com/dvrf/build-third-party-evm-networks/deposit-and-withdraw-funds)
 - [Request Random Numbers ↗](https://docs.supra.com/dvrf/build-third-party-evm-networks/request-random-numbers)
 
 
-## Advanced Example (with Custom Seed)
+### Advanced Example (with Custom Seed)
 
 This example demonstrates requesting multiple random numbers with a custom client seed for additional entropy, and mapping results back to individual users.
 
