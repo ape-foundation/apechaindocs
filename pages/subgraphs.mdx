@@ -1,5 +1,83 @@
 import { Callout } from 'nextra/components'
 
+## Goldsky
+​
+Goldsky is ApeChain's trusted partner for high-performance data indexing and streaming, making it easy for developers to power dApps, analytics, and AI agents with fast, reliable access to ApeChain's on-chain data.
+
+Goldsky offers **two powerful products**:
+
+### Subgraphs
+
+[Subgraphs](https://docs.goldsky.com/subgraphs/deploying-subgraphs) allow you to index ApeChain data into a highly optimized format for **instant, flexible querying**.
+
+Use subgraphs when you want to **read and display on-chain data** inside apps, websites, dashboards, bots, and more.
+
+- **Ultra-fast reads**: Query large volumes of on-chain data with millisecond response times.
+- **Flexible GraphQL APIs**: Filter, paginate, and fetch exactly the data you need.
+- **Custom indexing logic**: Handle complex event processing, join entities, build derived fields.
+- **Auto-scaling**: Goldsky automatically scales infrastructure for you, no more worrying about node ops.
+- **Instant Deployment**: Create subgraphs instantly by uploading your ABI and contract address, no GraphQL coding required (but you can fully customize if you want).
+
+🛠️ **Example Use Cases**:
+
+- NFT marketplaces (fetching listings, offers, metadata)
+- DeFi dashboards (tracking TVL, trades, positions)
+- Social apps (aggregating profiles, posts, on-chain actions)
+- In-game marketplaces (real-time item trades and player stats)
+
+### Turbo
+
+[Turbo](https://docs.goldsky.com/turbo-pipelines/introduction) is a real-time data streaming pipeline that **replicates ApeChain data into your own database**, letting you power complex backends, machine learning, or data analytics.
+
+- **Real-time streaming**: Ingest new blocks, events, transactions as they happen.
+- **Your schema, your rules**: Turbo supports flexible transformations and customizations.
+- **Database integration**: Push to Postgres, Clickhouse, or your warehouse of choice.
+- **Perfect for AI/ML**: Build embeddings, train models, and run inference on live blockchain data.
+
+🛠️ **Example Use Cases**:
+
+- Powering AI agents with up-to-the-second on-chain awareness
+- Building custom analytics dashboards
+- Enabling real-time alerts and risk monitoring systems
+- Aggregating on-chain activity into internal data lakes
+
+## Why Goldsky for ApeChain Builders?
+
+- Lightning-fast query speeds
+- Real-time data pipelines
+- No need to manage indexers or infra
+- Instant onboarding with minimal config
+- Trusted by major Web3 projects across DeFi, gaming, AI, and social
+
+| Network | Subgraphs | Turbo |
+| --- | --- | --- |
+| Mainnet | ✅ | ✅ |
+| Curtis | ✅ | ✅ |
+
+### How to Get Started
+
+Goldsky makes it fast and easy to launch a subgraph or pipeline:
+
+- **Deploy via CLI**: Create fully custom subgraphs or Turbo configs from your local setup.
+- **Instant deployment**: Just upload your contract ABI + address, and Goldsky generates a working subgraph for you in minutes, no GraphQL coding needed.
+- **Leverage AI skills**: Deploy, debug, and even query Turbo pipelines using your favorite AI coding assistants with AI agent skills.
+
+### Demo: Intro to Indexing with Goldsky
+
+<iframe src="https://drive.google.com/file/d/1Z0yWzi9tZsJOUKoxjhO5Fk1xdI1LWo_N/preview" width="720" height="480" allow="autoplay" style={{paddingTop: '20px'}}></iframe>
+
+👉 [**Follow the full step-by-step guide here**](https://docs.goldsky.com/chains/apechain?utm_source=apechain&utm_medium=docs) to deploy on ApeChain.
+
+If you need help designing your schema or choosing between Subgraphs and Turbo, [**reach out to the Goldsky team**](https://docs.goldsky.com/getting-support) — they're happy to guide you.
+
+### Demo: Intro to Turbo Pipelines
+
+<iframe src="https://drive.google.com/file/d/1b2aCQlHvxeJm4md6SqPikRi0gw6DaSp2/preview" width="720" height="480" allow="autoplay" style={{paddingTop: '20px'}}></iframe>
+
+Turbo pipelines are Goldsky’s next generation data pipeline engine, offering significant performance improvements and new capabilities, including inter-batch parallelism and startups under 5 seconds.
+
+👉 [**Learn more about Turbo Pipelines**](https://docs.goldsky.com/turbo-pipelines/introduction) in the Goldsky docs.
+
 ## Envio
 
 [Envio](https://envio.dev/?utm_source=apechain&utm_medium=docs) is a high-performance indexing framework that **natively supports any EVM chain out of the box**, including ApeChain. It gives developers real-time and historical access to ApeChain's on-chain data through a single GraphQL API, with a fully managed hosting option.
@@ -85,84 +163,6 @@ See the [RPC data source guide](https://docs.envio.dev/docs/HyperIndex/rpc-sync?
 If you need help setting up your indexer, [reach out to the Envio team](https://discord.gg/envio) on Discord, where they are always happy to help.
 
 [Website](https://envio.dev/?utm_source=apechain&utm_medium=docs) | [Docs](https://docs.envio.dev/?utm_source=apechain&utm_medium=docs) | [Supported Networks](https://docs.envio.dev/docs/HyperIndex/supported-networks?utm_source=apechain&utm_medium=docs) | [Discord](https://discord.gg/envio) | [X](https://twitter.com/envio_indexer) | [GitHub](https://github.com/enviodev)
-
-## Goldsky
-​
-Goldsky is ApeChain's trusted partner for high-performance data indexing and streaming, making it easy for developers to power dApps, analytics, and AI agents with fast, reliable access to ApeChain's on-chain data.
-
-Goldsky offers **two powerful products**:
-
-### Subgraphs
-
-[Subgraphs](https://docs.goldsky.com/subgraphs/deploying-subgraphs) allow you to index ApeChain data into a highly optimized format for **instant, flexible querying**.
-
-Use subgraphs when you want to **read and display on-chain data** inside apps, websites, dashboards, bots, and more.
-
-- **Ultra-fast reads**: Query large volumes of on-chain data with millisecond response times.
-- **Flexible GraphQL APIs**: Filter, paginate, and fetch exactly the data you need.
-- **Custom indexing logic**: Handle complex event processing, join entities, build derived fields.
-- **Auto-scaling**: Goldsky automatically scales infrastructure for you, no more worrying about node ops.
-- **Instant Deployment**: Create subgraphs instantly by uploading your ABI and contract address, no GraphQL coding required (but you can fully customize if you want).
-
-🛠️ **Example Use Cases**:
-
-- NFT marketplaces (fetching listings, offers, metadata)
-- DeFi dashboards (tracking TVL, trades, positions)
-- Social apps (aggregating profiles, posts, on-chain actions)
-- In-game marketplaces (real-time item trades and player stats)
-
-### Turbo
-
-[Turbo](https://docs.goldsky.com/turbo-pipelines/introduction) is a real-time data streaming pipeline that **replicates ApeChain data into your own database**, letting you power complex backends, machine learning, or data analytics.
-
-- **Real-time streaming**: Ingest new blocks, events, transactions as they happen.
-- **Your schema, your rules**: Turbo supports flexible transformations and customizations.
-- **Database integration**: Push to Postgres, Clickhouse, or your warehouse of choice.
-- **Perfect for AI/ML**: Build embeddings, train models, and run inference on live blockchain data.
-
-🛠️ **Example Use Cases**:
-
-- Powering AI agents with up-to-the-second on-chain awareness
-- Building custom analytics dashboards
-- Enabling real-time alerts and risk monitoring systems
-- Aggregating on-chain activity into internal data lakes
-
-## Why Goldsky for ApeChain Builders?
-
-- Lightning-fast query speeds
-- Real-time data pipelines
-- No need to manage indexers or infra
-- Instant onboarding with minimal config
-- Trusted by major Web3 projects across DeFi, gaming, AI, and social
-
-| Network | Subgraphs | Turbo |
-| --- | --- | --- |
-| Mainnet | ✅ | ✅ |
-| Curtis | ✅ | ✅ |
-
-### How to Get Started
-
-Goldsky makes it fast and easy to launch a subgraph or pipeline:
-
-- **Deploy via CLI**: Create fully custom subgraphs or Turbo configs from your local setup.
-- **Instant deployment**: Just upload your contract ABI + address, and Goldsky generates a working subgraph for you in minutes, no GraphQL coding needed.
-- **Leverage AI skills**: Deploy, debug, and even query Turbo pipelines using your favorite AI coding assistants with AI agent skills.
-
-### Demo: Intro to Indexing with Goldsky
-
-<iframe src="https://drive.google.com/file/d/1Z0yWzi9tZsJOUKoxjhO5Fk1xdI1LWo_N/preview" width="720" height="480" allow="autoplay" style={{paddingTop: '20px'}}></iframe>
-
-👉 [**Follow the full step-by-step guide here**](https://docs.goldsky.com/chains/apechain?utm_source=apechain&utm_medium=docs) to deploy on ApeChain.
-
-If you need help designing your schema or choosing between Subgraphs and Turbo, [**reach out to the Goldsky team**](https://docs.goldsky.com/getting-support) — they're happy to guide you.
-
-### Demo: Intro to Turbo Pipelines
-
-<iframe src="https://drive.google.com/file/d/1b2aCQlHvxeJm4md6SqPikRi0gw6DaSp2/preview" width="720" height="480" allow="autoplay" style={{paddingTop: '20px'}}></iframe>
-
-Turbo pipelines are Goldsky’s next generation data pipeline engine, offering significant performance improvements and new capabilities, including inter-batch parallelism and startups under 5 seconds.
-
-👉 [**Learn more about Turbo Pipelines**](https://docs.goldsky.com/turbo-pipelines/introduction) in the Goldsky docs.
 
 ## Ormi 
 
