@@ -14,5 +14,5 @@ Then, run `pnpm dev` to start the development server and visit localhost:3000.
 #### License
 
 This project is licensed under the MIT License.
-© 2024 Ape Foundation
+© 2026 ApeCo / Ape Foundation
 
