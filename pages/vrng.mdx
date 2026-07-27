@@ -11,6 +11,120 @@ Your contract requests a random value and pays a small **$APE** fee; the value i
 - [Repo with code snippet ↗](https://github.com/ape-foundation/vRNG)
 - [Status monitor ↗](https://ape-vrng.vercel.app/status)
 
+### Contract Addresses
+
+#### ApeChain (mainnet) — chain ID `33139`
+
+| Field | Value |
+|---|---|
+| Chain ID | `33139` |
+| Explorer | `https://apescan.io` |
+| Native token | `$APE` |
+
+| Contract | Address (proxy) |
+|---|---|
+| **`NativeVRNG`** (entry point) | `0xB9B0d73104BE5e286142258204AA497435a97415` |
+| `RandomBeaconHistory` | `0x031a84F81a9505E48624936c274f4DfD497676Ae` |
+| `FeeManager` | `0x2125EA37840c7f15d6b5D352049329a79e90803D` |
+
+#### ApeChain Curtis (testnet) — chain ID `33111`
+
+| Field | Value |
+|---|---|
+| Chain ID | `33111` |
+| Explorer | `https://curtis.apescan.io` |
+| Native token | `$APE` |
+
+| Contract | Address (proxy) |
+|---|---|
+| **`NativeVRNG`** (entry point) | `0xA899846c23c6af77Da3DA16C8c6137746a460449` |
+| `RandomBeaconHistory` | `0x63B964F4Bd9589A05FB8C86B9e23A859ec064846` |
+| `FeeManager` | `0x381Ad148F370188CA76B245897BCb8aEc319B432` |
+
+## Usage
+
+Integrate ApeChain Native vRNG into a consumer contract in three steps. This is the quickstart — see the [repo docs ↗](https://github.com/ape-foundation/vRNG/tree/main/docs) for deeper detail on each step.
+
+**Prerequisites:** intermediate Solidity, a deployed `NativeVRNG` address (see [Contract Addresses](#contract-addresses) above), and some $APE to pay the per-request fee.
+
+### The model
+
+vRNG is **request → callback** (asynchronous), like Chainlink VRF or Pyth Entropy:
+
+1. Your contract **requests** randomness and pays a fee.
+2. The protocol fulfils the request with the first beacon written after it.
+3. The protocol **calls your contract back** with the random value.
+
+Your contract therefore needs to do two things: **send a request**, and **implement a callback**.
+
+### Step 1 - Import the interface
+
+`NativeVRNG` implements `IVRNGProvider`. Copy that interface from [Interfaces & ABIs ↗](https://github.com/ape-foundation/vRNG/blob/main/docs/interfaces-and-abis.md) into your project, import it, and store the provider address — `0xB9B0d73104BE5e286142258204AA497435a97415` on ApeChain mainnet.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import { IVRNGProvider } from "./interfaces/IVRNGProvider.sol"; // copy from docs → Interfaces & ABIs
+
+contract MyGame {
+    IVRNGProvider public immutable vrng;
+
+    constructor(address vrngProvider) {
+        vrng = IVRNGProvider(vrngProvider);
+    }
+}
+```
+
+### Step 2 - Request randomness
+
+Read the fee with `getFee`, then call `requestRandomness` forwarding that fee. Store the returned `requestId` so you can recognize the request when it comes back.
+
+```solidity
+mapping(bytes32 => address) public requesterOf;
+
+function roll(bytes32 userCommitment) external payable returns (bytes32 requestId) {
+    uint256 fee = vrng.getFee(address(this));
+    require(msg.value >= fee, "fee too low");
+
+    requestId = vrng.requestRandomness{ value: fee }(userCommitment);
+    requesterOf[requestId] = msg.sender;
+    // refund msg.value - fee if you collected extra
+}
+```
+
+- `userCommitment` is your own entropy (e.g. `keccak256(player, salt)`), mixed into the derivation — it does **not** need to be secret for the instant flow.
+- `requestId` uniquely identifies this request. Details: [Requesting randomness ↗](https://github.com/ape-foundation/vRNG/blob/main/docs/requesting-randomness.md).
+
+### Step 3 - Implement the callback
+
+The protocol calls `fulfillRandomness(requestId, randomValue)` on the contract you requested from. **Guard it so only `NativeVRNG` can call it**, then use the value.
+
+```solidity
+function fulfillRandomness(bytes32 requestId, bytes32 randomValue) external {
+    require(msg.sender == address(vrng), "only vRNG");
+
+    address player = requesterOf[requestId];
+    require(player != address(0), "unknown request");
+    delete requesterOf[requestId];
+
+    uint256 outcome = uint256(randomValue) % 100; // map to your range
+    // ... apply outcome ...
+}
+```
+
+That's the whole integration. Keep the callback **cheap and non-reverting** — see [Receiving randomness ↗](https://github.com/ape-foundation/vRNG/blob/main/docs/receiving-randomness.md) for why and how.
+
+### Full working example
+
+See [examples/lootbox.md ↗](https://github.com/ape-foundation/vRNG/blob/main/examples/lootbox.md) for a complete, annotated consumer (`LootBoxDemo`) that implements both the instant and commit-reveal flows, handles fee refunds, and derives a rarity tier from the random value.
+
+### Next
+
+- **Next: [Requesting randomness ↗](https://github.com/ape-foundation/vRNG/blob/main/docs/requesting-randomness.md)** — the request flows in detail.
+- [Receiving randomness ↗](https://github.com/ape-foundation/vRNG/blob/main/docs/receiving-randomness.md) — make your callback safe.
+- See also: [Fees & rate limits ↗](https://github.com/ape-foundation/vRNG/blob/main/docs/fees-and-limits.md) · [Verifying randomness ↗](https://github.com/ape-foundation/vRNG/blob/main/docs/verifying-randomness.md)
+
 ## Supra dVRF
 
 **Supra dVRF** is a distributed and cryptographically verifiable randomness service and an alternative to [ApeChain vRNG](https://github.com/ape-foundation/vRNG). It enables smart contracts to request tamper-proof random numbers on-chain — suitable for NFT minting, gaming, lotteries, and any use case where provable fairness matters.
