@@ -19,7 +19,7 @@ You need to modify `docker-compose.yml` to replace the public Arbitrum One RPC U
 
 `public.ecr.aws/i6b2w2n6/nitro-node:apechain-3.9.9`
 
-### Existing RPC Endpoints
+### RPC Endpoints
 
 HTTP endpoint: `https://rpc.apechain.com/http`
 
@@ -28,7 +28,27 @@ WS endpoint: `wss://rpc.apechain.com/ws`
 ## Snapshot guide
 
 To bring your replica node up to sync, use the following available snapshot:
-[Snapshot taken Sep 22, 2025](https://caldera-chain-data-snapshots.s3.us-west-2.amazonaws.com/exported-snapshots/nitro-apechain/nitro-apechain-2025-Sep-22.tar)
+[Snapshot July 30, 2026](https://caldera-chain-data-snapshots.s3.us-west-2.amazonaws.com/exported-snapshots/nitro-apechain/nitro-apechain-2026-Jul-30.tar)
+
+resumable download (re-run the same command if it drops)
+```
+curl -C - -O 'https://caldera-chain-data-snapshots.s3.us-west-2.amazonaws.com/exported-snapshots/nitro-apechain/nitro-apechain-2026-Jul-30.tar.zst'
+```
+
+or parallel + resumable
+```
+aria2c -x8 'https://caldera-chain-data-snapshots.s3.us-west-2.amazonaws.com/exported-snapshots/nitro-apechain/nitro-apechain-2026-Jul-30.tar.zst'
+```
+
+verify size: should be 1238297822396 bytes
+```
+ls -l nitro-apechain-2026-Jul-30.tar.zst
+```
+
+extract (unpacks to nitro/)
+```
+tar --zstd -xf nitro-apechain-2026-Jul-30.tar.zst
+```
 
 ## Running a replica node for Curtis
 
@@ -38,21 +58,17 @@ Download the zipped repository below for an out-of-the-box example of how to spi
 
 <Callout>Syncing can take up to a few hours.</Callout>
 
-### Using the Repo
+## Using the Repo
 
-The repo is set up to easily run curtis testnet replica nodes. Simply run `docker-compose up` from the root of the repository to bring a replica node up locally.
+The repo is set up to easily run Curtis testnet replica nodes. Simply run `docker-compose up` from the root of the repository to bring a replica node up locally.
 
-The docker image for curtis testnet is hosted in a public docker repo: `public.ecr.aws/i6b2w2n6/nitro-node:curtis3`
+The Docker image for Curtis Testnet is hosted in a public docker repo: `public.ecr.aws/i6b2w2n6/nitro-node:curtis3`
 
 The `nodeConfig` file included in the repository is prepopulated with curtis testnet parameters. The current setup uses a public rpc url for the Arbitrum Sepolia rpc and stores node data in ad Docker volume.
 
 It is recommended to replace the Arbitrum Sepolia RPC URL in `docker-compose.yml` with your own private url to avoid ratelimiting issues, it's advised to use your private PRC URL instead of the default public one. By default, this value is set to Arbitrum's public RPC url.
 
-### Docker Images
-
-`public.ecr.aws/i6b2w2n6/nitro-node:curtis3`
-
-### Existing RPC Endpoints
+### RPC Endpoints
 
 HTTP endpoint: `https://curtis.rpc.caldera.xyz/http`
 
