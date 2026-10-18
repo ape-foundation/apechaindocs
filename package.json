@@ -2,6 +2,9 @@
   "name": "apechain-docs",
   "version": "0.0.1",
   "description": "Apechain docs",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
