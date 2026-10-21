@@ -17,3 +17,37 @@ For teams that want to go further, the [Uniblock MCP server](https://docs.uniblo
 - **[Direct APIs](https://docs.uniblock.dev):** Direct access to 55+ providers including Alchemy, QuickNode, and more, across 300+ blockchains.
 
 To get started, [create a free Uniblock account](http://dashboard.uniblock.dev/link/ApeChain-docs-providers-a).
+
+## Direct JSON-RPC (no API key)
+
+ApeChain speaks plain EVM JSON-RPC, so you can call it directly without an API key.
+
+```bash
+# mainnet
+curl -s https://rpc.apechain.com/http \
+  -H 'content-type: application/json' \
+  --data '{"jsonrpc":"2.0","id":1,"method":"eth_chainId","params":[]}'
+```
+
+```json
+{"jsonrpc":"2.0","id":1,"result":"0x8173"}
+```
+
+`0x8173` is 33139 in decimal, the ApeChain mainnet chain id. For the Curtis testnet use
+`https://curtis.rpc.caldera.xyz/http` (chain id 33111, `0x8157`). Both endpoints are
+listed under [Node Providers](/node-providers).
+
+Any `eth_*` method works, for example the current block height:
+
+```bash
+curl -s https://rpc.apechain.com/http \
+  -H 'content-type: application/json' \
+  --data '{"jsonrpc":"2.0","id":1,"method":"eth_blockNumber","params":[]}'
+```
+
+```json
+{"jsonrpc":"2.0","id":1,"result":"0x323a9b1"}
+```
+
+The block height above was captured when this page was written; your own call will
+return a newer one.
