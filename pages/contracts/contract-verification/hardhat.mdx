@@ -1,78 +1,148 @@
 import { Callout } from 'nextra/components'
 
-# Verifying a Smart Contract on Apechain
+# Verifying a Smart Contract on ApeChain with Hardhat
 
 ## Introduction
 Verifying a smart contract on the blockchain is crucial for ensuring its transparency, security, and facilitating interaction for both users and developers. Hardhat is a versatile tool designed for compiling, testing, deploying, and verifying smart contracts.
 
-This guide will walk you through the process of verifying your smart contract on the Curtis Network (testnet) using Hardhat.
+This guide will walk you through verifying your smart contract on [ApeScan](https://apescan.io/) for ApeChain Mainnet and the Curtis Testnet using Hardhat. ApeScan's API is compatible with the Etherscan API, so Hardhat's built-in Etherscan verifier works with it out of the box.
 
 ## Prerequisites
 Before you begin the verification process, make sure you have the following:
 
-- **Hardhat Installed**: This is essential for compiling, deploying, and verifying your smart contract.
+- **Hardhat 3 Installed**: This is essential for compiling, deploying, and verifying your smart contract. Using Hardhat 2? See [Using Hardhat 2](#using-hardhat-2).
 - **Node.js and NPM**: Hardhat operates on Node.js, and NPM (Node Package Manager) is used to install necessary packages.
-- **Deployed Smart Contract**: Ensure your smart contract is already deployed on the Curtis network. If it isn't, refer to the guide on Deploying a Smart Contract.
+- **ApeScan API Key**: Sign in on [ApeScan](https://apescan.io/api-keys) with your wallet and create a free API key. The same key works for Mainnet and Curtis.
+- **Deployed Smart Contract**: Ensure your smart contract is already deployed on ApeChain or Curtis. If it isn't, refer to the guide on Deploying a Smart Contract.
 
 ## Step 1: Installing Hardhat Verify Package
-To enable verification in your Hardhat environment, you need to install the `@nomicfoundation/hardhat-verify` plugin. Run the following command in your project's root directory:
+The `@nomicfoundation/hardhat-verify` plugin is included in both Hardhat toolboxes (`hardhat-toolbox-viem` and `hardhat-toolbox-mocha-ethers`). If you are not using a toolbox, install it in your project's root directory:
 
 ```bash copy
 npm install --save-dev @nomicfoundation/hardhat-verify
 ```
 
 ## Step 2: Configuring Hardhat
-After installing the verification plugin, the next step is to configure your Hardhat environment. This involves enabling the necessary plugins and setting up your network details in the ```hardhat.config.ts``` file.
+Next, add the ApeChain networks and point Hardhat's Etherscan verifier at ApeScan in your ```hardhat.config.ts``` file.
 
-<Callout type="warning">For this example we are adding the private key and api key in the file, **PLEASE** make adjustments and add this sensitive information to a .env file if pushing to a repository </Callout>
+<Callout type="info">The verifier config key is `etherscan` because Hardhat names it after the API standard. The `chainDescriptors` below send those requests to ApeScan instead of Etherscan.</Callout>
 
-Include the following configuration in your ```hardhat.config.ts```:
+```ts copy
+import hardhatToolboxViemPlugin from "@nomicfoundation/hardhat-toolbox-viem";
+import { configVariable, defineConfig } from "hardhat/config";
 
-```js copy
-import "@nomicfoundation/hardhat-toolbox-viem";
-import "@nomicfoundation/hardhat-verify";
+export default defineConfig({
+  plugins: [hardhatToolboxViemPlugin],
+  solidity: "0.8.28",
+  networks: {
+    apechain: {
+      type: "http",
+      url: "https://rpc.apechain.com/http",
+      accounts: [configVariable("PRIVATE_KEY")],
+    },
+    curtis: {
+      type: "http",
+      url: "https://curtis.rpc.caldera.xyz/http",
+      accounts: [configVariable("PRIVATE_KEY")],
+    },
+  },
+  chainDescriptors: {
+    33139: {
+      name: "ApeChain",
+      blockExplorers: {
+        etherscan: {
+          name: "ApeScan",
+          url: "https://apescan.io",
+          apiUrl: "https://api.apescan.io/api",
+        },
+      },
+    },
+    33111: {
+      name: "Curtis",
+      blockExplorers: {
+        etherscan: {
+          name: "ApeScan",
+          url: "https://curtis.apescan.io",
+          apiUrl: "https://curtis.apechain.com/api",
+        },
+      },
+    },
+  },
+  verify: {
+    etherscan: {
+      apiKey: configVariable("APESCAN_API_KEY"),
+    },
+  },
+});
+```
+
+`configVariable` keeps your private key and API key out of the config file. Store them with Hardhat's encrypted keystore:
+
+```bash copy
+npx hardhat keystore set PRIVATE_KEY
+npx hardhat keystore set APESCAN_API_KEY
+```
+
+## Step 3: Verifying Your Contract
+
+Once your project is configured for verification, you can proceed to verify your smart contract on ApeChain Mainnet or Testnet. Replace `<contract-address>` with the actual address of your deployed contract, and append any constructor arguments after it.
+
+### For Mainnet
+
+```bash copy
+npx hardhat verify --network apechain <contract-address>
+```
+
+### For Testnet
+
+```bash copy
+npx hardhat verify --network curtis <contract-address>
+```
+
+This command submits your contract's source code and metadata to ApeScan. Once successfully verified, your contract's source code will be publicly accessible on ApeScan, linked to its on-chain address.
+
+<Callout type="info">`hardhat verify` submits to every verifier that is enabled in your config, which by default includes Blockscout and Sourcify as well. To verify on ApeScan only, run `npx hardhat verify etherscan --network apechain <contract-address>`.</Callout>
+
+## Using Hardhat 2
+
+On Hardhat 2, use `@nomicfoundation/hardhat-verify@hh2` and add ApeScan as custom chains under the `etherscan` key:
+
+```ts copy
+import "@nomicfoundation/hardhat-toolbox";
 import type { HardhatUserConfig } from "hardhat/config";
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.24",
+  solidity: "0.8.28",
   networks: {
-    ApeChain: {
-      url: "https://apechain.calderachain.xyz/http",
-      accounts: [
-        "YOUR_PRIVATE_KEY",
-      ],
+    apechain: {
+      url: "https://rpc.apechain.com/http",
+      accounts: [process.env.PRIVATE_KEY!],
     },
     curtis: {
       url: "https://curtis.rpc.caldera.xyz/http",
-      accounts: [
-        "YOUR_PRIVATE_KEY",
-      ],
-    }
+      accounts: [process.env.PRIVATE_KEY!],
+    },
   },
-  sourcify: {
-    enabled: false,
-    apiUrl: "https://sourcify.dev/server",
-    browserUrl: "https://repo.sourcify.dev",
-  },
-  apescan: {
+  etherscan: {
     apiKey: {
-      curtis: "YOUR_APESCAN_API_KEY",
+      apechain: process.env.APESCAN_API_KEY!,
+      curtis: process.env.APESCAN_API_KEY!,
     },
     customChains: [
-    {
-        network: "ApeChain",
+      {
+        network: "apechain",
         chainId: 33139,
         urls: {
-          apiURL: "https://apechain.calderachain.xyz/http",
-          browserURL: "https://apechain.calderachain.xyz/http",
+          apiURL: "https://api.apescan.io/api",
+          browserURL: "https://apescan.io",
         },
       },
       {
         network: "curtis",
         chainId: 33111,
         urls: {
-          apiURL: "https://curtis.explorer.caldera.xyz/api",
-          browserURL: "https://curtis.explorer.caldera.xyz/",
+          apiURL: "https://curtis.apechain.com/api",
+          browserURL: "https://curtis.apescan.io",
         },
       },
     ],
@@ -82,30 +152,7 @@ const config: HardhatUserConfig = {
 export default config;
 ```
 
-## Step 3: Verifying Your Contract
-
-Once your project is configured for verification, you can proceed to verify your smart contract on Apechain Mainnet or Testnet. Replace `<contract-address>` with the actual address of your deployed contract.
-
-### For Mainnet
-
-For verification on the Curtis network, run the following command:
-
-```bash copy
-npx hardhat verify --network ApeChain < contract-address >
-```
-
-This command will communicate with the Apechain network (as specified in your Hardhat configuration) to submit your contract’s source code and metadata for verification. Once successfully verified, your contract’s source code will be publicly accessible on the blockchain, linked to its on-chain address.
-
-### For Testnet
-
-For verification on the Curtis network, run the following command:
-
-```bash copy
-npx hardhat verify --network curtis < contract-address >
-```
-
-This command will communicate with the Curtis network (as specified in your Hardhat configuration) to submit your contract’s source code and metadata for verification. Once successfully verified, your contract’s source code will be publicly accessible on the blockchain, linked to its on-chain address.
-
+The verify commands are the same as above.
 
 ## Conclusion
 Verifying your smart contract not only strengthens your project's transparency and credibility but also greatly enhances the user experience by making interactions and verifications more straightforward. By following the steps in this guide, developers can ensure their contracts are verified and available for public scrutiny, contributing to a more secure and trustworthy ecosystem.
