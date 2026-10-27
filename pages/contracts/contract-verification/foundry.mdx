@@ -5,13 +5,14 @@ import { Callout } from 'nextra/components'
 ## Introduction
 Verifying a smart contract on the blockchain is crucial to ensuring transparency, security, and simplifying interaction for both users and developers. In this guide, we'll walk you through verifying your smart contract on [ApeScan](https://apescan.io/) for ApeChain Mainnet and the Curtis Testnet using Foundry.
 
-ApeScan's API is compatible with the Etherscan API, so Foundry's built-in Etherscan verifier works with it by pointing `--verifier-url` at ApeScan.
+Foundry verifies on ApeScan with its `custom` verifier pointed at ApeScan's URL. No API key is needed.
+
+<Callout type="info">**Coming from Etherscan?** ApeScan uses the same API, so `forge verify-contract` and `forge create --verify` work the same way. Replace `--verifier etherscan` and your API key with `--verifier custom --verifier-url <ApeScan URL>`.</Callout>
 
 ## Prerequisites
 Before you begin the verification process, make sure you have the following:
 
 - **Foundry Installed**: This is essential for compiling, deploying, and verifying your smart contract.
-- **ApeScan API Key**: Sign in on [ApeScan](https://apescan.io/api-keys) with your wallet and create a free API key. The same key works for Mainnet and Curtis.
 - **Ready Your Smart Contract**: Ensure your smart contract is ready to be deployed. If it is already deployed then just get the contract address ready.
 
 | Network | Chain ID | Verifier URL |
@@ -27,9 +28,8 @@ From the root directory of your project, run the command below. Replace the addr
 ```bash copy
 forge verify-contract <contract-address> src/FileName.sol:ContractName \
   --chain 33139 \
-  --verifier etherscan \
-  --verifier-url https://api.apescan.io/api \
-  --etherscan-api-key <your-apescan-api-key>
+  --verifier custom \
+  --verifier-url https://api.apescan.io/api
 ```
 
 ### Testnet
@@ -37,26 +37,26 @@ forge verify-contract <contract-address> src/FileName.sol:ContractName \
 ```bash copy
 forge verify-contract <contract-address> src/FileName.sol:ContractName \
   --chain 33111 \
-  --verifier etherscan \
-  --verifier-url https://curtis.apechain.com/api \
-  --etherscan-api-key <your-apescan-api-key>
+  --verifier custom \
+  --verifier-url https://curtis.apechain.com/api
 ```
 
 If your contract has constructor arguments, add them with `--constructor-args $(cast abi-encode "constructor(uint256,address)" 42 0x...)`. Add `--watch` to wait for the verification result.
 
 ## Deploying and Verifying in One Step
 
+<Callout type="warning">Never paste your private key into commands. Import it once with `cast wallet import deployer --interactive` and sign with `--account deployer`.</Callout>
+
 ### Mainnet
 
 ```bash copy
 forge create src/FileName.sol:ContractName \
   --rpc-url https://rpc.apechain.com/http \
-  --private-key <your-private-key> \
+  --account deployer \
   --broadcast \
   --verify \
-  --verifier etherscan \
-  --verifier-url https://api.apescan.io/api \
-  --etherscan-api-key <your-apescan-api-key>
+  --verifier custom \
+  --verifier-url https://api.apescan.io/api
 ```
 
 ### Testnet
@@ -64,36 +64,14 @@ forge create src/FileName.sol:ContractName \
 ```bash copy
 forge create src/FileName.sol:ContractName \
   --rpc-url https://curtis.rpc.caldera.xyz/http \
-  --private-key <your-private-key> \
+  --account deployer \
   --broadcast \
   --verify \
-  --verifier etherscan \
-  --verifier-url https://curtis.apechain.com/api \
-  --etherscan-api-key <your-apescan-api-key>
+  --verifier custom \
+  --verifier-url https://curtis.apechain.com/api
 ```
 
-## Configuring `foundry.toml`
-To avoid repeating the URLs and API key, add ApeScan to your `foundry.toml`:
-
-```toml copy
-[rpc_endpoints]
-apechain = "https://rpc.apechain.com/http"
-curtis = "https://curtis.rpc.caldera.xyz/http"
-
-[etherscan]
-apechain = { key = "${APESCAN_API_KEY}", chain = 33139, url = "https://api.apescan.io/api" }
-curtis = { key = "${APESCAN_API_KEY}", chain = 33111, url = "https://curtis.apechain.com/api" }
-```
-
-Then set `APESCAN_API_KEY` in your environment and verify with:
-
-```bash copy
-forge verify-contract <contract-address> src/FileName.sol:ContractName --chain 33139 --verifier etherscan
-```
-
-Use `--chain 33111` for Curtis. The same config is used by `forge script --verify` and `forge create --verify`.
-
-<Callout type="warning">Never commit your private key or API key. Keep them in environment variables or a `.env` file that is listed in your `.gitignore`.</Callout>
+<Callout type="info">Always pass `--verifier-url` on the command line. Foundry ignores verifier URLs set in `foundry.toml` for ApeChain, so without the flag the request doesn't reach ApeScan.</Callout>
 
 ## Conclusion
 Verifying your smart contract ensures transparency and boosts the credibility of your project. It also makes the contract more accessible to users and developers by associating the source code with the on-chain address.
