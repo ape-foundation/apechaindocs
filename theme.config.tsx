@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';  // Import the useRouter hook
 import logo_image_src from './images/apechain-logo.svg';
 import og_image_src from './images/apechain-open-graph.jpg';
 import { ThemeSwitch } from './components/ThemeSelector';
-import { AskCookbook } from './components/AskCookbook';
 
 const config: DocsThemeConfig = {
   logo: (
@@ -33,13 +32,6 @@ const config: DocsThemeConfig = {
   navigation: false,
   themeSwitch: {
     component: <ThemeSwitch />,
-  },
-  navbar: {
-    extraContent: (
-      <div>
-        <AskCookbook />
-      </div>
-    ),
   },
   footer: {
     text: (

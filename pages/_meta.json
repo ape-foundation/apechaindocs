@@ -34,7 +34,6 @@
     "title": "Contracts"
   },
   "ape-oft": "APE OFT",
-  "contract-decoding": "Contract Decoding",
   "seperator_4": {
     "type": "separator",
     "title": "Tools"
@@ -43,7 +42,6 @@
   "apis": "APIs",
   "block-explorers": "Block Explorers",
   "cross-chain": "Cross-Chain",
-  "data-indexers": "Data Indexers",
   "faucet": "Faucets",
   "node-providers": "Node Providers",
   "onboarding": "Onboarding",
