@@ -5,7 +5,7 @@ import { Callout } from 'nextra/components'
 ## Introduction
 Verifying a smart contract on the blockchain is crucial for ensuring its transparency, security, and facilitating interaction for both users and developers. Hardhat is a versatile tool designed for compiling, testing, deploying, and verifying smart contracts.
 
-This guide will walk you through verifying your smart contract on [ApeScan](https://apescan.io/) for ApeChain Mainnet and the Curtis Testnet using Hardhat. No API key is needed.
+This guide will walk you through verifying your smart contract on [ApeScan](https://apescan.io/) for ApeChain Mainnet and the Blue and Curtis testnets using Hardhat. No API key is needed.
 
 <Callout type="info">**Coming from Etherscan?** ApeScan uses the same API, so your existing `hardhat-verify` setup keeps working. Only the explorer URLs change. Hardhat still calls this verifier `etherscan` in its config and commands; that's the name of the API standard, and with the config below every request goes to ApeScan.</Callout>
 
@@ -14,7 +14,7 @@ Before you begin the verification process, make sure you have the following:
 
 - **Hardhat 3 Installed**: This is essential for compiling, deploying, and verifying your smart contract. Using Hardhat 2? See [Using Hardhat 2](#using-hardhat-2).
 - **Node.js and NPM**: Hardhat operates on Node.js, and NPM (Node Package Manager) is used to install necessary packages.
-- **Deployed Smart Contract**: Ensure your smart contract is already deployed on ApeChain or Curtis. If it isn't, refer to the guide on Deploying a Smart Contract.
+- **Deployed Smart Contract**: Ensure your smart contract is already deployed on ApeChain, Blue or Curtis. If it isn't, refer to the guide on Deploying a Smart Contract.
 
 ## Step 1: Installing Hardhat Verify Package
 The `@nomicfoundation/hardhat-verify` plugin is included in both Hardhat toolboxes (`hardhat-toolbox-viem` and `hardhat-toolbox-mocha-ethers`). If you are not using a toolbox, install it in your project's root directory:
@@ -39,6 +39,11 @@ export default defineConfig({
       url: "https://rpc.apechain.com/http",
       accounts: [configVariable("PRIVATE_KEY")],
     },
+    blue: {
+      type: "http",
+      url: "https://rpcblue.apechain.com/",
+      accounts: [configVariable("PRIVATE_KEY")],
+    },
     curtis: {
       type: "http",
       url: "https://curtis.rpc.caldera.xyz/http",
@@ -53,6 +58,16 @@ export default defineConfig({
           name: "ApeScan",
           url: "https://apescan.io",
           apiUrl: "https://api.apescan.io/api",
+        },
+      },
+    },
+    3313939: {
+      name: "Blue",
+      blockExplorers: {
+        etherscan: {
+          name: "ApeScan",
+          url: "https://blue.apescan.io",
+          apiUrl: "https://blue.apechain.com/api",
         },
       },
     },
@@ -92,7 +107,13 @@ Once your project is configured for verification, you can proceed to verify your
 npx hardhat verify etherscan --network apechain <contract-address>
 ```
 
-### For Testnet
+### For Blue Testnet
+
+```bash copy
+npx hardhat verify etherscan --network blue <contract-address>
+```
+
+### For Curtis Testnet
 
 ```bash copy
 npx hardhat verify etherscan --network curtis <contract-address>
@@ -117,6 +138,10 @@ const config: HardhatUserConfig = {
       url: "https://rpc.apechain.com/http",
       accounts: [process.env.PRIVATE_KEY!],
     },
+    blue: {
+      url: "https://rpcblue.apechain.com/",
+      accounts: [process.env.PRIVATE_KEY!],
+    },
     curtis: {
       url: "https://curtis.rpc.caldera.xyz/http",
       accounts: [process.env.PRIVATE_KEY!],
@@ -126,6 +151,7 @@ const config: HardhatUserConfig = {
     // ApeScan doesn't need an API key; Hardhat just requires a non-empty value.
     apiKey: {
       apechain: "apescan",
+      blue: "apescan",
       curtis: "apescan",
     },
     customChains: [
@@ -135,6 +161,14 @@ const config: HardhatUserConfig = {
         urls: {
           apiURL: "https://api.apescan.io/api",
           browserURL: "https://apescan.io",
+        },
+      },
+      {
+        network: "blue",
+        chainId: 3313939,
+        urls: {
+          apiURL: "https://blue.apechain.com/api",
+          browserURL: "https://blue.apescan.io",
         },
       },
       {

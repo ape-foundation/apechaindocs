@@ -3,7 +3,7 @@ import { Callout } from 'nextra/components'
 # Verifying a Smart Contract on ApeChain with Foundry
 
 ## Introduction
-Verifying a smart contract on the blockchain is crucial to ensuring transparency, security, and simplifying interaction for both users and developers. In this guide, we'll walk you through verifying your smart contract on [ApeScan](https://apescan.io/) for ApeChain Mainnet and the Curtis Testnet using Foundry.
+Verifying a smart contract on the blockchain is crucial to ensuring transparency, security, and simplifying interaction for both users and developers. In this guide, we'll walk you through verifying your smart contract on [ApeScan](https://apescan.io/) for ApeChain Mainnet and the Blue and Curtis testnets using Foundry.
 
 Foundry verifies on ApeScan with its `custom` verifier pointed at ApeScan's URL. No API key is needed.
 
@@ -18,6 +18,7 @@ Before you begin the verification process, make sure you have the following:
 | Network | Chain ID | Verifier URL |
 | :------ | :------: | :----------- |
 | Mainnet | 33139 | `https://api.apescan.io/api` |
+| Blue Testnet | 3313939 | `https://blue.apechain.com/api` |
 | Curtis Testnet | 33111 | `https://curtis.apechain.com/api` |
 
 ## Verifying an Already Deployed Contract
@@ -32,7 +33,16 @@ forge verify-contract <contract-address> src/FileName.sol:ContractName \
   --verifier-url https://api.apescan.io/api
 ```
 
-### Testnet
+### Blue Testnet
+
+```bash copy
+forge verify-contract <contract-address> src/FileName.sol:ContractName \
+  --chain 3313939 \
+  --verifier custom \
+  --verifier-url https://blue.apechain.com/api
+```
+
+### Curtis Testnet
 
 ```bash copy
 forge verify-contract <contract-address> src/FileName.sol:ContractName \
@@ -59,7 +69,19 @@ forge create src/FileName.sol:ContractName \
   --verifier-url https://api.apescan.io/api
 ```
 
-### Testnet
+### Blue Testnet
+
+```bash copy
+forge create src/FileName.sol:ContractName \
+  --rpc-url https://rpcblue.apechain.com/ \
+  --account deployer \
+  --broadcast \
+  --verify \
+  --verifier custom \
+  --verifier-url https://blue.apechain.com/api
+```
+
+### Curtis Testnet
 
 ```bash copy
 forge create src/FileName.sol:ContractName \
